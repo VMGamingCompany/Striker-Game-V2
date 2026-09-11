@@ -126,7 +126,7 @@ canvas.codexCv,canvas.uiCv,#mmcv{position:static!important;top:auto!important;le
   background:rgba(0,0,0,.65);border:1px solid rgba(255,204,0,.25);color:var(--mut);
   white-space:nowrap;pointer-events:none;}
 /* Minimap */
-#mmap{position:absolute;top:100px;left:0;width:72px;height:72px;
+#mmap{position:absolute;top:196px;left:0;width:72px;height:72px;
   border-radius:0 0 5px 0;overflow:hidden;border-right:1px solid rgba(0,255,136,.18);border-bottom:1px solid rgba(0,255,136,.18);background:rgba(0,0,0,.82);}
 #mmcv{display:block;}
 /* Boss bar */
@@ -308,7 +308,6 @@ canvas.codexCv,canvas.uiCv,#mmcv{position:static!important;top:auto!important;le
 </style>
 </head>
 <body>
-<div id="audioDbg" style="position:fixed;top:2px;left:2px;z-index:99999;background:rgba(0,0,0,.75);color:#0f0;font:9px monospace;padding:3px 5px;pointer-events:none;white-space:pre;max-width:90vw;"></div>
 <canvas id="gc"></canvas>
 <canvas id="mbg"></canvas>
 <!-- MENU -->
@@ -317,7 +316,7 @@ canvas.codexCv,canvas.uiCv,#mmcv{position:static!important;top:auto!important;le
     <!-- Titlu animat -->
     <div style="position:relative;text-align:center;margin-bottom:4px;">
       <div class="gt" style="font-size:46px;letter-spacing:10px;animation:titlePulse 3s infinite;">STRIKER</div>
-      <div class="gs" style="font-size:8px;letter-spacing:6px;">TACTICAL ROGUELITE</div>
+      <div class="gs" data-i18n="menu_subtitle" style="font-size:8px;letter-spacing:6px;">TACTICAL ROGUELITE</div>
       <div style="width:60%;height:1px;background:linear-gradient(90deg,transparent,var(--acc),transparent);margin:6px auto;"></div>
     </div>
     <!-- Nivel META cu progress bar vizuală -->
@@ -327,26 +326,27 @@ canvas.codexCv,canvas.uiCv,#mmcv{position:static!important;top:auto!important;le
     </div>
     <!-- Statistici extinse -->
     <div class="ms" style="gap:10px;">
-      <div class="mv"><div class="vl" id="mruns" style="font-size:20px;">0</div><div class="lb">RUNS</div></div>
-      <div class="mv"><div class="vl" id="mbest" style="font-size:20px;color:#00cc66;">0</div><div class="lb">BEST SCOR</div></div>
-      <div class="mv"><div class="vl" id="mkills" style="font-size:20px;color:#ff6666;">0</div><div class="lb">KILLS</div></div>
-      <div class="mv"><div class="vl" id="machcount" style="font-size:20px;color:#ffcc00;">0</div><div class="lb">TROFEE</div></div>
+      <div class="mv"><div class="vl" id="mruns" style="font-size:20px;">0</div><div class="lb" data-i18n="lbl_runs">RUNS</div></div>
+      <div class="mv"><div class="vl" id="mbest" style="font-size:20px;color:#00cc66;">0</div><div class="lb" data-i18n="lbl_best">BEST SCOR</div></div>
+      <div class="mv"><div class="vl" id="mkills" style="font-size:20px;color:#ff6666;">0</div><div class="lb" data-i18n="lbl_kills">KILLS</div></div>
+      <div class="mv"><div class="vl" id="machcount" style="font-size:20px;color:#ffcc00;">0</div><div class="lb" data-i18n="lbl_trophies">TROFEE</div></div>
     </div>
     <!-- Selector ascensiune -->
     <div id="ascPicker" style="margin:2px 0 4px;"></div>
     <!-- Butoane principale -->
-    <button class="mb pr" onclick="openClassSelect(false)" style="font-size:14px;padding:12px 30px;margin-top:2px;">▶ START RUN</button>
-    <button class="mb sc" onclick="startDaily()" style="margin-top:3px;font-size:10px;padding:8px;border-color:#ffcc00;color:#ffcc00;">📅 PROVOCARE ZILNICĂ</button>
-    <button class="mb sc" onclick="openShop('menu')" style="margin-top:3px;">🛒 ARMURĂRIE</button>
+    <button class="mb pr" data-i18n="btn_start" onclick="openClassSelect(false)" style="font-size:14px;padding:12px 30px;margin-top:2px;">▶ START RUN</button>
+    <button class="mb sc" data-i18n="btn_daily" onclick="startDaily()" style="margin-top:3px;font-size:10px;padding:8px;border-color:#ffcc00;color:#ffcc00;">📅 PROVOCARE ZILNICĂ</button>
+    <button class="mb sc" data-i18n="btn_shop" onclick="openShop('menu')" style="margin-top:3px;">🛒 MAGAZIN</button>
+    <button class="mb sc" onclick="openContracts()" style="margin-top:3px;border-color:#00cc66;color:#00cc66;position:relative;">📋 CONTRACTE <span id="ctrBadge" style="display:none;position:absolute;top:-6px;right:-6px;background:#ff2244;color:#fff;border-radius:8px;font-size:8px;padding:2px 5px;">0</span></button>
     <div style="display:flex;gap:6px;margin-top:3px;">
-      <button class="mb sc" style="min-width:0;flex:1;font-size:9px;padding:7px 4px;" onclick="openCamp()">⛺ TABĂRĂ</button>
-      <button class="mb sc" style="min-width:0;flex:1;font-size:9px;padding:7px 4px;" onclick="openLB()">🏆 TOP</button>
+      <button class="mb sc" data-i18n="btn_camp" style="min-width:0;flex:1;font-size:9px;padding:7px 4px;" onclick="openCamp()">⛺ TABĂRĂ</button>
+      <button class="mb sc" data-i18n="btn_top" style="min-width:0;flex:1;font-size:9px;padding:7px 4px;" onclick="openLB()">🏆 TOP</button>
       <button class="mb sc" style="min-width:0;flex:1;font-size:9px;padding:7px 4px;" onclick="openAchievements()">🏅 <span id="achCount">0</span>/<span id="achTotal">20</span></button>
     </div>
     <div style="display:flex;gap:6px;margin-top:3px;">
-      <button class="mb sc" style="min-width:0;flex:1;font-size:9px;padding:7px 4px;" onclick="openCodex()">📖 CODEX</button>
-      <button class="mb sc" style="min-width:0;flex:1;font-size:9px;padding:7px 4px;" onclick="openStats()">📊 STATS</button>
-      <button class="mb sc" style="min-width:0;flex:1;font-size:9px;padding:7px 4px;" onclick="openSettings()">⚙️ SETĂRI</button>
+      <button class="mb sc" data-i18n="btn_codex" style="min-width:0;flex:1;font-size:9px;padding:7px 4px;" onclick="openCodex()">📖 CODEX</button>
+      <button class="mb sc" data-i18n="btn_stats" style="min-width:0;flex:1;font-size:9px;padding:7px 4px;" onclick="openStats()">📊 STATS</button>
+      <button class="mb sc" data-i18n="btn_settings" style="min-width:0;flex:1;font-size:9px;padding:7px 4px;" onclick="openSettings()">⚙️ SETĂRI</button>
     </div>
     <!-- Sfat zilnic -->
     <div id="menuTip" style="font-size:7px;color:var(--mut);text-align:center;margin-top:6px;max-width:260px;line-height:1.5;padding:4px 8px;background:rgba(255,255,255,.03);border-radius:4px;border:1px solid rgba(255,255,255,.06);"></div>
@@ -356,19 +356,20 @@ canvas.codexCv,canvas.uiCv,#mmcv{position:static!important;top:auto!important;le
 <div id="shop" class="scr">
   <div class="sl">
     <div class="sh">
-      <button class="sb" onclick="closeShop()">← ÎNAPOI</button>
-      <h2>ARMURĂRIE</h2>
+      <button class="sb" data-i18n="shop_back" onclick="closeShop()">← ÎNAPOI</button>
+      <h2 data-i18n="shop_title">MAGAZIN</h2>
       <div class="sm">$<span id="shopmoney">0</span></div>
     </div>
     <div class="st">
-      <button class="stb act" onclick="setTab('weapons')">ARME</button>
-      <button class="stb" onclick="setTab('ammo')">MUNIȚIE</button>
-      <button class="stb" onclick="setTab('armor')">ARMURĂ</button>
-      <button class="stb" onclick="setTab('utility')">UTILITĂȚI</button>
-      <button class="stb" onclick="setTab('skins')">SKINURI</button>
+      <button class="stb act" data-i18n="tab_weapons" onclick="setTab('weapons')">ARME</button>
+      <button class="stb" data-i18n="tab_ammo" onclick="setTab('ammo')">MUNIȚIE</button>
+      <button class="stb" data-i18n="tab_armor" onclick="setTab('armor')">ARMURĂ</button>
+      <button class="stb" data-i18n="tab_utility" onclick="setTab('utility')">UTILITĂȚI</button>
+      <button class="stb" data-i18n="tab_skins" onclick="setTab('skins')">SKINURI</button>
     </div>
     <div class="si" id="shopitems"></div>
-    <div class="sf">Tap = cumpără / echipează</div>
+    <div class="sf" data-i18n="shop_footer">Tap = cumpără / echipează</div>
+    <div id="shopDiscNote" style="font-size:7px;color:#00cc66;text-align:center;margin-top:2px;display:none;"></div>
   </div>
 </div>
 <!-- HUD -->
@@ -378,7 +379,7 @@ canvas.codexCv,canvas.uiCv,#mmcv{position:static!important;top:auto!important;le
       <div class="hm">$<span id="hudmoney">0</span></div>
       <button id="shopbtn" onclick="openShopIG()">🛒</button>
     </div>
-    <div class="hw">CAM <b id="hudroom">1</b> · RUN <b id="hudrun">1</b></div>
+    <div class="hw"><span data-i18n="hud_room">CAM</span> <b id="hudroom">1</b> · <span data-i18n="hud_run">RUN</span> <b id="hudrun">1</b></div>
     <div style="display:flex;align-items:center;gap:4px;">
       <div class="hs">SCOR <b id="hudscore">0</b></div>
       <button id="bossbtn" onclick="showBossSelect()">⚡️BOSS</button>
@@ -463,8 +464,8 @@ canvas.codexCv,canvas.uiCv,#mmcv{position:static!important;top:auto!important;le
   <div style="display:flex;gap:10px;" id="blestChoices"></div>
 </div>
 <!-- OVERLAYS -->
-<div id="puscr"><h2>ALEGE UN UPGRADE</h2><p style="font-size:9px;color:#556;letter-spacing:2px;">doar pentru acest run</p><div class="puc" id="puchoices"></div></div>
-<div id="doorscr"><h2>CAMERA URMĂTOARE</h2><div class="dc" id="dchoices"></div></div>
+<div id="puscr"><h2 data-i18n="upgrade_title">ALEGE UN UPGRADE</h2><p data-i18n="upgrade_sub" style="font-size:9px;color:#556;letter-spacing:2px;">doar pentru acest run</p><div class="puc" id="puchoices"></div></div>
+<div id="doorscr"><h2 data-i18n="next_room_lbl">CAMERA URMĂTOARE</h2><div class="dc" id="dchoices"></div></div>
 <div id="rtrans"><div id="rticon">⚔️</div><div id="rttit">LUPTĂ</div><div id="rtnum">1</div><div id="rtsub">CAMERA NOUĂ</div></div>
 <div id="endscr">
   <h2 id="endtit">GAME OVER</h2>
@@ -473,13 +474,24 @@ canvas.codexCv,canvas.uiCv,#mmcv{position:static!important;top:auto!important;le
   <div id="endachs" style="font-size:8px;color:#00cc66;letter-spacing:2px;min-height:14px;"></div>
   <div id="ckptBox" style="display:none;margin-bottom:8px;text-align:center;"></div>
   <div class="ebtns">
-    <button class="ebtn ag" onclick="startRun()">↺ NOU RUN</button>
-    <button class="ebtn mn" onclick="goMenu()">MENIU</button>
+    <button class="ebtn ag" data-i18n="btn_newrun" onclick="startRun()">↺ NOU RUN</button>
+    <button class="ebtn mn" data-i18n="btn_menu" onclick="goMenu()">MENIU</button>
   </div>
 </div>
 <!-- Achievement popup container -->
 <div id="achPop"></div>
 <!-- Achievements Screen -->
+<div id="ctrScr" class="scr">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;padding:16px;">
+    <div style="font-size:14px;letter-spacing:5px;color:#00cc66;margin-bottom:4px;">📋 CONTRACTE</div>
+    <div style="font-size:8px;color:#667;text-align:center;max-width:280px;">Zilnice se reînnoiesc în fiecare zi · Săptămânale, în fiecare săptămână</div>
+    <div id="ctrDailyLbl" style="font-size:9px;color:#aab;letter-spacing:2px;align-self:flex-start;margin-top:4px;">ZILNICE</div>
+    <div id="ctrDaily" style="width:100%;max-width:340px;display:flex;flex-direction:column;gap:6px;"></div>
+    <div id="ctrWeeklyLbl" style="font-size:9px;color:#aab;letter-spacing:2px;align-self:flex-start;margin-top:8px;">SĂPTĂMÂNALE</div>
+    <div id="ctrWeekly" style="width:100%;max-width:340px;display:flex;flex-direction:column;gap:6px;"></div>
+    <button class="mb sc" style="margin-top:8px;" onclick="showScr('menu');animBg()">← ÎNAPOI</button>
+  </div>
+</div>
 <div id="achScr" class="scr">
   <div style="display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;padding:16px;">
     <div style="font-size:14px;letter-spacing:5px;color:#fff;margin-bottom:4px;">🏅 REALIZĂRI</div>
@@ -601,12 +613,16 @@ function updMetaLevel(){
 
 // ── TABĂRA META (upgrade-uri permanente) ─────────────────
 const CAMP_UPGRADES=[
-  {id:'hp',icon:'♥',name:'Armură Groasă',desc:'+15 HP maxim la start',price:80,maxLv:5,effect:()=>{},hint:'hp_bonus'},
-  {id:'dmg',icon:'🔥',name:'Muniție Perforanta',desc:'+8% damage la start',price:90,maxLv:5,effect:()=>{},hint:'dmg_bonus'},
-  {id:'gold',icon:'💰',name:'Buzunare Adânci',desc:'+25 gold bonus la start',price:60,maxLv:4,effect:()=>{},hint:'gold_bonus'},
+  {id:'hp',icon:'♥',name:'Armură Groasă',desc:'+15 HP maxim la start',price:80,maxLv:8,effect:()=>{},hint:'hp_bonus'},
+  {id:'dmg',icon:'🔥',name:'Muniție Perforanta',desc:'+8% damage la start',price:90,maxLv:8,effect:()=>{},hint:'dmg_bonus'},
+  {id:'gold',icon:'💰',name:'Buzunare Adânci',desc:'+25 gold bonus la start',price:60,maxLv:6,effect:()=>{},hint:'gold_bonus'},
   {id:'dash',icon:'💨',name:'Ghete de Curier',desc:'+1 charge dash permanent',price:120,maxLv:3,effect:()=>{},hint:'dash_bonus'},
   {id:'relic_slot',icon:'🎒',name:'Rucsac Lărgit',desc:'Slot extra relicvă (nu mai pierzi)',price:200,maxLv:1,effect:()=>{},hint:'relic_slot'},
-  {id:'xp',icon:'⭐',name:'Ucenic Experimentat',desc:'XP +25% per run',price:100,maxLv:3,effect:()=>{},hint:'xp_bonus'},
+  {id:'xp',icon:'⭐',name:'Ucenic Experimentat',desc:'XP +25% per run',price:100,maxLv:5,effect:()=>{},hint:'xp_bonus'},
+  {id:'armor',icon:'🛡️',name:'Placaj Suplimentar',desc:'+8 armură la start',price:85,maxLv:4,effect:()=>{},hint:'armor_bonus'},
+  {id:'spd',icon:'🥾',name:'Antrenament Fizic',desc:'+5% viteză permanentă',price:95,maxLv:4,effect:()=>{},hint:'spd_bonus'},
+  {id:'disc',icon:'🏷️',name:'Contacte în Piață',desc:'-5% preț în magazin',price:110,maxLv:4,effect:()=>{},hint:'disc_bonus'},
+  {id:'revive',icon:'💗',name:'Kit Medical de Urgență',desc:'+1 reînviere automată per run (50% HP)',price:350,maxLv:2,effect:()=>{},hint:'revive_bonus'},
 ];
 
 // Upgrade-urile de tabără sunt per-clasă
@@ -630,6 +646,10 @@ function applyMetaBonus(){
   if(c.dash)G.dashCharges+=c.dash,G.dashCur=G.dashCharges;
   if(c.xp)G._xpMult=(1+c.xp*0.25);
   else G._xpMult=1;
+  if(c.armor){G.maxArmor=(G.maxArmor||0)+c.armor*8;G.armor=(G.armor||0)+c.armor*8;if(!G.armorAbsorb)G.armorAbsorb=0.5;}
+  if(c.spd)G.spdM=(G.spdM||1)*(1+c.spd*0.05);
+  G._shopDisc=c.disc?c.disc*0.05:0;
+  G.revivesLeft=c.revive||0;
 }
 
 function applyClassStats(CLS){
@@ -856,10 +876,10 @@ function updWaveIndicator(){
   if(!running||ROOM.type==='boss'||ROOM.cleared){wi.style.display='none';return;}
   const alive=enemies.filter(e=>e.alive).length;
   wi.style.display='block';
-  if(alive===0){wi.textContent='⏳ Val următor...';wi.style.color='#888';}
+  if(alive===0){wi.textContent='⏳ '+t('next_wave_lbl');wi.style.color='#888';}
   else{
     wi.style.color=alive<=3?'#ff4444':alive<=6?'#ffcc00':'#556';
-    wi.textContent='👾 '+alive+' rămași';
+    wi.textContent='👾 '+alive+' '+t('mobs_left_lbl');
   }
 }
 function updSlowBtn(){
@@ -1449,6 +1469,138 @@ function saveDailyScore(score,rooms){
     d[k]={score,rooms,date:new Date().toLocaleDateString('ro-RO')};
     try{localStorage.setItem(DAILY_KEY,JSON.stringify(d));}catch{}
   }
+}
+
+// ── CONTRACTE (zilnice + săptămânale) ─────────────────────
+const CONTRACT_POOL=[
+  {id:'kill15',icon:'🎯',desc:'Elimină 15 inamici',type:'kills',target:15,reward:35},
+  {id:'kill30',icon:'🎯',desc:'Elimină 30 de inamici',type:'kills',target:30,reward:60},
+  {id:'kill60',icon:'🎯',desc:'Elimină 60 de inamici',type:'kills',target:60,reward:110},
+  {id:'boss1',icon:'👹',desc:'Învinge un boss',type:'boss',target:1,reward:80},
+  {id:'run2',icon:'🏃',desc:'Termină 2 run-uri',type:'runs',target:2,reward:45},
+  {id:'run4',icon:'🏃',desc:'Termină 4 run-uri',type:'runs',target:4,reward:85},
+  {id:'gold250',icon:'💰',desc:'Strânge 250 gold într-un run',type:'goldrun',target:250,reward:55},
+  {id:'gold500',icon:'💰',desc:'Strânge 500 gold într-un run',type:'goldrun',target:500,reward:100},
+  {id:'dash10',icon:'💨',desc:'Folosește dash de 10 ori',type:'dash',target:10,reward:30},
+  {id:'relic1',icon:'🎁',desc:'Colectează o relicvă',type:'relic',target:1,reward:40},
+];
+const CONTRACT_POOL_WEEKLY=[
+  {id:'wkill150',icon:'🎯',desc:'Elimină 150 de inamici',type:'kills',target:150,reward:220},
+  {id:'wboss4',icon:'👹',desc:'Învinge 4 boss-i',type:'boss',target:4,reward:260},
+  {id:'wrun8',icon:'🏃',desc:'Termină 8 run-uri',type:'runs',target:8,reward:200},
+  {id:'wgold1500',icon:'💰',desc:'Strânge 1500 gold în total',type:'goldtotal',target:1500,reward:240},
+];
+function isoWeekKey(){
+  const d=new Date();
+  const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));
+  const day=(t.getUTCDay()+6)%7; t.setUTCDate(t.getUTCDate()-day+3);
+  const week1=new Date(Date.UTC(t.getUTCFullYear(),0,4));
+  const wk=1+Math.round(((t-week1)/86400000-3+((week1.getUTCDay()+6)%7))/7);
+  return t.getUTCFullYear()*100+wk;
+}
+const CONTRACTS_KEY='striker_v5_contracts';
+function pickN(pool,n,seedBase){
+  const gen=seededRandom(seedBase);
+  const copy=pool.slice();
+  const out=[];
+  while(out.length<n&&copy.length){
+    const i=Math.floor(gen()*copy.length);
+    out.push(copy.splice(i,1)[0]);
+  }
+  return out.map(t=>({id:t.id,progress:0,claimed:false}));
+}
+function lContracts(){
+  let c; try{c=JSON.parse(localStorage.getItem(CONTRACTS_KEY))||{};}catch{c={};}
+  const dk=todaySeed(), wk=isoWeekKey();
+  if(c.dayKey!==dk){c.dayKey=dk;c.daily=pickN(CONTRACT_POOL,3,dk);}
+  if(c.weekKey!==wk){c.weekKey=wk;c.weekly=pickN(CONTRACT_POOL_WEEKLY,1,wk*7+1);}
+  if(!c.daily)c.daily=[];
+  if(!c.weekly)c.weekly=[];
+  return c;
+}
+function sContracts(c){try{localStorage.setItem(CONTRACTS_KEY,JSON.stringify(c));}catch{}}
+let CONTRACTS=lContracts();
+// Apelat din punctele-cheie din joc (kill, boss, dash, relicvă, sfârșit de run)
+function contractProgress(type,amount){
+  amount=amount||1;
+  let changed=false;
+  [...CONTRACTS.daily,...CONTRACTS.weekly].forEach(entry=>{
+    const tpl=CONTRACT_POOL.find(t=>t.id===entry.id)||CONTRACT_POOL_WEEKLY.find(t=>t.id===entry.id);
+    if(!tpl||tpl.type!==type||entry.claimed)return;
+    entry.progress=Math.min(tpl.target,entry.progress+amount);
+    changed=true;
+  });
+  if(changed){sContracts(CONTRACTS);updContractsBadge();}
+}
+// Pentru tipurile care se verifică o singură dată la final (gold strâns
+// într-un singur run, gold total) — setăm direct valoarea, nu adunăm.
+function contractSetIfHigher(type,value){
+  let changed=false;
+  [...CONTRACTS.daily,...CONTRACTS.weekly].forEach(entry=>{
+    const tpl=CONTRACT_POOL.find(t=>t.id===entry.id)||CONTRACT_POOL_WEEKLY.find(t=>t.id===entry.id);
+    if(!tpl||tpl.type!==type||entry.claimed)return;
+    if(type==='goldrun'){ if(value>entry.progress){entry.progress=Math.min(tpl.target,value);changed=true;} }
+    else{ entry.progress=Math.min(tpl.target,entry.progress+value); changed=true; }
+  });
+  if(changed){sContracts(CONTRACTS);updContractsBadge();}
+}
+function updContractsBadge(){
+  const n=[...CONTRACTS.daily,...CONTRACTS.weekly].filter(e=>{
+    const tpl=CONTRACT_POOL.find(t=>t.id===e.id)||CONTRACT_POOL_WEEKLY.find(t=>t.id===e.id);
+    return tpl&&!e.claimed&&e.progress>=tpl.target;
+  }).length;
+  const b=document.getElementById('ctrBadge');
+  if(!b)return;
+  if(n>0){b.textContent=n;b.style.display='block';}else{b.style.display='none';}
+}
+function openContracts(){
+  CONTRACTS=lContracts();
+  showScr('ctrScr');
+  renderContracts();
+}
+function renderContracts(){
+  const renderList=(entries,pool,elId)=>{
+    const el=document.getElementById(elId);
+    if(!el)return;
+    el.innerHTML='';
+    entries.forEach(entry=>{
+      const tpl=pool.find(t=>t.id===entry.id);
+      if(!tpl)return;
+      const done=entry.progress>=tpl.target;
+      const div=document.createElement('div');
+      div.style.cssText='background:#0d1a0d;border:1px solid '+(entry.claimed?'#334':(done?'#00cc66':'#1a2e1a'))+
+        ';border-radius:6px;padding:8px 10px;display:flex;align-items:center;gap:8px;opacity:'+(entry.claimed?'.5':'1')+';';
+      const pct=Math.round(entry.progress/tpl.target*100);
+      div.innerHTML=`<div style="font-size:18px;">${tpl.icon}</div>`+
+        `<div style="flex:1;">`+
+          `<div style="font-size:9px;color:#cdd6f4;">${tpl.desc}</div>`+
+          `<div style="height:4px;background:rgba(255,255,255,.08);border-radius:2px;margin-top:3px;overflow:hidden;">`+
+            `<div style="height:100%;width:${pct}%;background:${done?'#00cc66':'#00d4ff'};"></div></div>`+
+          `<div style="font-size:7px;color:#667;margin-top:2px;">${entry.progress}/${tpl.target}</div>`+
+        `</div>`+
+        (entry.claimed?`<div style="font-size:8px;color:#556;">✓ LUAT</div>`:
+          done?`<button style="background:rgba(0,204,102,.15);border:1px solid #00cc66;color:#00cc66;`+
+            `border-radius:4px;padding:5px 10px;font-family:inherit;font-size:9px;cursor:pointer;">$${tpl.reward}</button>`:
+          `<div style="font-size:9px;color:#ffcc00;">$${tpl.reward}</div>`);
+      if(done&&!entry.claimed){
+        div.querySelector('button').onclick=()=>claimContract(entry.id);
+      }
+      el.appendChild(div);
+    });
+  };
+  renderList(CONTRACTS.daily,CONTRACT_POOL,'ctrDaily');
+  renderList(CONTRACTS.weekly,CONTRACT_POOL_WEEKLY,'ctrWeekly');
+  updContractsBadge();
+}
+function claimContract(id){
+  const entry=[...CONTRACTS.daily,...CONTRACTS.weekly].find(e=>e.id===id);
+  const tpl=CONTRACT_POOL.find(t=>t.id===id)||CONTRACT_POOL_WEEKLY.find(t=>t.id===id);
+  if(!entry||!tpl||entry.claimed||entry.progress<tpl.target)return;
+  entry.claimed=true;
+  META=lMeta();META.gold=(META.gold||0)+tpl.reward;sMeta(META);
+  sContracts(CONTRACTS);
+  addFeed('📋 Contract: +$'+tpl.reward,'#00cc66');
+  renderContracts();
 }
 
 // ── CODEX / BESTIAR ──────────────────────────────────────
@@ -2247,8 +2399,8 @@ const RELICS=[
    onKill:()=>{G.relicStacks.pana=(G.relicStacks.pana||0)+1;if(G.relicStacks.pana>=5){G.relicStacks.pana=0;G.dashCur=Math.min(G.dashCharges,G.dashCur+1);addFeed('🪶 Dash reîncărcat!','#00d4ff');updDashUI();}}},
   {id:'inima',name:'Inima de Cristal',icon:'💎',desc:'La HP<30% primești shield 5s (o dată per cameră)',rarity:'rare',
    onTick:()=>{if(G.hp/G.maxHp<0.3&&!G.relicStacks.inima_used){G.relicStacks.inima_used=true;G.effects.invuln=Date.now()+5000;addFeed('💎 Shield de urgență!','#00ffff');spawnPart(G.x,G.y,'#00ffff',16,5);}}},
-  {id:'moneda',name:'Moneda Blestemată',icon:'🪙',desc:'+80% gold, -15 HP max',rarity:'common',
-   onGet:()=>{G.goldM*=1.8;G.maxHp=Math.max(30,G.maxHp-15);G.hp=Math.min(G.hp,G.maxHp);addFeed('🪙 +80% gold / -15HP max','#ffcc00');}},
+  {id:'moneda',name:'Moneda Blestemată',icon:'💰',desc:'+80% gold, -15 HP max',rarity:'common',
+   onGet:()=>{G.goldM*=1.8;G.maxHp=Math.max(30,G.maxHp-15);G.hp=Math.min(G.hp,G.maxHp);addFeed('💰 +80% gold / -15HP max','#ffcc00');}},
   {id:'viteza',name:'Teniși de Mercur',icon:'👟',desc:'+30% viteză permanent',rarity:'common',
    onGet:()=>{G.spdM*=1.3;addFeed('👟 +30% viteză permanent','#88ffcc');}},
   {id:'vampir',name:'Colț de Vampir',icon:'🦷',desc:'+5 HP per kill (dublu față de powerup)',rarity:'rare',
@@ -2307,13 +2459,14 @@ if(!document.getElementById('floatStyle')){
 // ── RELICVE UI ────────────────────────────────────────────
 function addRelic(relic){
   if(!G.relics)G.relics=[];
-  if(G.relics.find(r=>r.id===relic.id)){addFeed('Deja ai '+relic.name+'!','#ff6b00');return;}
+  if(G.relics.find(r=>r.id===relic.id)){addFeed('Deja ai '+rlName(relic)+'!','#ff6b00');return;}
   G.relics.push(relic);
   if(!G.relicStacks)G.relicStacks={};
   G.relicStacks[relic.id]=0;
   if(relic.onGet)relic.onGet();
   updRelicBar();
-  addFeed('🎁 RELICVĂ: '+relic.name,'#ffcc00');
+  addFeed('🎁 RELICVĂ: '+rlName(relic),'#ffcc00');
+  contractProgress('relic',1);
   showFloatText(G.x,G.y,'🎁 '+relic.icon,'#ffcc00');
 }
 
@@ -3234,7 +3387,7 @@ function drawRoomDoors(c){
     c.font='bold 8px Courier New';
     c.fillStyle=col;
     c.globalAlpha=k*.95;
-    c.fillText(d.opt.type==='mystery'?'MISTER':rt.label,0,TILE*0.52);
+    c.fillText(rtLabel(d.opt.type),0,TILE*0.52);
     if(d.opt.difficulty>0){
       c.font='7px Courier New';
       c.fillStyle=d.opt.difficulty>=3?'#ff6666':d.opt.difficulty===2?'#ffcc00':'#00cc66';
@@ -3334,6 +3487,13 @@ function showScr(id){document.querySelectorAll('.scr').forEach(s=>{s.classList.r
 function hideMob(){['jleft','bshoot','breload','bswitch','butil','bdash'].forEach(id=>{const e=document.getElementById(id);if(e){e.style.visibility='hidden';e.style.pointerEvents='none';}});}
 function showMob(){const cl=document.getElementById('jleft');if(cl){cl.style.visibility='visible';cl.style.pointerEvents='all';cl.style.display='block';}['bshoot','breload','bswitch','butil','bdash'].forEach(id=>{const e=document.getElementById(id);if(e){e.style.visibility='visible';e.style.pointerEvents='all';e.style.display='flex';}});}
 
+// ═══════════════════════════════════════════════════════════
+// ██  SECȚIUNE AUDIO — tot ce ține de sunet/muzică e aici,   ██
+// ██  de la initAudio() până la marcajul de sfârșit de mai   ██
+// ██  jos (caută "SFÂRȘIT SECȚIUNE AUDIO"). Nimic din afara  ██
+// ██  acestei secțiuni nu ar trebui să atingă AC/musGain/    ██
+// ██  sfxGain direct — apelează funcțiile de-aici.           ██
+// ═══════════════════════════════════════════════════════════
 // ── MENU BG ───────────────────────────────────────────────
 // ══════════ SUNET (Web Audio, fara fisiere) ══════════
 // Totul e sintetizat in timp real: oscilatoare + zgomot filtrat.
@@ -3354,63 +3514,22 @@ function initAudio(){
     musGain=AC.createGain(); musGain.gain.value=(_s.music??35)/100; musGain.connect(masterGain);
     audioReady=true;
     initMusWorker();
-    // Urmărește orice schimbare de stare a contextului audio (suspended/closed/
-    // running) cu marcaj de timp, ca să vedem exact ce s-a întâmplat și când.
-    AC.onstatechange=()=>{
-      _audioDbg.stateLog.push(AC.state+'@'+totalMs);
-      if(_audioDbg.stateLog.length>6)_audioDbg.stateLog.shift();
-    };
-  }catch(err){audioReady=false;_audioDbg.lastErr='initAudio: '+((err&&err.message)||String(err));}
+  }catch(err){audioReady=false;}
 }
-// Diagnostic temporar pe ecran — ca să vedem exact ce se întâmplă cu sunetul
-// în momentul în care dispare, fără acces la consola browser-ului.
-let _audioDbg={lastErr:'-',errCount:0,stateLog:[],notesLastSec:0,notesCounter:0,
-  lastWall:performance.now(),lastAC:0,frozen:null};
-setInterval(()=>{
-  const el=document.getElementById('audioDbg');
-  if(!el)return;
-  const nowWall=performance.now();
-  const nowAC=AC?AC.currentTime:0;
-  const wallDelta=(nowWall-_audioDbg.lastWall)/1000;
-  const acDelta=nowAC-_audioDbg.lastAC;
-  // Dacă timpul real a trecut normal dar ceasul audio (AC.currentTime) abia
-  // s-a mișcat, deși starea zice 'running' — asta e blocajul real, invizibil
-  // altfel. Prindem momentul exact și-l ținem afișat (nu dispare singur).
-  const stalled=AC&&AC.state==='running'&&wallDelta>0.3&&acDelta<wallDelta*0.5;
-  _audioDbg.notesLastSec=_audioDbg.notesCounter*2;
-  _audioDbg.notesCounter=0;
-  if(stalled&&!_audioDbg.frozen){
-    _audioDbg.frozen='timp real +'+wallDelta.toFixed(2)+'s, ceas audio doar +'+acDelta.toFixed(3)+'s'+
-      ' | musGain:'+(musGain?musGain.gain.value.toFixed(2):'-')+
-      ' sfxGain:'+(sfxGain?sfxGain.gain.value.toFixed(2):'-')+
-      ' | ora:'+new Date().toLocaleTimeString();
-  }
-  _audioDbg.lastWall=nowWall;_audioDbg.lastAC=nowAC;
-  el.textContent='AC: '+(AC?AC.state:'(no AC)')+' | ready:'+audioReady+
-    ' | worker:'+(musWorker?'da':'nu')+' | note/s:'+_audioDbg.notesLastSec+'\n'+
-    'erori:'+_audioDbg.errCount+' ultima:'+_audioDbg.lastErr+'\n'+
-    'istoric stare:'+_audioDbg.stateLog.join(' ')+
-    (_audioDbg.frozen?('\n\u26A0 BLOCAJ PRINS: '+_audioDbg.frozen):'');
-},500);
 // Cronometrele normale (setInterval) de pe firul principal sunt limitate de
 // browser la ~1 dată/secundă când tab-ul nu e activ (economisire baterie —
-// comportament documentat oficial la Chrome/Firefox). Exact asta rupea
-// programarea notelor. Firele separate (Web Worker) NU sunt limitate așa,
-// indiferent dacă tab-ul e activ sau nu — deci mutăm "bătaia" ceasului
-// muzicii acolo. Dacă din orice motiv Worker nu e disponibil, jocul
-// continuă pe setInterval-ul normal de mai jos (playTrack), fără crash.
+// comportament documentat oficial la Chrome/Firefox). Firele separate
+// (Web Worker) NU sunt limitate așa. Dacă din orice motiv Worker nu e
+// disponibil, jocul continuă pe setInterval-ul normal (din playTrack).
 let musWorker=null;
 function initMusWorker(){
-  if(musWorker||typeof Worker==='undefined'){
-    if(typeof Worker==='undefined')_audioDbg.lastErr='Worker nesuportat în acest browser';
-    return;
-  }
+  if(musWorker||typeof Worker==='undefined')return;
   try{
     const code='setInterval(()=>postMessage(1),25);';
     const blob=new Blob([code],{type:'application/javascript'});
     musWorker=new Worker(URL.createObjectURL(blob));
     musWorker.onmessage=()=>{ if(typeof musScheduler==='function')musScheduler(); };
-  }catch(err){musWorker=null;_audioDbg.lastErr='Worker init: '+((err&&err.message)||String(err));}
+  }catch(err){musWorker=null;}
 }
 // Când tab-ul e în fundal, browserul poate arunca/întârzia setInterval-ul
 // muzicii, deci verificarea de acolo poate întârzia mult să repornească
@@ -3821,6 +3940,32 @@ const TRACKS=[
     riff:[0,0,0,-1, 0,0,3,-1, 0,0,0,-1, 5,3,0,-1],
     lead:[24,22,19,22, 24,-1,19,-1, 22,19,17,19, 22,-1,-1,-1],
     hats:'16ths' },
+  // ── Stil NFS Most Wanted: riff apăsat în strofă, refren mult mai "mare" ──
+  { name:'HEAT LEVEL 5', bpm:150, root:36, bars:32, mood:'game',
+    riff:[0,0,-1,0, 0,-1,0,3, 0,0,-1,0, 0,-1,3,0],
+    riffChorus:[0,0,7,7, 5,5,3,3, 0,0,7,7, 10,10,7,7],
+    lead:[19,-1,22,24, 22,-1,19,17, 15,-1,17,19, 22,-1,24,-1],
+    hats:'16ths' },
+  { name:'PURSUIT', bpm:158, root:38, bars:32, mood:'game',
+    riff:[0,0,0,3, 0,0,0,5, 0,0,0,3, 7,5,3,0],
+    riffChorus:[0,-1,-1,0, 7,-1,-1,7, 5,-1,-1,5, 3,-1,0,-1],
+    lead:[24,22,20,17, 19,-1,17,15, 17,-1,15,12, 15,17,19,-1],
+    hats:'16ths' },
+  { name:'NITROUS', bpm:144, root:40, bars:32, mood:'game',
+    riff:[0,3,0,3, 5,3,0,-1, 0,3,0,3, 7,5,3,-1],
+    riffChorus:[0,0,5,5, 7,7,5,5, 3,3,0,0, 5,5,7,7],
+    lead:[12,15,17,19, 17,15,12,-1, 15,17,19,22, 19,17,15,-1],
+    hats:'16ths' },
+  { name:'OVERPASS', bpm:152, root:34, bars:32, mood:'game',
+    riff:[0,0,0,-1, 3,0,0,-1, 0,0,0,-1, 5,3,0,-1],
+    riffChorus:[0,7,0,7, 5,7,5,7, 3,7,3,7, 0,7,10,7],
+    lead:[22,20,17,20, 22,-1,17,-1, 20,17,15,17, 20,-1,-1,-1],
+    hats:'16ths' },
+  { name:'BLACKLIST', bpm:160, root:39, bars:32, mood:'game',
+    riff:[0,0,3,0, 0,0,3,0, 5,5,3,0, 0,-1,3,5],
+    riffChorus:[0,-1,5,-1, 7,-1,5,-1, 3,-1,0,-1, 7,-1,10,-1],
+    lead:[17,19,22,24, 22,19,17,-1, 15,17,19,22, 19,17,-1,-1],
+    hats:'16ths' },
   // Boss: mai grea, mai rapidă
   { name:'OVERDRIVE', bpm:168, root:35, bars:24, mood:'boss',
     riff:[0,0,1,0, 0,5,0,1, 0,0,1,0, 7,5,1,0],
@@ -3834,6 +3979,10 @@ const TRACKS=[
   { name:'IDLE ENGINE', bpm:104, root:40, bars:24, mood:'menu',
     riff:[0,-1,-1,-1, 3,-1,-1,-1, 5,-1,-1,-1, 3,-1,-1,-1],
     lead:[12,-1,15,-1, 14,-1,12,-1, 10,-1,12,-1, -1,-1,-1,-1],
+    hats:'8ths' },
+  { name:'QUIET STREETS', bpm:96, root:38, bars:24, mood:'menu',
+    riff:[0,-1,-1,-1, -1,-1,5,-1, -1,-1,-1,-1, 3,-1,-1,-1],
+    lead:[-1,-1,12,-1, -1,-1,15,-1, -1,-1,10,-1, -1,-1,-1,-1],
     hats:'8ths' },
 ];
 
@@ -3911,16 +4060,19 @@ function musScheduler(){
       } else if(st%4===0)drumHat(t0,0.10);
 
       // ── RIFF DE CHITARĂ (power chords) ──
-      const rn=tr.riff[st];
+      // Piesele pot avea un riff separat pentru refren (mai apăsat) — dacă nu
+      // au, cad automat pe riff-ul normal, ca înainte (compatibil cu piesele vechi).
+      const riffArr=(chorus&&tr.riffChorus)?tr.riffChorus:tr.riff;
+      const rn=riffArr[st];
       if(rn>=0){
         const dur=stepMs*(chorus?1.5:1.2)/1000;
         guitar(t0,midi(tr.root+rn),dur,intro?0.05:(chorus?0.105:0.085),
                true, chorus?3000:2300);
       }
 
-      // ── BAS: urmează riff-ul, dar cu pulsație constantă ──
+      // ── BAS: urmează riff-ul (cel de refren, când e cazul), pulsație constantă ──
       if(st%2===0){
-        const bn=tr.riff[st]>=0?tr.riff[st]:(tr.riff[(st+2)%16]>=0?tr.riff[(st+2)%16]:0);
+        const bn=riffArr[st]>=0?riffArr[st]:(riffArr[(st+2)%16]>=0?riffArr[(st+2)%16]:0);
         bassNote(t0,midi(tr.root-12+bn),stepMs*1.7/1000,intro?0.14:0.26);
       }
 
@@ -3929,11 +4081,10 @@ function musScheduler(){
         const ln=tr.lead[st];
         if(ln>=0)leadNote(t0,midi(tr.root+ln),stepMs*1.3/1000,0.075,3400);
       }
-    }catch(err){_audioDbg.lastErr=(err&&err.message)||String(err);_audioDbg.errCount++;}
+    }catch(err){}
 
     musNextNoteTime+=stepMs/1000;
     musStep++;
-    _audioDbg.notesCounter++;
     // Piesa s-a terminat => trecem la următoarea
     if(musStep>=tr.bars*16){
       const next=pickTrack(musMode);
@@ -3948,6 +4099,14 @@ function stopMusic(){
   musMode=null;musTrack=null;
 }
 function skipTrack(){ if(musMode)playTrack(pickTrack(musMode)); }
+// Doar pentru butonul din Setări: trece prin TOATE piesele, indiferent de
+// mod (meniu/joc/boss), ca să le poți asculta pe toate pe rând, oricând.
+function previewNextTrack(){
+  const idx=musTrack?TRACKS.indexOf(musTrack):-1;
+  const next=TRACKS[(idx+1)%TRACKS.length];
+  musMode=next.mood;
+  playTrack(next);
+}
 function setVol(kind,v){
   if(!audioReady)return;
   if(kind==='sfx'&&sfxGain)sfxGain.gain.value=v/100;
@@ -3957,19 +4116,355 @@ function setVol(kind,v){
 function unlockAudio(){
   initAudio();
   if(AC&&AC.state==='suspended')AC.resume();
+  // Muzica de meniu nu pornea niciodată singură la prima deschidere a
+  // jocului — de-aia butonul de skip din Setări nu părea să facă nimic
+  // (nu exista nicio piesă activă de schimbat).
+  if(!musMode&&!running)startMusic('menu');
 }
 ['pointerdown','touchstart','keydown'].forEach(ev=>
   window.addEventListener(ev,unlockAudio,{once:false}));
+// ═══════════════════════════════════════════════════════════
+// ██  SFÂRȘIT SECȚIUNE AUDIO                                 ██
+// ═══════════════════════════════════════════════════════════
 
 // ══════════ PAUZĂ / SETĂRI / TUTORIAL ══════════
 const SET_KEY='striker_v5_settings';
 function lSet(){
-  try{return Object.assign({vibrate:true,particles:'auto',shake:true,tutorialSeen:false,sfx:70,music:35},
+  try{return Object.assign({vibrate:true,particles:'auto',shake:true,tutorialSeen:false,sfx:70,music:35,lang:'ro'},
     JSON.parse(localStorage.getItem(SET_KEY))||{});}
-  catch{return {vibrate:true,particles:'auto',shake:true,tutorialSeen:false,sfx:70,music:35};}
+  catch{return {vibrate:true,particles:'auto',shake:true,tutorialSeen:false,sfx:70,music:35,lang:'ro'};}
 }
 function sSet(o){try{localStorage.setItem(SET_KEY,JSON.stringify(o));}catch{}}
 let SETTINGS=lSet();
+
+// ═══════════════════════════════════════════════════════════
+// ██  SECȚIUNE LIMBĂ (i18n) — 9 limbi. Pentru text static din   ██
+// ██  HTML: pune data-i18n="cheie" pe element, applyLang() îl   ██
+// ██  completează. Pentru text generat din JS (ecrane construite ██
+// ██  cu innerHTML, ex. Setări): folosește t('cheie') direct.   ██
+// ██  Fază 1: meniu, magazin, setări. Restul (arme, inamici,    ██
+// ██  realizări etc.) urmează treptat.                          ██
+// ═══════════════════════════════════════════════════════════
+const LANG_NAMES={ro:'ROMÂNĂ',en:'ENGLISH',es:'ESPAÑOL',it:'ITALIANO',hu:'MAGYAR',bg:'БЪЛГАРСКИ',zh:'中文',ja:'日本語'};
+const LANG_ORDER=['ro','en','es','it','hu','bg','zh','ja'];
+const LANG={
+  ro:{menu_subtitle:'ROGUELITE TACTIC',lbl_runs:'RUN-URI',lbl_best:'SCOR MAXIM',lbl_kills:'ELIMINĂRI',
+    lbl_trophies:'TROFEE',btn_start:'▶ START RUN',btn_daily:'📅 PROVOCARE ZILNICĂ',btn_shop:'🛒 MAGAZIN',
+    btn_camp:'⛺ TABĂRĂ',btn_top:'🏆 CLASAMENT',btn_codex:'📖 CODEX',btn_stats:'📊 STATISTICI',
+    btn_settings:'⚙️ SETĂRI',shop_back:'← ÎNAPOI',shop_title:'MAGAZIN',tab_weapons:'ARME',tab_ammo:'MUNIȚIE',
+    tab_armor:'ARMURĂ',tab_utility:'UTILITĂȚI',tab_skins:'SKIN-URI',shop_footer:'Apasă = cumperi / echipezi',
+    settings_title:'⚙️ SETĂRI',lbl_sfx:'🔊 EFECTE',lbl_music:'🎵 MUZICĂ',lbl_vibrate:'VIBRAȚII',
+    lbl_shake:'TREMUR ECRAN',lbl_particles:'PARTICULE',on_word:'PORNIT',off_word:'OPRIT',p_auto:'AUTO',
+    p_multe:'MULTE',p_putine:'PUȚINE',lbl_track:'🎸 PIESĂ',btn_howto:'❔ CUM SE JOACĂ',
+    btn_reset:'🗑 RESETEAZĂ PROGRESUL',btn_back:'ÎNAPOI',lbl_lang:'🌐 LIMBĂ',
+    upgrade_title:'ALEGE UN UPGRADE',upgrade_sub:'doar pentru acest run',new_room_lbl:'CAMERA NOUĂ',room_lbl:'CAMERA',
+    next_room_lbl:'CAMERA URMĂTOARE',end_win:'✓ COMPLETAT!',end_lose:'☠️ GAME OVER',btn_newrun:'↺ NOU RUN',btn_menu:'MENIU',
+    hud_room:'CAM',hud_run:'RUN',
+    rating_lbl:'RATING',points_lbl:'PUNCTE',time_lbl:'TIMP',level_lbl:'LEVEL',rooms_lbl:'CAMERE',
+    kills_lbl:'KILLS',combo_lbl:'MAX COMBO',score_lbl:'SCOR',relics_lbl:'RELICVE',gold_earned_lbl:'GOLD CÂȘTIGAT',
+    bosses_killed_lbl:'BOSS-URI OMORÂȚI',personal_best_lbl:'🏆 RECORD PERSONAL!',meta_gold_lbl:'META GOLD',
+    runs_lbl:'RUNS',rank_lbl:'NIVEL',mobs_left_lbl:'rămași',next_wave_lbl:'Val următor...'},
+  en:{menu_subtitle:'TACTICAL ROGUELITE',lbl_runs:'RUNS',lbl_best:'BEST SCORE',lbl_kills:'KILLS',
+    lbl_trophies:'TROPHIES',btn_start:'▶ START RUN',btn_daily:'📅 DAILY CHALLENGE',btn_shop:'🛒 SHOP',
+    btn_camp:'⛺ CAMP',btn_top:'🏆 LEADERBOARD',btn_codex:'📖 CODEX',btn_stats:'📊 STATS',
+    btn_settings:'⚙️ SETTINGS',shop_back:'← BACK',shop_title:'SHOP',tab_weapons:'WEAPONS',tab_ammo:'AMMO',
+    tab_armor:'ARMOR',tab_utility:'UTILITY',tab_skins:'SKINS',shop_footer:'Tap = buy / equip',
+    settings_title:'⚙️ SETTINGS',lbl_sfx:'🔊 SFX',lbl_music:'🎵 MUSIC',lbl_vibrate:'VIBRATION',
+    lbl_shake:'SCREEN SHAKE',lbl_particles:'PARTICLES',on_word:'ON',off_word:'OFF',p_auto:'AUTO',
+    p_multe:'HIGH',p_putine:'LOW',lbl_track:'🎸 TRACK',btn_howto:'❔ HOW TO PLAY',
+    btn_reset:'🗑 RESET PROGRESS',btn_back:'BACK',lbl_lang:'🌐 LANGUAGE',
+    upgrade_title:'CHOOSE AN UPGRADE',upgrade_sub:'this run only',new_room_lbl:'NEW ROOM',room_lbl:'ROOM',
+    next_room_lbl:'NEXT ROOM',end_win:'✓ CLEARED!',end_lose:'☠️ GAME OVER',btn_newrun:'↺ NEW RUN',btn_menu:'MENU',
+    hud_room:'ROOM',hud_run:'RUN',
+    rating_lbl:'RATING',points_lbl:'POINTS',time_lbl:'TIME',level_lbl:'LEVEL',rooms_lbl:'ROOMS',
+    kills_lbl:'KILLS',combo_lbl:'MAX COMBO',score_lbl:'SCORE',relics_lbl:'RELICS',gold_earned_lbl:'GOLD EARNED',
+    bosses_killed_lbl:'BOSSES KILLED',personal_best_lbl:'🏆 PERSONAL BEST!',meta_gold_lbl:'META GOLD',
+    runs_lbl:'RUNS',rank_lbl:'RANK',mobs_left_lbl:'left',next_wave_lbl:'Next wave...'},
+  es:{menu_subtitle:'ROGUELITE TÁCTICO',lbl_runs:'PARTIDAS',lbl_best:'MEJOR PUNTUACIÓN',lbl_kills:'BAJAS',
+    lbl_trophies:'TROFEOS',btn_start:'▶ EMPEZAR',btn_daily:'📅 DESAFÍO DIARIO',btn_shop:'🛒 TIENDA',
+    btn_camp:'⛺ CAMPAMENTO',btn_top:'🏆 CLASIFICACIÓN',btn_codex:'📖 CÓDICE',btn_stats:'📊 ESTADÍSTICAS',
+    btn_settings:'⚙️ AJUSTES',shop_back:'← ATRÁS',shop_title:'TIENDA',tab_weapons:'ARMAS',tab_ammo:'MUNICIÓN',
+    tab_armor:'ARMADURA',tab_utility:'UTILIDAD',tab_skins:'ASPECTOS',shop_footer:'Toca = comprar / equipar',
+    settings_title:'⚙️ AJUSTES',lbl_sfx:'🔊 EFECTOS',lbl_music:'🎵 MÚSICA',lbl_vibrate:'VIBRACIÓN',
+    lbl_shake:'VIBRAR PANTALLA',lbl_particles:'PARTÍCULAS',on_word:'ACTIVADO',off_word:'DESACTIVADO',
+    p_auto:'AUTO',p_multe:'ALTO',p_putine:'BAJO',lbl_track:'🎸 PISTA',btn_howto:'❔ CÓMO JUGAR',
+    btn_reset:'🗑 REINICIAR PROGRESO',btn_back:'ATRÁS',lbl_lang:'🌐 IDIOMA',
+    upgrade_title:'ELIGE UNA MEJORA',upgrade_sub:'solo para esta partida',new_room_lbl:'SALA NUEVA',room_lbl:'SALA',
+    next_room_lbl:'SIGUIENTE SALA',end_win:'✓ ¡COMPLETADO!',end_lose:'☠️ FIN DE LA PARTIDA',btn_newrun:'↺ NUEVA PARTIDA',btn_menu:'MENÚ',
+    hud_room:'SALA',hud_run:'PARTIDA',
+    rating_lbl:'CLASIFICACIÓN',points_lbl:'PUNTOS',time_lbl:'TIEMPO',level_lbl:'NIVEL',rooms_lbl:'SALAS',
+    kills_lbl:'BAJAS',combo_lbl:'COMBO MÁX',score_lbl:'PUNTUACIÓN',relics_lbl:'RELIQUIAS',gold_earned_lbl:'ORO GANADO',
+    bosses_killed_lbl:'JEFES DERROTADOS',personal_best_lbl:'🏆 ¡RÉCORD PERSONAL!',meta_gold_lbl:'ORO META',
+    runs_lbl:'PARTIDAS',rank_lbl:'RANGO',mobs_left_lbl:'restantes',next_wave_lbl:'Siguiente oleada...'},
+  it:{menu_subtitle:'ROGUELITE TATTICO',lbl_runs:'PARTITE',lbl_best:'MIGLIOR PUNTEGGIO',lbl_kills:'UCCISIONI',
+    lbl_trophies:'TROFEI',btn_start:'▶ INIZIA',btn_daily:'📅 SFIDA GIORNALIERA',btn_shop:'🛒 NEGOZIO',
+    btn_camp:'⛺ CAMPO',btn_top:'🏆 CLASSIFICA',btn_codex:'📖 CODICE',btn_stats:'📊 STATISTICHE',
+    btn_settings:'⚙️ IMPOSTAZIONI',shop_back:'← INDIETRO',shop_title:'NEGOZIO',tab_weapons:'ARMI',
+    tab_ammo:'MUNIZIONI',tab_armor:'ARMATURA',tab_utility:'UTILITÀ',tab_skins:'SKIN',
+    shop_footer:'Tocca = compra / equipaggia',settings_title:'⚙️ IMPOSTAZIONI',lbl_sfx:'🔊 EFFETTI',
+    lbl_music:'🎵 MUSICA',lbl_vibrate:'VIBRAZIONE',lbl_shake:'SCUOTIMENTO SCHERMO',lbl_particles:'PARTICELLE',
+    on_word:'ATTIVO',off_word:'DISATTIVO',p_auto:'AUTO',p_multe:'ALTO',p_putine:'BASSO',lbl_track:'🎸 TRACCIA',
+    btn_howto:'❔ COME GIOCARE',btn_reset:'🗑 AZZERA PROGRESSI',btn_back:'INDIETRO',lbl_lang:'🌐 LINGUA',
+    upgrade_title:'SCEGLI UN POTENZIAMENTO',upgrade_sub:'solo per questa partita',new_room_lbl:'NUOVA STANZA',room_lbl:'STANZA',
+    next_room_lbl:'STANZA SUCCESSIVA',end_win:'✓ COMPLETATO!',end_lose:'☠️ GAME OVER',btn_newrun:'↺ NUOVA PARTITA',btn_menu:'MENU',
+    hud_room:'STANZA',hud_run:'PARTITA',
+    rating_lbl:'VALUTAZIONE',points_lbl:'PUNTI',time_lbl:'TEMPO',level_lbl:'LIVELLO',rooms_lbl:'STANZE',
+    kills_lbl:'UCCISIONI',combo_lbl:'COMBO MAX',score_lbl:'PUNTEGGIO',relics_lbl:'RELIQUIE',gold_earned_lbl:'ORO GUADAGNATO',
+    bosses_killed_lbl:'BOSS SCONFITTI',personal_best_lbl:'🏆 RECORD PERSONALE!',meta_gold_lbl:'ORO META',
+    runs_lbl:'PARTITE',rank_lbl:'RANGO',mobs_left_lbl:'rimasti',next_wave_lbl:'Prossima ondata...'},
+  hu:{menu_subtitle:'TAKTIKAI ROGUELITE',lbl_runs:'KÖRÖK',lbl_best:'LEGJOBB PONTSZÁM',lbl_kills:'ÖLÉSEK',
+    lbl_trophies:'TRÓFEÁK',btn_start:'▶ INDÍTÁS',btn_daily:'📅 NAPI KIHÍVÁS',btn_shop:'🛒 BOLT',
+    btn_camp:'⛺ TÁBOR',btn_top:'🏆 RANGLISTA',btn_codex:'📖 KÓDEX',btn_stats:'📊 STATISZTIKA',
+    btn_settings:'⚙️ BEÁLLÍTÁSOK',shop_back:'← VISSZA',shop_title:'BOLT',tab_weapons:'FEGYVEREK',
+    tab_ammo:'LŐSZER',tab_armor:'PÁNCÉL',tab_utility:'ESZKÖZÖK',tab_skins:'KINÉZETEK',
+    shop_footer:'Koppints = vásárlás / felszerelés',settings_title:'⚙️ BEÁLLÍTÁSOK',lbl_sfx:'🔊 HANGEFFEKTEK',
+    lbl_music:'🎵 ZENE',lbl_vibrate:'REZGÉS',lbl_shake:'KÉPERNYŐ RÁZÁS',lbl_particles:'RÉSZECSKÉK',
+    on_word:'BE',off_word:'KI',p_auto:'AUTO',p_multe:'SOK',p_putine:'KEVÉS',lbl_track:'🎸 SZÁM',
+    btn_howto:'❔ HOGYAN JÁTSSZ',btn_reset:'🗑 HALADÁS TÖRLÉSE',btn_back:'VISSZA',lbl_lang:'🌐 NYELV',
+    upgrade_title:'VÁLASSZ FEJLESZTÉST',upgrade_sub:'csak erre a menetre',new_room_lbl:'ÚJ SZOBA',room_lbl:'SZOBA',
+    next_room_lbl:'KÖVETKEZŐ SZOBA',end_win:'✓ TELJESÍTVE!',end_lose:'☠️ JÁTÉK VÉGE',btn_newrun:'↺ ÚJ MENET',btn_menu:'MENÜ',
+    hud_room:'SZOBA',hud_run:'MENET',
+    rating_lbl:'ÉRTÉKELÉS',points_lbl:'PONT',time_lbl:'IDŐ',level_lbl:'SZINT',rooms_lbl:'SZOBÁK',
+    kills_lbl:'ÖLÉSEK',combo_lbl:'MAX KOMBÓ',score_lbl:'PONTSZÁM',relics_lbl:'RELIKVIÁK',gold_earned_lbl:'SZERZETT ARANY',
+    bosses_killed_lbl:'LEGYŐZÖTT FŐNÖKÖK',personal_best_lbl:'🏆 SZEMÉLYES REKORD!',meta_gold_lbl:'META ARANY',
+    runs_lbl:'KÖRÖK',rank_lbl:'RANG',mobs_left_lbl:'hátra',next_wave_lbl:'Következő hullám...'},
+  bg:{menu_subtitle:'ТАКТИЧЕСКО ROGUELITE',lbl_runs:'ОПИТИ',lbl_best:'НАЙ-ДОБЪР РЕЗУЛТАТ',lbl_kills:'УБИЙСТВА',
+    lbl_trophies:'ТРОФЕИ',btn_start:'▶ СТАРТ',btn_daily:'📅 ДНЕВНО ПРЕДИЗВИКАТЕЛСТВО',btn_shop:'🛒 МАГАЗИН',
+    btn_camp:'⛺ ЛАГЕР',btn_top:'🏆 КЛАСАЦИЯ',btn_codex:'📖 КОДЕКС',btn_stats:'📊 СТАТИСТИКА',
+    btn_settings:'⚙️ НАСТРОЙКИ',shop_back:'← НАЗАД',shop_title:'МАГАЗИН',tab_weapons:'ОРЪЖИЯ',
+    tab_ammo:'МУНИЦИИ',tab_armor:'БРОНЯ',tab_utility:'ПОМОЩНИ',tab_skins:'ИЗГЛЕДИ',
+    shop_footer:'Докосни = купи / екипирай',settings_title:'⚙️ НАСТРОЙКИ',lbl_sfx:'🔊 ЕФЕКТИ',
+    lbl_music:'🎵 МУЗИКА',lbl_vibrate:'ВИБРАЦИЯ',lbl_shake:'РАЗТЪРСВАНЕ НА ЕКРАНА',lbl_particles:'ЧАСТИЦИ',
+    on_word:'ВКЛ',off_word:'ИЗКЛ',p_auto:'АВТО',p_multe:'МНОГО',p_putine:'МАЛКО',lbl_track:'🎸 ПЕСЕН',
+    btn_howto:'❔ КАК СЕ ИГРАЕ',btn_reset:'🗑 НУЛИРАНЕ НА ПРОГРЕСА',btn_back:'НАЗАД',lbl_lang:'🌐 ЕЗИК',
+    upgrade_title:'ИЗБЕРИ ПОДОБРЕНИЕ',upgrade_sub:'само за този пробег',new_room_lbl:'НОВА СТАЯ',room_lbl:'СТАЯ',
+    next_room_lbl:'СЛЕДВАЩА СТАЯ',end_win:'✓ ЗАВЪРШЕНО!',end_lose:'☠️ КРАЙ НА ИГРАТА',btn_newrun:'↺ НОВ ПРОБЕГ',btn_menu:'МЕНЮ',
+    hud_room:'СТАЯ',hud_run:'ПРОБЕГ',
+    rating_lbl:'РЕЙТИНГ',points_lbl:'ТОЧКИ',time_lbl:'ВРЕМЕ',level_lbl:'НИВО',rooms_lbl:'СТАИ',
+    kills_lbl:'УБИЙСТВА',combo_lbl:'МАКС КОМБО',score_lbl:'РЕЗУЛТАТ',relics_lbl:'РЕЛИКВИ',gold_earned_lbl:'СПЕЧЕЛЕНО ЗЛАТО',
+    bosses_killed_lbl:'УБИТИ БОСОВЕ',personal_best_lbl:'🏆 ЛИЧЕН РЕКОРД!',meta_gold_lbl:'META ЗЛАТО',
+    runs_lbl:'ОПИТИ',rank_lbl:'РАНГ',mobs_left_lbl:'останали',next_wave_lbl:'Следваща вълна...'},
+  zh:{menu_subtitle:'战术ROGUELITE',lbl_runs:'局数',lbl_best:'最高分',lbl_kills:'击杀数',lbl_trophies:'奖杯',
+    btn_start:'▶ 开始游戏',btn_daily:'📅 每日挑战',btn_shop:'🛒 商店',btn_camp:'⛺ 营地',btn_top:'🏆 排行榜',
+    btn_codex:'📖 图鉴',btn_stats:'📊 统计',btn_settings:'⚙️ 设置',shop_back:'← 返回',shop_title:'商店',
+    tab_weapons:'武器',tab_ammo:'弹药',tab_armor:'护甲',tab_utility:'道具',tab_skins:'皮肤',
+    shop_footer:'点击 = 购买 / 装备',settings_title:'⚙️ 设置',lbl_sfx:'🔊 音效',lbl_music:'🎵 音乐',
+    lbl_vibrate:'震动',lbl_shake:'屏幕震动',lbl_particles:'粒子效果',on_word:'开',off_word:'关',
+    p_auto:'自动',p_multe:'多',p_putine:'少',lbl_track:'🎸 曲目',btn_howto:'❔ 玩法说明',
+    btn_reset:'🗑 重置进度',btn_back:'返回',lbl_lang:'🌐 语言',
+    upgrade_title:'选择一个升级',upgrade_sub:'仅限本局',new_room_lbl:'新房间',room_lbl:'房间',
+    next_room_lbl:'下一个房间',end_win:'✓ 完成！',end_lose:'☠️ 游戏结束',btn_newrun:'↺ 新的一局',btn_menu:'菜单',
+    hud_room:'房间',hud_run:'局',
+    rating_lbl:'评级',points_lbl:'分数',time_lbl:'时间',level_lbl:'等级',rooms_lbl:'房间数',
+    kills_lbl:'击杀数',combo_lbl:'最大连击',score_lbl:'得分',relics_lbl:'遗物',gold_earned_lbl:'获得金币',
+    bosses_killed_lbl:'击败首领数',personal_best_lbl:'🏆 个人最佳记录！',meta_gold_lbl:'META金币',
+    runs_lbl:'局数',rank_lbl:'段位',mobs_left_lbl:'剩余',next_wave_lbl:'下一波...'},
+  ja:{menu_subtitle:'タクティカルローグライト',lbl_runs:'プレイ回数',lbl_best:'ベストスコア',lbl_kills:'キル数',
+    lbl_trophies:'トロフィー',btn_start:'▶ スタート',btn_daily:'📅 デイリーチャレンジ',btn_shop:'🛒 ショップ',
+    btn_camp:'⛺ キャンプ',btn_top:'🏆 ランキング',btn_codex:'📖 図鑑',btn_stats:'📊 統計',
+    btn_settings:'⚙️ 設定',shop_back:'← 戻る',shop_title:'ショップ',tab_weapons:'武器',tab_ammo:'弾薬',
+    tab_armor:'防具',tab_utility:'アイテム',tab_skins:'スキン',shop_footer:'タップ = 購入 / 装備',
+    settings_title:'⚙️ 設定',lbl_sfx:'🔊 効果音',lbl_music:'🎵 音楽',lbl_vibrate:'バイブレーション',
+    lbl_shake:'画面の揺れ',lbl_particles:'パーティクル',on_word:'オン',off_word:'オフ',p_auto:'オート',
+    p_multe:'多い',p_putine:'少ない',lbl_track:'🎸 トラック',btn_howto:'❔ 遊び方',
+    btn_reset:'🗑 進行状況をリセット',btn_back:'戻る',lbl_lang:'🌐 言語',
+    upgrade_title:'アップグレードを選択',upgrade_sub:'このランのみ',new_room_lbl:'新しい部屋',room_lbl:'部屋',
+    next_room_lbl:'次の部屋',end_win:'✓ クリア！',end_lose:'☠️ ゲームオーバー',btn_newrun:'↺ 新しいラン',btn_menu:'メニュー',
+    hud_room:'部屋',hud_run:'ラン',
+    rating_lbl:'評価',points_lbl:'ポイント',time_lbl:'時間',level_lbl:'レベル',rooms_lbl:'部屋数',
+    kills_lbl:'キル数',combo_lbl:'最大コンボ',score_lbl:'スコア',relics_lbl:'遺物',gold_earned_lbl:'獲得ゴールド',
+    bosses_killed_lbl:'撃破したボス',personal_best_lbl:'🏆 自己ベスト！',meta_gold_lbl:'METAゴールド',
+    runs_lbl:'プレイ回数',rank_lbl:'ランク',mobs_left_lbl:'残り',next_wave_lbl:'次のウェーブ...'},
+};
+function t(key){
+  const l=LANG[SETTINGS.lang]||LANG.ro;
+  return l[key]!==undefined?l[key]:(LANG.en[key]!==undefined?LANG.en[key]:key);
+}
+function applyLang(){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    el.textContent=t(el.getAttribute('data-i18n'));
+  });
+}
+function setLang(code){
+  if(!LANG[code])return;
+  SETTINGS.lang=code;sSet(SETTINGS);applyLang();
+  if(document.getElementById('setOv'))openSettings();
+}
+// ── Traduceri pentru power-up-uri și relicve (id-uri, nu chei fixe) ──
+// Româna rămâne sursa (POWERUPS/RELICS de mai jos); aici doar celelalte 8.
+const LANG_ITEMS={
+  en:{pu:{dmg:{name:'+25% Damage',desc:'Damage +25% for the whole run.'},
+    spd:{name:'+20% Speed',desc:'Movement +20%.'},hp:{name:'+30 Max HP',desc:'Max HP +30.'},
+    regen:{name:'Regeneration',desc:'+1 HP/s in combat (stacks).'},
+    pierce:{name:'Pierce',desc:'Bullets pass through +1 enemy (stacks).'},
+    rico:{name:'Ricochet',desc:'+1 ricochet per bullet (stacks).'},
+    double:{name:'Multi Shot',desc:'+1 bullet per shot (stacks).'},
+    vamp:{name:'Vampire',desc:'+3 HP per kill (stacks).'},
+    expl:{name:'Explosive',desc:'Bigger explosion on impact (stacks).'},
+    gold:{name:'Gold Rush',desc:'+50% gold per kill.'},
+    rl:{name:'Quick Reload',desc:'Reload -40%.'},
+    dash2:{name:'Extra Dash',desc:'+1 dash (stacks).'},
+    slowtime:{name:'Slow Time',desc:'One-time use: 5s everything at 30% speed.'}},
+   rl:{ochiul:{name:"Serpent's Eye",desc:'+5% dmg per kill (stacks, max 15)'},
+    lacrima:{name:'Moon Tear',desc:'+15 HP after each boss'},
+    pana:{name:'Abyss Feather',desc:'Dash recharges every 5 kills'},
+    inima:{name:'Crystal Heart',desc:'At HP<30% get a 5s shield (once per room)'},
+    moneda:{name:'Cursed Coin',desc:'+80% gold, -15 max HP'},
+    viteza:{name:'Mercury Sneakers',desc:'+30% permanent speed'},
+    vampir:{name:'Vampire Fang',desc:'+5 HP per kill (double the powerup)'},
+    bomba:{name:'Explosive Belt',desc:'10% chance any bullet explodes'}}},
+  es:{pu:{dmg:{name:'+25% Daño',desc:'Daño +25% toda la partida.'},
+    spd:{name:'+20% Velocidad',desc:'Movimiento +20%.'},hp:{name:'+30 HP Máx',desc:'HP máx +30.'},
+    regen:{name:'Regeneración',desc:'+1 HP/s en combate (acumulable).'},
+    pierce:{name:'Perforante',desc:'Las balas atraviesan +1 enemigo (acumulable).'},
+    rico:{name:'Rebote',desc:'+1 rebote por bala (acumulable).'},
+    double:{name:'Disparo Múltiple',desc:'+1 bala por disparo (acumulable).'},
+    vamp:{name:'Vampiro',desc:'+3 HP por baja (acumulable).'},
+    expl:{name:'Explosivo',desc:'Explosión más grande al impactar (acumulable).'},
+    gold:{name:'Fiebre del Oro',desc:'+50% oro por baja.'},
+    rl:{name:'Recarga Rápida',desc:'Recarga -40%.'},
+    dash2:{name:'Dash Extra',desc:'+1 dash (acumulable).'},
+    slowtime:{name:'Tiempo Lento',desc:'Uso único: 5s todo al 30% velocidad.'}},
+   rl:{ochiul:{name:'Ojo de la Serpiente',desc:'+5% daño por baja (acumulable, máx 15)'},
+    lacrima:{name:'Lágrima de Luna',desc:'+15 HP tras cada jefe'},
+    pana:{name:'Pluma del Abismo',desc:'El dash se recarga cada 5 bajas'},
+    inima:{name:'Corazón de Cristal',desc:'Con HP<30% obtienes escudo 5s (una vez por sala)'},
+    moneda:{name:'Moneda Maldita',desc:'+80% oro, -15 HP máx'},
+    viteza:{name:'Zapatillas de Mercurio',desc:'+30% velocidad permanente'},
+    vampir:{name:'Colmillo de Vampiro',desc:'+5 HP por baja (el doble que el powerup)'},
+    bomba:{name:'Cinturón Explosivo',desc:'10% de probabilidad de que cualquier bala explote'}}},
+  it:{pu:{dmg:{name:'+25% Danno',desc:"Danno +25% per tutta la partita."},
+    spd:{name:'+20% Velocità',desc:'Movimento +20%.'},hp:{name:'+30 HP Max',desc:'HP max +30.'},
+    regen:{name:'Rigenerazione',desc:'+1 HP/s in combattimento (cumulabile).'},
+    pierce:{name:'Perforante',desc:'I proiettili attraversano +1 nemico (cumulabile).'},
+    rico:{name:'Rimbalzo',desc:'+1 rimbalzo per proiettile (cumulabile).'},
+    double:{name:'Sparo Multiplo',desc:'+1 proiettile per colpo (cumulabile).'},
+    vamp:{name:'Vampiro',desc:'+3 HP per uccisione (cumulabile).'},
+    expl:{name:'Esplosivo',desc:"Esplosione più grande all'impatto (cumulabile)."},
+    gold:{name:"Corsa all'Oro",desc:'+50% oro per uccisione.'},
+    rl:{name:'Ricarica Rapida',desc:'Ricarica -40%.'},
+    dash2:{name:'Dash Extra',desc:'+1 dash (cumulabile).'},
+    slowtime:{name:'Tempo Rallentato',desc:'Uso singolo: 5s tutto al 30% velocità.'}},
+   rl:{ochiul:{name:'Occhio del Serpente',desc:'+5% danno per uccisione (cumulabile, max 15)'},
+    lacrima:{name:'Lacrima di Luna',desc:'+15 HP dopo ogni boss'},
+    pana:{name:"Piuma dell'Abisso",desc:'Il dash si ricarica ogni 5 uccisioni'},
+    inima:{name:'Cuore di Cristallo',desc:'Con HP<30% ottieni scudo 5s (una volta a stanza)'},
+    moneda:{name:'Moneta Maledetta',desc:'+80% oro, -15 HP max'},
+    viteza:{name:'Scarpe di Mercurio',desc:'+30% velocità permanente'},
+    vampir:{name:'Zanna di Vampiro',desc:'+5 HP per uccisione (doppio del powerup)'},
+    bomba:{name:'Cintura Esplosiva',desc:'10% di probabilità che un proiettile esploda'}}},
+  hu:{pu:{dmg:{name:'+25% Sebzés',desc:'Sebzés +25% az egész menetre.'},
+    spd:{name:'+20% Sebesség',desc:'Mozgás +20%.'},hp:{name:'+30 Max HP',desc:'Max HP +30.'},
+    regen:{name:'Regeneráció',desc:'+1 HP/mp harcban (halmozódik).'},
+    pierce:{name:'Áthatolás',desc:'A lövedékek +1 ellenségen áthatolnak (halmozódik).'},
+    rico:{name:'Lepattanás',desc:'+1 lepattanás lövedékenként (halmozódik).'},
+    double:{name:'Többszörös Lövés',desc:'+1 lövedék lövésenként (halmozódik).'},
+    vamp:{name:'Vámpír',desc:'+3 HP ölésenként (halmozódik).'},
+    expl:{name:'Robbanó',desc:'Nagyobb robbanás becsapódáskor (halmozódik).'},
+    gold:{name:'Aranyláz',desc:'+50% arany ölésenként.'},
+    rl:{name:'Gyors Újratöltés',desc:'Újratöltés -40%.'},
+    dash2:{name:'Extra Dash',desc:'+1 dash (halmozódik).'},
+    slowtime:{name:'Lassított Idő',desc:'Egyszeri: 5mp minden 30% sebességgel.'}},
+   rl:{ochiul:{name:'Kígyó Szeme',desc:'+5% sebzés ölésenként (halmozódik, max 15)'},
+    lacrima:{name:'Hold Könnye',desc:'+15 HP minden boss után'},
+    pana:{name:'Mélység Tolla',desc:'A dash minden 5 ölésnél feltöltődik'},
+    inima:{name:'Kristályszív',desc:'HP<30%-nál 5mp pajzsot kapsz (szobánként egyszer)'},
+    moneda:{name:'Átkozott Érme',desc:'+80% arany, -15 max HP'},
+    viteza:{name:'Merkúr Cipő',desc:'+30% állandó sebesség'},
+    vampir:{name:'Vámpírfog',desc:'+5 HP ölésenként (duplája a powerupnak)'},
+    bomba:{name:'Robbanó Öv',desc:'10% esély, hogy bármely lövedék felrobban'}}},
+  bg:{pu:{dmg:{name:'+25% Щета',desc:'Щета +25% за целия пробег.'},
+    spd:{name:'+20% Скорост',desc:'Движение +20%.'},hp:{name:'+30 Макс. HP',desc:'Макс. HP +30.'},
+    regen:{name:'Регенерация',desc:'+1 HP/сек в битка (натрупва се).'},
+    pierce:{name:'Пробиване',desc:'Куршумите преминават през +1 враг (натрупва се).'},
+    rico:{name:'Рикошет',desc:'+1 рикошет на куршум (натрупва се).'},
+    double:{name:'Множествена Стрелба',desc:'+1 куршум на изстрел (натрупва се).'},
+    vamp:{name:'Вампир',desc:'+3 HP на убийство (натрупва се).'},
+    expl:{name:'Експлозивен',desc:'По-голям взрив при удар (натрупва се).'},
+    gold:{name:'Златна Треска',desc:'+50% злато на убийство.'},
+    rl:{name:'Бързо Презареждане',desc:'Презареждане -40%.'},
+    dash2:{name:'Допълнителен Dash',desc:'+1 dash (натрупва се).'},
+    slowtime:{name:'Забавено Време',desc:'Еднократно: 5сек всичко на 30% скорост.'}},
+   rl:{ochiul:{name:'Окото на Змията',desc:'+5% щета на убийство (натрупва се, макс 15)'},
+    lacrima:{name:'Лунна Сълза',desc:'+15 HP след всеки бос'},
+    pana:{name:'Перото на Бездната',desc:'Dash-ът се презарежда на всеки 5 убийства'},
+    inima:{name:'Кристално Сърце',desc:'При HP<30% получаваш щит за 5сек (веднъж на стая)'},
+    moneda:{name:'Прокълната Монета',desc:'+80% злато, -15 макс HP'},
+    viteza:{name:'Меркурови Маратонки',desc:'+30% постоянна скорост'},
+    vampir:{name:'Вампирски Зъб',desc:'+5 HP на убийство (двойно повече от powerup-а)'},
+    bomba:{name:'Експлозивен Колан',desc:'10% шанс всеки куршум да експлодира'}}},
+  zh:{pu:{dmg:{name:'+25% 伤害',desc:'伤害+25%，持续整局。'},
+    spd:{name:'+20% 速度',desc:'移动速度+20%。'},hp:{name:'+30 最大生命值',desc:'最大生命值+30。'},
+    regen:{name:'生命恢复',desc:'战斗中+1生命/秒（可叠加）。'},
+    pierce:{name:'穿透',desc:'子弹多穿透1个敌人（可叠加）。'},
+    rico:{name:'弹跳',desc:'每颗子弹+1次弹跳（可叠加）。'},
+    double:{name:'多重射击',desc:'每次射击+1颗子弹（可叠加）。'},
+    vamp:{name:'吸血',desc:'每次击杀+3生命值（可叠加）。'},
+    expl:{name:'爆炸',desc:'命中时爆炸范围更大（可叠加）。'},
+    gold:{name:'淘金热',desc:'每次击杀+50%金币。'},
+    rl:{name:'快速装填',desc:'装填时间-40%。'},
+    dash2:{name:'额外冲刺',desc:'+1次冲刺（可叠加）。'},
+    slowtime:{name:'时间减速',desc:'一次性使用：5秒内全场30%速度。'}},
+   rl:{ochiul:{name:'蛇之眼',desc:'每次击杀+5%伤害（可叠加，最多15层）'},
+    lacrima:{name:'月之泪',desc:'每次击败boss后+15生命值'},
+    pana:{name:'深渊之羽',desc:'每5次击杀冲刺充能一次'},
+    inima:{name:'水晶之心',desc:'生命值<30%时获得5秒护盾（每个房间一次）'},
+    moneda:{name:'诅咒硬币',desc:'+80%金币，-15最大生命值'},
+    viteza:{name:'水星战靴',desc:'永久+30%速度'},
+    vampir:{name:'吸血鬼獠牙',desc:'每次击杀+5生命值（是普通增益的两倍）'},
+    bomba:{name:'爆炸腰带',desc:'任意子弹10%几率爆炸'}}},
+  ja:{pu:{dmg:{name:'+25% ダメージ',desc:'ダメージ+25%（ランの間ずっと）。'},
+    spd:{name:'+20% 速度',desc:'移動速度+20%。'},hp:{name:'+30 最大HP',desc:'最大HP+30。'},
+    regen:{name:'再生',desc:'戦闘中+1HP/秒（重複可）。'},
+    pierce:{name:'貫通',desc:'弾が敵をもう1体貫通する（重複可）。'},
+    rico:{name:'リコシェット',desc:'弾ごとに跳弾+1回（重複可）。'},
+    double:{name:'マルチショット',desc:'1発ごとに弾+1発（重複可）。'},
+    vamp:{name:'ヴァンパイア',desc:'キルごとにHP+3（重複可）。'},
+    expl:{name:'爆発',desc:'命中時の爆発が大きくなる（重複可）。'},
+    gold:{name:'ゴールドラッシュ',desc:'キルごとにゴールド+50%。'},
+    rl:{name:'クイックリロード',desc:'リロード-40%。'},
+    dash2:{name:'追加ダッシュ',desc:'ダッシュ+1回（重複可）。'},
+    slowtime:{name:'スローモーション',desc:'一度きり：5秒間すべてが30%速度に。'}},
+   rl:{ochiul:{name:'蛇の目',desc:'キルごとにダメージ+5%（重複可、最大15）'},
+    lacrima:{name:'月の涙',desc:'ボス撃破ごとにHP+15'},
+    pana:{name:'深淵の羽根',desc:'キル5回ごとにダッシュが回復'},
+    inima:{name:'クリスタルハート',desc:'HP30%未満で5秒シールド（部屋ごとに1回）'},
+    moneda:{name:'呪われたコイン',desc:'ゴールド+80%、最大HP-15'},
+    viteza:{name:'マーキュリースニーカー',desc:'永久に速度+30%'},
+    vampir:{name:'ヴァンパイアファング',desc:'キルごとにHP+5（パワーアップの2倍）'},
+    bomba:{name:'爆発ベルト',desc:'どの弾も10%の確率で爆発'}}},
+};
+function puName(pu){const L=LANG_ITEMS[SETTINGS.lang];return(L&&L.pu[pu.id])?L.pu[pu.id].name:pu.name;}
+function puDesc(pu){const L=LANG_ITEMS[SETTINGS.lang];return(L&&L.pu[pu.id])?L.pu[pu.id].desc:pu.desc;}
+function rlName(rl){const L=LANG_ITEMS[SETTINGS.lang];return(L&&L.rl[rl.id])?L.rl[rl.id].name:rl.name;}
+function rlDesc(rl){const L=LANG_ITEMS[SETTINGS.lang];return(L&&L.rl[rl.id])?L.rl[rl.id].desc:rl.desc;}
+// ── Traduceri pentru tipurile de cameră (LUPTĂ/SHOP/BOSS/etc) —
+// astea apar la fiecare alegere de ușă, deci contează mult să fie corecte.
+const LANG_RT={
+  en:{combat:{label:'FIGHT',desc:'Eliminate all enemies'},shop:{label:'SHOP',desc:'Buy equipment'},
+    bonus:{label:'BONUS',desc:'Free upgrade'},boss:{label:'BOSS',desc:'Powerful boss'},
+    elite:{label:'ELITE',desc:'Elite enemies — big reward'},mystery:{label:'MYSTERY',desc:'Could be anything...'}},
+  es:{combat:{label:'COMBATE',desc:'Elimina a todos los enemigos'},shop:{label:'TIENDA',desc:'Compra equipo'},
+    bonus:{label:'BONUS',desc:'Mejora gratis'},boss:{label:'JEFE',desc:'Jefe poderoso'},
+    elite:{label:'ÉLITE',desc:'Enemigos de élite — gran recompensa'},mystery:{label:'MISTERIO',desc:'Puede ser cualquier cosa...'}},
+  it:{combat:{label:'COMBATTIMENTO',desc:'Elimina tutti i nemici'},shop:{label:'NEGOZIO',desc:'Compra equipaggiamento'},
+    bonus:{label:'BONUS',desc:'Potenziamento gratuito'},boss:{label:'BOSS',desc:'Boss potente'},
+    elite:{label:'ÉLITE',desc:'Nemici d\'élite — grande ricompensa'},mystery:{label:'MISTERO',desc:'Può essere qualsiasi cosa...'}},
+  hu:{combat:{label:'HARC',desc:'Semmisítsd meg az összes ellenséget'},shop:{label:'BOLT',desc:'Vásárolj felszerelést'},
+    bonus:{label:'BÓNUSZ',desc:'Ingyenes fejlesztés'},boss:{label:'FŐNÖK',desc:'Erős főnök'},
+    elite:{label:'ELIT',desc:'Elit ellenségek — nagy jutalom'},mystery:{label:'REJTÉLY',desc:'Bármi lehet...'}},
+  bg:{combat:{label:'БИТКА',desc:'Унищожи всички врагове'},shop:{label:'МАГАЗИН',desc:'Купи екипировка'},
+    bonus:{label:'БОНУС',desc:'Безплатно подобрение'},boss:{label:'БОС',desc:'Мощен бос'},
+    elite:{label:'ЕЛИТ',desc:'Елитни врагове — голяма награда'},mystery:{label:'МИСТЕРИЯ',desc:'Може да е всичко...'}},
+  zh:{combat:{label:'战斗',desc:'消灭所有敌人'},shop:{label:'商店',desc:'购买装备'},
+    bonus:{label:'奖励',desc:'免费升级'},boss:{label:'首领',desc:'强大的首领'},
+    elite:{label:'精英',desc:'精英敌人——高额奖励'},mystery:{label:'神秘',desc:'可能是任何东西……'}},
+  ja:{combat:{label:'戦闘',desc:'すべての敵を倒す'},shop:{label:'ショップ',desc:'装備を購入'},
+    bonus:{label:'ボーナス',desc:'無料アップグレード'},boss:{label:'ボス',desc:'強力なボス'},
+    elite:{label:'エリート',desc:'エリート敵 — 大きな報酬'},mystery:{label:'ミステリー',desc:'何が起きるか分からない…'}},
+};
+function rtLabel(key){const L=LANG_RT[SETTINGS.lang];return(L&&L[key])?L[key].label:ROOM_TYPES[key].label;}
+function rtDesc(key){const L=LANG_RT[SETTINGS.lang];return(L&&L[key])?L[key].desc:ROOM_TYPES[key].desc;}
 
 let paused=false;
 function togglePause(){ paused?resumeGame():pauseGame(); }
@@ -4066,28 +4561,29 @@ function openSettings(){
     `<input type="range" min="0" max="100" value="${val}" id="${id}"`+
     ` oninput="onVol('${id}',this.value)" style="width:100%;accent-color:#00d4ff;height:18px;"></div>`;
   ov.innerHTML=
-    `<div style="font-size:14px;letter-spacing:5px;color:#00d4ff;margin-bottom:6px;">⚙️ SETĂRI</div>`+
-    slider('🔊 EFECTE','setSfx',SETTINGS.sfx??70)+
-    slider('🎵 MUZICĂ','setMusic',SETTINGS.music??35)+
-    row('VIBRAȚIE','setVibrate',SETTINGS.vibrate?'PORNIT':'OPRIT')+
-    row('ZGUDUIRE ECRAN','setShake',SETTINGS.shake?'PORNIT':'OPRIT')+
-    row('PARTICULE','setParticles',SETTINGS.particles.toUpperCase())+
+    `<div style="font-size:14px;letter-spacing:5px;color:#00d4ff;margin-bottom:6px;">${t('settings_title')}</div>`+
+    slider(t('lbl_sfx'),'setSfx',SETTINGS.sfx??70)+
+    slider(t('lbl_music'),'setMusic',SETTINGS.music??35)+
+    row(t('lbl_vibrate'),'setVibrate',SETTINGS.vibrate?t('on_word'):t('off_word'))+
+    row(t('lbl_shake'),'setShake',SETTINGS.shake?t('on_word'):t('off_word'))+
+    row(t('lbl_particles'),'setParticles',SETTINGS.particles==='multe'?t('p_multe'):SETTINGS.particles==='putine'?t('p_putine'):t('p_auto'))+
+    row(t('lbl_lang'),'setLangBtn',LANG_NAMES[SETTINGS.lang]||'ROMÂNĂ')+
     `<div style="width:100%;max-width:300px;margin-top:8px;padding-top:8px;border-top:1px solid #232a35;"></div>`+
     `<div style="width:100%;max-width:300px;display:flex;justify-content:space-between;`+
       `align-items:center;border:1px solid #232a35;border-radius:5px;padding:8px 10px;`+
       `background:rgba(255,255,255,.02);">`+
-      `<span style="font-size:9px;color:#aab;letter-spacing:1px;">🎸 PIESĂ</span>`+
+      `<span style="font-size:9px;color:#aab;letter-spacing:1px;">${t('lbl_track')}</span>`+
       `<span id="curTrack" style="font-size:8px;color:#8ab4ff;">`+
         `${musTrack?musTrack.name:'—'}</span>`+
-      `<button onclick="skipTrack();setTimeout(()=>{const e=document.getElementById('curTrack');`+
+      `<button onclick="previewNextTrack();setTimeout(()=>{const e=document.getElementById('curTrack');`+
         `if(e&&typeof musTrack!=='undefined'&&musTrack)e.textContent=musTrack.name;},60)"`+
         ` style="background:rgba(255,255,255,.05);border:1px solid #00d4ff;color:#00d4ff;`+
         `border-radius:4px;padding:4px 10px;font-family:inherit;font-size:9px;cursor:pointer;">⏭</button></div>`+
-    `<button class="mb sc" style="min-width:200px;" onclick="showTutorial(true)">❔ CUM SE JOACĂ</button>`+
+    `<button class="mb sc" style="min-width:200px;" onclick="showTutorial(true)">${t('btn_howto')}</button>`+
     `<button class="mb sc" style="min-width:200px;border-color:#ff4444;color:#ff6666;"`+
-      ` onclick="confirmReset()">🗑 RESETEAZĂ PROGRESUL</button>`+
+      ` onclick="confirmReset()">${t('btn_reset')}</button>`+
     `<div style="font-size:7px;color:#445;letter-spacing:1px;margin-top:4px;">STRIKER ROGUELITE · v1.0</div>`+
-    `<button class="mb pr" style="min-width:200px;margin-top:6px;" onclick="closeSettings()">ÎNAPOI</button>`;
+    `<button class="mb pr" style="min-width:200px;margin-top:6px;" onclick="closeSettings()">${t('btn_back')}</button>`;
   document.body.appendChild(ov);
 }
 function closeSettings(){
@@ -4112,12 +4608,17 @@ function cycleSetting(id){
     const order=['auto','multe','putine'];
     SETTINGS.particles=order[(order.indexOf(SETTINGS.particles)+1)%order.length];
   }
+  else if(id==='setLangBtn'){
+    const idx=LANG_ORDER.indexOf(SETTINGS.lang);
+    setLang(LANG_ORDER[(idx+1)%LANG_ORDER.length]);
+    return; // setLang() reface deja tot ecranul de Setări
+  }
   sSet(SETTINGS);
   const el=document.getElementById(id);
   if(el){
-    el.textContent = id==='setVibrate' ? (SETTINGS.vibrate?'PORNIT':'OPRIT')
-      : id==='setShake' ? (SETTINGS.shake?'PORNIT':'OPRIT')
-      : SETTINGS.particles.toUpperCase();
+    el.textContent = id==='setVibrate' ? (SETTINGS.vibrate?t('on_word'):t('off_word'))
+      : id==='setShake' ? (SETTINGS.shake?t('on_word'):t('off_word'))
+      : (SETTINGS.particles==='multe'?t('p_multe'):SETTINGS.particles==='putine'?t('p_putine'):t('p_auto'));
   }
 }
 function confirmReset(){
@@ -4203,14 +4704,19 @@ window.addEventListener('popstate',()=>{
 
 // Buton de pauză în HUD
 window.addEventListener('DOMContentLoaded',()=>{
+  applyLang();
   const b=document.createElement('button');
   b.id='pauseBtn';
   b.textContent='⏸';
-  b.style.cssText='position:fixed;top:8px;left:8px;z-index:9;width:34px;height:34px;'+
-    'border-radius:6px;background:rgba(7,9,13,.75);border:1px solid #232a35;'+
-    'color:#8ab;font-size:15px;cursor:pointer;display:none;';
+  b.style.cssText='pointer-events:all;width:24px;height:24px;border-radius:5px;'+
+    'background:rgba(7,9,13,.75);border:1px solid #232a35;'+
+    'color:#8ab;font-size:12px;cursor:pointer;display:none;flex-shrink:0;';
   b.onclick=()=>pauseGame();
-  document.body.appendChild(b);
+  // Îl bag direct în rândul din stânga al topbar-ului (lângă $ și 🛒), ca să
+  // se așeze automat lângă ele, nu peste — nu mai stă poziționat fix separat.
+  const moneyRow=document.querySelector('#topbar > div:first-child');
+  if(moneyRow)moneyRow.appendChild(b);
+  else document.body.appendChild(b);
 });
 function updPauseBtn(){
   const b=document.getElementById('pauseBtn');
@@ -4784,8 +5290,8 @@ function startTrans(type){
   const numEl=document.getElementById('rtnum');
   iconEl.style.animation='none';void iconEl.offsetWidth;iconEl.style.animation='rtPulse .5s ease';
   iconEl.textContent=rt.icon;
-  titEl.textContent=rt.label;
-  subEl.textContent=type==='boss'?'⚠ BOSS ⚠':'CAMERA NOUĂ';
+  titEl.textContent=rtLabel(type);
+  subEl.textContent=type==='boss'?'⚠ BOSS ⚠':t('new_room_lbl');
   numEl.textContent=nextRoom;
   numEl.classList.remove('show');
   numEl.style.color=type==='boss'?'#ff4444':'var(--acc)';
@@ -5170,6 +5676,7 @@ function doDash(){
   playSfx('dash');
   if(G.dashCur<=0)return;
   G.dashCur--;G.dashCD=G.dashMaxCD;
+  contractProgress('dash',1);
   const dx=G.lastMoveX||Math.cos(G.angle),dy=G.lastMoveY||Math.sin(G.angle);
   const dashDist=120;
   // Muta playerul rapid in directie
@@ -6037,7 +6544,20 @@ function applyDmg(dmg){
   if(!window._lastHurtSfx||Date.now()-window._lastHurtSfx>180){
     window._lastHurtSfx=Date.now();
     playSfx('playerHurt');
-  }let r=dmg;if(G.armor>0){G.armor=Math.max(0,G.armor-dmg*G.armorAbsorb);r=dmg*(1-G.armorAbsorb);}G.hp=Math.max(0,G.hp-r);const df=document.getElementById('dmgfl');if(df){df.style.background='rgba(255,20,60,.32)';setTimeout(()=>df.style.background='rgba(255,20,60,0)',120);}updHUD();if(G.hp<=0)runEnd(false);}
+  }let r=dmg;if(G.armor>0){G.armor=Math.max(0,G.armor-dmg*G.armorAbsorb);r=dmg*(1-G.armorAbsorb);}G.hp=Math.max(0,G.hp-r);const df=document.getElementById('dmgfl');if(df){df.style.background='rgba(255,20,60,.32)';setTimeout(()=>df.style.background='rgba(255,20,60,0)',120);}updHUD();
+  if(G.hp<=0){
+    if((G.revivesLeft||0)>0){
+      G.revivesLeft--;
+      G.hp=Math.ceil(G.maxHp*0.5);
+      G.effects.invuln=Date.now()+2000;
+      addFeed('💗 Kit medical: reînviat!','#00ff88');
+      shakeCam(8,300);
+      updHUD();
+      return;
+    }
+    runEnd(false);
+  }
+}
 
 // ── BULLETS ───────────────────────────────────────────────
 function updBullets(dt){
@@ -6178,6 +6698,8 @@ function killEnemy(e){
   const goldMult=ROOM.goldMult||1;
   const g=Math.round(e.rwd*G.goldM*goldMult);G.money+=g;G.score+=g;G.kills++;
   runStats.kills++;
+  contractProgress('kills',1);
+  if(e.isBoss)contractProgress('boss',1);
 
   // Blood splat pe podea
   spawnBlood(e.x,e.y,e.isBoss,e.lastHitAng);
@@ -6259,7 +6781,7 @@ function showPU(cnt,cb){
   const pool=cnt===3?[rare[0],com[0],com[1]]:[com[0]];
   pool.filter(Boolean).forEach(pu=>{
     const c=document.createElement('div');c.className='pucard'+(pu.rarity==='rare'?' rare':'');
-    c.innerHTML=`<div class="puicon">${pu.icon}</div><div class="puname">${pu.name}</div><div class="pudesc">${pu.desc}</div>`;
+    c.innerHTML=`<div class="puicon">${pu.icon}</div><div class="puname">${puName(pu)}</div><div class="pudesc">${puDesc(pu)}</div>`;
     c.onclick=()=>{pu.apply(G);G.powerups.push(pu.id);scr.style.display='none';updPUBar();checkSynergies();updSlowBtn();if(cb)cb();};
     con.appendChild(c);
   });
@@ -6312,8 +6834,8 @@ function showDoorsOverlay(saved){
       if(opt.reward)previewHTML+=`<div style="font-size:7px;color:#ffcc00;letter-spacing:1px;">~$${opt.reward}</div>`;
     }
     c.innerHTML=`<div class="dicon">${opt.type==='mystery'?'❓':rt.icon}</div>`+
-      `<div class="dtype" style="color:${opt.type==='mystery'?'#aa66ff':rt.color}">${opt.type==='mystery'?'MISTER':rt.label}</div>`+
-      `<div class="ddesc">${opt.type==='mystery'?'Poate fi orice...':rt.desc}</div>`+previewHTML;
+      `<div class="dtype" style="color:${opt.type==='mystery'?'#aa66ff':rt.color}">${rtLabel(opt.type)}</div>`+
+      `<div class="ddesc">${rtDesc(opt.type)}</div>`+previewHTML;
     c.onclick=()=>chooseDoor(opt,opts,scr);
     con.appendChild(c);
   });
@@ -6389,8 +6911,8 @@ function chooseDoor(opt,opts,scr){
     };
     if(roll<.30){addFeed('❓ → 🎁 Eveniment!','#aa66ff');
       reveal('🎁','EVENIMENT','#aa66ff',()=>showSpecialEvent());return;}
-    if(roll<.50){addFeed('❓ → 🛒 Negustor!','#00cc66');
-      reveal('🛒','NEGUSTOR','#00cc66',()=>startTrans('shop'));return;}
+    if(roll<.50){addFeed('❓ → 🛒 Magazin!','#00cc66');
+      reveal('🛒','MAGAZIN','#00cc66',()=>startTrans('shop'));return;}
     if(roll<.72){addFeed('❓ → ⚔️ Elită!','#ff6600');
       reveal('⚔️','ELITĂ','#ff6600',()=>startTrans('elite'));return;}
     if(roll<.88){addFeed('❓ → 💎 Bonus!','#00d4ff');RUN.lastBonus=RUN.roomNum;RUN.bonusInCycle=(RUN.bonusInCycle||0)+1;
@@ -6477,6 +6999,11 @@ function setTab(tab){
 function renderShop(tab){
   const con=document.getElementById('shopitems');con.innerHTML='';
   const cur=G.money!==undefined?G.money:META.gold;
+  const dn=document.getElementById('shopDiscNote');
+  if(dn){
+    if(G._shopDisc>0){dn.style.display='block';dn.textContent='🏷️ -'+Math.round(G._shopDisc*100)+'% preț (Contacte în Piață) — aplicat automat la plată';}
+    else dn.style.display='none';
+  }
   if(tab==='ammo'){renderAmmoShop(con,cur);return;}
   let items=tab==='weapons'?WEAPONS:tab==='armor'?ARMORS:tab==='skins'?SKINS:UTILITIES;
   if(tab==='skins'){
@@ -6916,26 +7443,31 @@ function renderAmmoShop(con,cur){
 }
 function cur2(){return G.money!==undefined?G.money:META.gold;}
 function ascPrice(base){return Math.round(base*(getAsc().shop||1));}
+// Discount-ul de la upgrade-ul permanent "Contacte în Piață" — aplicat la
+// plată, ca să nu umblăm prin tot afișajul magazinului (negociere etc.),
+// risc mai mic. Prețul afișat pe raft rămâne cel de bază.
+function shopPrice(p){return p>0?Math.max(1,Math.round(p*(1-(G._shopDisc||0)))):0;}
 function hexRGB(h){const n=parseInt(h.slice(1),16);return[(n>>16)&255,(n>>8)&255,n&255].join(',');}
 
 
 function buyEquip(tab,item){
   const cur=G.money!==undefined?G.money:META.gold;
-  if(tab==='weapons'){if(!item.owned){if(cur<item.price){addFeed('Bani insuficienți!','#ff2244');return;}if(G.money!==undefined)G.money-=item.price;else META.gold-=item.price;item.owned=true;}G.equip=item.id;G.reloading=false;G.ammo=G.wAmmo[item.id]!==undefined?G.wAmmo[item.id]:item.mag;G.resAmmo=G.wRes[item.id]!==undefined?G.wRes[item.id]:item.mag*4;addFeed('Echipat: '+item.name,'#00d4ff');}
-  else if(tab==='armor'){if(!item.owned){if(cur<item.price){addFeed('Bani insuficienți!','#ff2244');return;}if(G.money!==undefined)G.money-=item.price;else META.gold-=item.price;item.owned=true;}G.equArmor=item.id;G.maxArmor=item.armor;G.armor=item.armor;G.armorAbsorb=item.absorb;addFeed('Armor: '+item.name,'#2288ff');}
+  const pr0=shopPrice(item.price);
+  if(tab==='weapons'){if(!item.owned){if(cur<pr0){addFeed('Bani insuficienți!','#ff2244');return;}if(G.money!==undefined)G.money-=pr0;else META.gold-=pr0;item.owned=true;}G.equip=item.id;G.reloading=false;G.ammo=G.wAmmo[item.id]!==undefined?G.wAmmo[item.id]:item.mag;G.resAmmo=G.wRes[item.id]!==undefined?G.wRes[item.id]:item.mag*4;addFeed('Echipat: '+item.name,'#00d4ff');}
+  else if(tab==='armor'){if(!item.owned){if(cur<pr0){addFeed('Bani insuficienți!','#ff2244');return;}if(G.money!==undefined)G.money-=pr0;else META.gold-=pr0;item.owned=true;}G.equArmor=item.id;G.maxArmor=item.armor;G.armor=item.armor;G.armorAbsorb=item.absorb;addFeed('Armor: '+item.name,'#2288ff');}
   else if(tab==='skins'){
     const _cl=getClass(G.cls||META.cls);
     const _cd=clsData(_cl.id);
     if(!_cd.skinsOwned.includes(item.id)){
-      if(cur<item.price){addFeed('Bani insuficienți!','#ff2244');return;}
-      if(G.money!==undefined)G.money-=item.price;else META.gold-=item.price;
+      if(cur<pr0){addFeed('Bani insuficienți!','#ff2244');return;}
+      if(G.money!==undefined)G.money-=pr0;else META.gold-=pr0;
       _cd.skinsOwned.push(item.id);sMeta(META);
     }
     _cd.skin=item.id;saveClsData(_cl.id,_cd);
     item.owned=true;G.skin=item.id;
     addFeed('Skin: '+item.label,'#cc88ff');
   }
-  else{if(item.owned>=item.max){addFeed('Max!','#ff6b00');return;}if(cur<item.price){addFeed('Bani insuficienți!','#ff2244');return;}if(G.money!==undefined)G.money-=item.price;else META.gold-=item.price;item.owned++;updUtilBar();addFeed('Cumpărat: '+item.name,'#00cc66');}
+  else{if(item.owned>=item.max){addFeed('Max!','#ff6b00');return;}if(cur<pr0){addFeed('Bani insuficienți!','#ff2244');return;}if(G.money!==undefined)G.money-=pr0;else META.gold-=pr0;item.owned++;updUtilBar();addFeed('Cumpărat: '+item.name,'#00cc66');}
   document.getElementById('shopmoney').textContent=G.money!==undefined?G.money:META.gold;
   renderShop(document.querySelector('.stb.act')?.textContent?.toLowerCase()||'weapons');
   updHUD();sMeta(META);
@@ -7048,13 +7580,13 @@ function updPUBar(){
     const pu=POWERUPS.find(p=>p.id===id);if(!pu)return;
     const el=document.createElement('div');el.className='pub';
     const cnt=counts[id];
-    el.innerHTML=pu.icon+' <span style="color:#fff">'+pu.name+'</span>'+(cnt>1?' <span style="color:#ffcc00">×'+cnt+'</span>':'');
-    el.title=pu.desc;
+    el.innerHTML=pu.icon+' <span style="color:#fff">'+puName(pu)+'</span>'+(cnt>1?' <span style="color:#ffcc00">×'+cnt+'</span>':'');
+    el.title=puDesc(pu);
     bar.appendChild(el);
   });
 }
 function addFeed(msg,color='#fff'){const f=document.getElementById('feed');if(!f)return;const el=document.createElement('div');el.className='fi';el.textContent=msg;el.style.color=color;f.appendChild(el);if(f.children.length>4)f.removeChild(f.firstChild);clearTimeout(el._t);el._t=setTimeout(()=>{el.style.opacity='0';setTimeout(()=>el.remove(),400);},2000);}
-function showBanner(type){const rt=ROOM_TYPES[type];const b=document.getElementById('wbanner');document.getElementById('wbtxt').textContent=rt.icon+' '+rt.label;document.getElementById('wbsub').textContent='CAMERA '+RUN.roomNum+' · '+rt.desc.toUpperCase();b.style.opacity='1';clearTimeout(b._t);b._t=setTimeout(()=>b.style.opacity='0',2000);}
+function showBanner(type){const rt=ROOM_TYPES[type];const b=document.getElementById('wbanner');document.getElementById('wbtxt').textContent=rt.icon+' '+rtLabel(type);document.getElementById('wbsub').textContent=t('room_lbl')+' '+RUN.roomNum+' · '+rtDesc(type).toUpperCase();b.style.opacity='1';clearTimeout(b._t);b._t=setTimeout(()=>b.style.opacity='0',2000);}
 function updMM(){
   const mc=document.getElementById('mmcv');if(!mc)return;
   const mx=mc.getContext('2d');const sz=72;
@@ -7127,6 +7659,9 @@ function runEnd(won){
   META.runs=(META.runs||0)+1;META.kills=(META.kills||0)+G.kills;
   if(RUN.roomNum>META.best)META.best=RUN.roomNum;
   const eg=Math.floor(G.score*.1*(getAsc().mult||1));META.gold=(META.gold||150)+eg;sMeta(META);
+  contractProgress('runs',1);
+  contractSetIfHigher('goldrun',G.money);
+  contractProgress('goldtotal',G.money);
   // Salveaza in leaderboard
   saveLBEntry(G.score,RUN.roomNum,G.kills,(Date.now()-RUN.startTime)/1000);
   recordRunStats(G.score,RUN.roomNum,G.kills,(Date.now()-RUN.startTime)/1000,runStats.maxCombo);
@@ -7134,7 +7669,7 @@ function runEnd(won){
   if(won)unlockNextAsc();
 
   const ti=document.getElementById('endtit');
-  ti.textContent=won?'✓ COMPLETAT!':'☠️ GAME OVER';
+  ti.textContent=won?t('end_win'):t('end_lose');
   ti.style.color=won?'#00cc66':'#ff2244';
   const dur=Math.floor((Date.now()-RUN.startTime)/1000);
 
@@ -7162,26 +7697,26 @@ function runEnd(won){
   document.getElementById('endstats').innerHTML=`
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
       <div>
-        <div style="font-size:9px;color:var(--mut);letter-spacing:2px;">RATING</div>
+        <div style="font-size:9px;color:var(--mut);letter-spacing:2px;">${t('rating_lbl')}</div>
         <div style="font-size:40px;font-weight:900;color:${ratingColor};text-shadow:0 0 20px ${ratingColor};line-height:1;">${rating}</div>
       </div>
       <div style="text-align:right;">
-        <div style="font-size:9px;color:var(--mut);letter-spacing:1px;">${isPersonalBest?'🏆 RECORD PERSONAL!':''}</div>
+        <div style="font-size:9px;color:var(--mut);letter-spacing:1px;">${isPersonalBest?t('personal_best_lbl'):''}</div>
         <div style="font-size:20px;font-weight:bold;color:#fff;">${G.score}</div>
-        <div style="font-size:7px;color:var(--mut);">PUNCTE</div>
+        <div style="font-size:7px;color:var(--mut);">${t('points_lbl')}</div>
       </div>
     </div>
-    <div class="esr"><span class="el">⏱️ TIMP</span><span class="ev">${Math.floor(dur/60)}m ${dur%60}s</span></div>
-    <div class="esr"><span class="el">⭐ LEVEL</span><span class="ev">${G.level}</span></div>
-    <div class="ebar"><div class="ebl"><span>🚪 CAMERE</span><span style="color:var(--acc)">${RUN.roomNum}</span></div><div class="ebtrack"><div class="ebfill rooms" style="width:0%" data-w="${roomPct}"></div></div></div>
-    <div class="ebar"><div class="ebl"><span>💀 KILLS</span><span style="color:#ff6666">${G.kills}</span></div><div class="ebtrack"><div class="ebfill kills" style="width:0%" data-w="${killPct}"></div></div></div>
-    <div class="ebar"><div class="ebl"><span>🔥 MAX COMBO</span><span style="color:#ffcc00">${runStats.maxCombo}×</span></div><div class="ebtrack"><div class="ebfill combo" style="width:0%" data-w="${comboPct}"></div></div></div>
-    <div class="ebar"><div class="ebl"><span>💎 SCOR</span><span style="color:#00cc66">${G.score}</span></div><div class="ebtrack"><div class="ebfill score" style="width:0%" data-w="${scorePct}"></div></div></div>
-    <div class="esr" style="border-top:1px solid var(--bor);padding-top:6px;margin-top:4px;"><span class="el">🔮 RELICVE</span><span class="ev">${(G.relics||[]).map(r=>r.icon).join(' ')||'—'}</span></div>
-    <div class="esr"><span class="el">💰 GOLD CÂȘTIGAT</span><span class="ev" style="color:#ffcc00">+$${eg}</span></div>
-    ${runStats.bossesKilled>0?`<div class="esr"><span class="el">💀 BOSS-URI OMORIȚI</span><span class="ev" style="color:#ff4444">${runStats.bossesKilled}</span></div>`:''}
+    <div class="esr"><span class="el">⏱️ ${t('time_lbl')}</span><span class="ev">${Math.floor(dur/60)}m ${dur%60}s</span></div>
+    <div class="esr"><span class="el">⭐ ${t('level_lbl')}</span><span class="ev">${G.level}</span></div>
+    <div class="ebar"><div class="ebl"><span>🚪 ${t('rooms_lbl')}</span><span style="color:var(--acc)">${RUN.roomNum}</span></div><div class="ebtrack"><div class="ebfill rooms" style="width:0%" data-w="${roomPct}"></div></div></div>
+    <div class="ebar"><div class="ebl"><span>💀 ${t('kills_lbl')}</span><span style="color:#ff6666">${G.kills}</span></div><div class="ebtrack"><div class="ebfill kills" style="width:0%" data-w="${killPct}"></div></div></div>
+    <div class="ebar"><div class="ebl"><span>🔥 ${t('combo_lbl')}</span><span style="color:#ffcc00">${runStats.maxCombo}×</span></div><div class="ebtrack"><div class="ebfill combo" style="width:0%" data-w="${comboPct}"></div></div></div>
+    <div class="ebar"><div class="ebl"><span>💎 ${t('score_lbl')}</span><span style="color:#00cc66">${G.score}</span></div><div class="ebtrack"><div class="ebfill score" style="width:0%" data-w="${scorePct}"></div></div></div>
+    <div class="esr" style="border-top:1px solid var(--bor);padding-top:6px;margin-top:4px;"><span class="el">🔮 ${t('relics_lbl')}</span><span class="ev">${(G.relics||[]).map(r=>r.icon).join(' ')||'—'}</span></div>
+    <div class="esr"><span class="el">💰 ${t('gold_earned_lbl')}</span><span class="ev" style="color:#ffcc00">+$${eg}</span></div>
+    ${runStats.bossesKilled>0?`<div class="esr"><span class="el">💀 ${t('bosses_killed_lbl')}</span><span class="ev" style="color:#ff4444">${runStats.bossesKilled}</span></div>`:''}
   `;
-  document.getElementById('endmeta').textContent='META GOLD: $'+META.gold+' | RUNS: '+META.runs+' | NIVEL: '+getMetaLevel(META.runs);
+  document.getElementById('endmeta').textContent=t('meta_gold_lbl')+': $'+META.gold+' | '+t('runs_lbl')+': '+META.runs+' | '+t('rank_lbl')+': '+getMetaLevel(META.runs);
 
   // Animate bars after small delay
   setTimeout(()=>{
@@ -7591,7 +8126,7 @@ function render(){
       ctx.fillStyle=rc;ctx.font='bold 7px Courier New';
       ctx.fillText(rare?'RELICVĂ RARĂ':'RELICVĂ',0,-22);
       ctx.fillStyle='rgba(255,255,255,.85)';ctx.font='6px Courier New';
-      ctx.fillText(item.relic.name,0,26);
+      ctx.fillText(rlName(item.relic),0,26);
       // Cerc care arata raza de la care apare descrierea
       ctx.save();
       ctx.globalAlpha=.13+pulse*.10;
