@@ -337,7 +337,7 @@ canvas.codexCv,canvas.uiCv,#mmcv{position:static!important;top:auto!important;le
     <button class="mb pr" data-i18n="btn_start" onclick="openClassSelect(false)" style="font-size:14px;padding:12px 30px;margin-top:2px;">▶ START RUN</button>
     <button class="mb sc" data-i18n="btn_daily" onclick="startDaily()" style="margin-top:3px;font-size:10px;padding:8px;border-color:#ffcc00;color:#ffcc00;">📅 PROVOCARE ZILNICĂ</button>
     <button class="mb sc" data-i18n="btn_shop" onclick="openShop('menu')" style="margin-top:3px;">🛒 MAGAZIN</button>
-    <button class="mb sc" onclick="openContracts()" style="margin-top:3px;border-color:#00cc66;color:#00cc66;position:relative;">📋 CONTRACTE <span id="ctrBadge" style="display:none;position:absolute;top:-6px;right:-6px;background:#ff2244;color:#fff;border-radius:8px;font-size:8px;padding:2px 5px;">0</span></button>
+    <button class="mb sc" onclick="openContracts()" style="margin-top:3px;border-color:#00cc66;color:#00cc66;position:relative;"><span data-i18n="btn_contracts">📋 CONTRACTE</span> <span id="ctrBadge" style="display:none;position:absolute;top:-6px;right:-6px;background:#ff2244;color:#fff;border-radius:8px;font-size:8px;padding:2px 5px;">0</span></button>
     <div style="display:flex;gap:6px;margin-top:3px;">
       <button class="mb sc" data-i18n="btn_camp" style="min-width:0;flex:1;font-size:9px;padding:7px 4px;" onclick="openCamp()">⛺ TABĂRĂ</button>
       <button class="mb sc" data-i18n="btn_top" style="min-width:0;flex:1;font-size:9px;padding:7px 4px;" onclick="openLB()">🏆 TOP</button>
@@ -442,13 +442,19 @@ canvas.codexCv,canvas.uiCv,#mmcv{position:static!important;top:auto!important;le
 <!-- TABARA META -->
 <div id="campScr" class="scr" style="overflow-y:auto;padding:16px;">
   <div style="text-align:center;margin-bottom:12px;">
-    <div style="font-size:20px;font-weight:900;letter-spacing:5px;color:#ffcc00;">⛺ TABĂRA</div>
-    <div style="font-size:9px;color:#556;letter-spacing:2px;">upgrade-uri permanente între run-uri</div>
+    <div style="font-size:20px;font-weight:900;letter-spacing:5px;color:#ffcc00;" data-i18n="camp_title">⛺ TABĂRA</div>
+    <div style="font-size:9px;color:#556;letter-spacing:2px;" data-i18n="camp_subtitle">upgrade-uri permanente între run-uri</div>
     <div id="campClsHdr" style="font-size:9px;letter-spacing:2px;margin-top:4px;"></div>
     <div style="font-size:12px;color:#ffcc00;margin-top:6px;">META GOLD: $<span id="campGold">0</span></div>
   </div>
   <div id="campItems" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:360px;margin:0 auto;"></div>
-  <button onclick="closeCamp()" style="display:block;margin:16px auto 0;padding:10px 28px;font-family:'Courier New',monospace;font-size:11px;letter-spacing:3px;background:transparent;color:#cdd6f4;border:1px solid #1a2e4a;border-radius:4px;cursor:pointer;">← ÎNAPOI</button>
+  <div style="text-align:center;margin:18px 0 10px;">
+    <div style="font-size:15px;font-weight:900;letter-spacing:4px;color:#66ddff;" data-i18n="forge_title">⚒️ FORJĂ</div>
+    <div style="font-size:8px;color:#556;letter-spacing:1px;" data-i18n="forge_subtitle">folosește fragmente pentru upgrade-uri permanente de armă</div>
+    <div style="font-size:12px;color:#66ddff;margin-top:6px;"><span data-i18n="frag_lbl">Fragmente</span>: 💠<span id="forgeFrags">0</span></div>
+  </div>
+  <div id="forgeItems" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:360px;margin:0 auto;"></div>
+  <button onclick="closeCamp()" data-i18n="shop_back" style="display:block;margin:16px auto 0;padding:10px 28px;font-family:'Courier New',monospace;font-size:11px;letter-spacing:3px;background:transparent;color:#cdd6f4;border:1px solid #1a2e4a;border-radius:4px;cursor:pointer;">← ÎNAPOI</button>
 </div>
 <!-- LEADERBOARD -->
 <div id="lbScr" class="scr">
@@ -483,20 +489,20 @@ canvas.codexCv,canvas.uiCv,#mmcv{position:static!important;top:auto!important;le
 <!-- Achievements Screen -->
 <div id="ctrScr" class="scr">
   <div style="display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;padding:16px;">
-    <div style="font-size:14px;letter-spacing:5px;color:#00cc66;margin-bottom:4px;">📋 CONTRACTE</div>
-    <div style="font-size:8px;color:#667;text-align:center;max-width:280px;">Zilnice se reînnoiesc în fiecare zi · Săptămânale, în fiecare săptămână</div>
-    <div id="ctrDailyLbl" style="font-size:9px;color:#aab;letter-spacing:2px;align-self:flex-start;margin-top:4px;">ZILNICE</div>
+    <div style="font-size:14px;letter-spacing:5px;color:#00cc66;margin-bottom:4px;" data-i18n="btn_contracts">📋 CONTRACTE</div>
+    <div style="font-size:8px;color:#667;text-align:center;max-width:280px;" data-i18n="ctr_subtitle">Zilnice se reînnoiesc în fiecare zi · Săptămânale, în fiecare săptămână</div>
+    <div id="ctrDailyLbl" style="font-size:9px;color:#aab;letter-spacing:2px;align-self:flex-start;margin-top:4px;" data-i18n="ctr_daily_lbl">ZILNICE</div>
     <div id="ctrDaily" style="width:100%;max-width:340px;display:flex;flex-direction:column;gap:6px;"></div>
-    <div id="ctrWeeklyLbl" style="font-size:9px;color:#aab;letter-spacing:2px;align-self:flex-start;margin-top:8px;">SĂPTĂMÂNALE</div>
+    <div id="ctrWeeklyLbl" style="font-size:9px;color:#aab;letter-spacing:2px;align-self:flex-start;margin-top:8px;" data-i18n="ctr_weekly_lbl">SĂPTĂMÂNALE</div>
     <div id="ctrWeekly" style="width:100%;max-width:340px;display:flex;flex-direction:column;gap:6px;"></div>
-    <button class="mb sc" style="margin-top:8px;" onclick="showScr('menu');animBg()">← ÎNAPOI</button>
+    <button class="mb sc" style="margin-top:8px;" data-i18n="shop_back" onclick="showScr('menu');animBg()">← ÎNAPOI</button>
   </div>
 </div>
 <div id="achScr" class="scr">
   <div style="display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;padding:16px;">
-    <div style="font-size:14px;letter-spacing:5px;color:#fff;margin-bottom:4px;">🏅 REALIZĂRI</div>
+    <div style="font-size:14px;letter-spacing:5px;color:#fff;margin-bottom:4px;" data-i18n="ach_screen_title">🏅 REALIZĂRI</div>
     <div class="ach-grid" id="achGrid"></div>
-    <button class="mb sc" style="margin-top:8px;" onclick="showScr('menu');animBg()">← ÎNAPOI</button>
+    <button class="mb sc" style="margin-top:8px;" data-i18n="shop_back" onclick="showScr('menu');animBg()">← ÎNAPOI</button>
   </div>
 </div>
 <!-- MOBILE CONTROLS -->
@@ -568,7 +574,7 @@ function showAchPop(ac){
   const pop=document.getElementById('achPop');
   const card=document.createElement('div');
   card.className='ach-card';
-  card.innerHTML=`<div class="ach-icon">${ac.icon}</div><div class="ach-text"><div class="ach-title">🏅 REALIZARE DEBLOCATĂ</div><div class="ach-name">${ac.name}</div><div class="ach-desc">${ac.desc}</div></div>`;
+  card.innerHTML=`<div class="ach-icon">${ac.icon}</div><div class="ach-text"><div class="ach-title">🏅 ${t('ach_unlocked_lbl')}</div><div class="ach-name">${achName(ac)}</div><div class="ach-desc">${achDesc(ac)}</div></div>`;
   pop.appendChild(card);
   requestAnimationFrame(()=>{requestAnimationFrame(()=>{card.classList.add('show');});});
   setTimeout(()=>{card.classList.add('hide');setTimeout(()=>card.remove(),500);},3500);
@@ -580,7 +586,7 @@ function openAchievements(){
   ACHIEVEMENTS.forEach(ac=>{
     const div=document.createElement('div');
     div.className='ach-item'+(a[ac.id]?' unlocked':'');
-    div.innerHTML=`<div class="ai-icon">${ac.icon}</div><div class="ai-body"><div class="ai-name">${a[ac.id]?ac.name:'???'}</div><div class="ai-desc">${a[ac.id]?ac.desc:'Neblocat'}</div></div>`;
+    div.innerHTML=`<div class="ai-icon">${ac.icon}</div><div class="ai-body"><div class="ai-name">${a[ac.id]?achName(ac):'???'}</div><div class="ai-desc">${a[ac.id]?achDesc(ac):t('locked_lbl')}</div></div>`;
     grid.appendChild(div);
   });
   showScr('achScr');
@@ -671,6 +677,7 @@ function openCamp(){
   document.querySelectorAll('.scr').forEach(s=>{s.classList.remove('act');s.style.display='';});
   scr.classList.add('act');scr.style.display='flex';
   renderCamp();
+  renderForge();
 }
 function closeCamp(){showScr('menu');animBg();}
 
@@ -678,7 +685,7 @@ function renderCamp(){
   const _hdr=document.getElementById('campClsHdr');
   const _c=getClass(campClsId());
   if(_hdr)_hdr.innerHTML=`<span style="color:${_c.color}">${_c.icon} ${_c.name}</span>`+
-    `<span style="color:#556;"> — upgrade-uri proprii</span>`;
+    `<span style="color:#556;"> — ${t('own_upgrades_lbl')}</span>`;
   const con=document.getElementById('campItems');
   document.getElementById('campGold').textContent=META.gold||0;
   if(!con)return;
@@ -690,7 +697,7 @@ function renderCamp(){
     const canBuy=!maxed&&(META.gold||0)>=price;
     const div=document.createElement('div');
     div.style.cssText='background:#0d1a0d;border:1px solid '+(maxed?'#ffcc00':'#1a2e1a')+';border-radius:6px;padding:10px 8px;text-align:center;cursor:'+(maxed?'default':'pointer')+';opacity:'+(maxed||canBuy?'1':'.55')+';';
-    div.innerHTML=`<div style="font-size:20px">${u.icon}</div><div style="font-size:9px;font-weight:bold;color:${maxed?'#ffcc00':'#cdd6f4'};letter-spacing:1px;">${u.name}</div><div style="font-size:8px;color:#556;margin:3px 0;">${u.desc}</div><div style="font-size:8px;color:#ffcc00;">LV ${lv}/${u.maxLv}</div>${maxed?'<div style="font-size:8px;color:#00cc66;margin-top:4px;">✓ MAXAT</div>':'<div style="font-size:9px;color:#ffcc00;margin-top:4px;">$'+price+'</div>'}`;
+    div.innerHTML=`<div style="font-size:20px">${u.icon}</div><div style="font-size:9px;font-weight:bold;color:${maxed?'#ffcc00':'#cdd6f4'};letter-spacing:1px;">${campUpgName(u)}</div><div style="font-size:8px;color:#556;margin:3px 0;">${campUpgDesc(u)}</div><div style="font-size:8px;color:#ffcc00;">LV ${lv}/${u.maxLv}</div>${maxed?'<div style="font-size:8px;color:#00cc66;margin-top:4px;">✓ '+t('maxed_lbl')+'</div>':'<div style="font-size:9px;color:#ffcc00;margin-top:4px;">$'+price+'</div>'}`;
     if(!maxed)div.addEventListener('click',()=>buyCampUpgrade(u.id));
     con.appendChild(div);
   });
@@ -766,8 +773,8 @@ function showBlest(){
   if(!ov)return;
   running=false;hideMob();
   const picked=BLESTEME.sort(()=>Math.random()-.5).slice(0,2);
-  document.getElementById('blestTitle').textContent='Alege un Blestem Voluntar';
-  document.getElementById('blestDesc').textContent='Acceptă un blestem pentru recompense sporite. Sau refuză și continuă normal.';
+  document.getElementById('blestTitle').textContent=t('blest_title');
+  document.getElementById('blestDesc').textContent=t('blest_desc');
   const ch=document.getElementById('blestChoices');
   ch.innerHTML='';
 
@@ -784,19 +791,19 @@ function showBlest(){
   picked.forEach(b=>{
     const btn=document.createElement('button');
     btn.style.cssText='padding:10px 14px;background:#0d150d;border:1px solid '+b.color+';border-radius:6px;color:'+b.color+';font-family:inherit;font-size:9px;letter-spacing:1px;cursor:pointer;text-align:center;max-width:130px;';
-    btn.innerHTML=b.icon+' '+b.title+'<br><span style="color:#888;font-size:8px;">'+b.desc+'</span>';
+    btn.innerHTML=b.icon+' '+curseTitle(b)+'<br><span style="color:#888;font-size:8px;">'+curseDesc(b)+'</span>';
     btn.addEventListener('click',()=>{
       b.apply();
-      addFeed(b.icon+' BLESTEM: '+b.title,'#ff4444');
+      addFeed(b.icon+' '+t('curse_lbl')+': '+curseTitle(b),'#ff4444');
       afterBlest();
     });
     ch.appendChild(btn);
   });
   const rej=document.createElement('button');
   rej.style.cssText='padding:10px 14px;background:transparent;border:1px solid #334;border-radius:6px;color:#556;font-family:inherit;font-size:9px;letter-spacing:1px;cursor:pointer;';
-  rej.textContent='✗ REFUZ';
+  rej.textContent='✗ '+t('refuse_lbl');
   rej.addEventListener('click',()=>{
-    addFeed('Blestem refuzat.','#556');
+    addFeed(t('curse_refused_lbl'),'#556');
     afterBlest();
   });
   ch.appendChild(rej);
@@ -1382,8 +1389,59 @@ function applyWepUpgrades(w){
     if(l>0)u.apply(w,l);
     else u.apply(w,0);
   });
+  const flv=getForgeLv(w.id);
+  if(flv>0)w.dmg=Math.round(w.dmg*(1+flv*0.04));
 }
 function applyAllWepUpgrades(){WEAPONS.forEach(applyWepUpgrades);}
+
+// ── FORJĂ (upgrade-uri de armă cu Fragmente, permanente) ──
+const FORGE_KEY='striker_v5_forge';
+const FORGE_MAX_LV=5;
+const FORGE_COSTS=[4,7,11,16,22];
+function lForge(){try{return JSON.parse(localStorage.getItem(FORGE_KEY))||{};}catch{return{};}}
+function sForge(f){try{localStorage.setItem(FORGE_KEY,JSON.stringify(f));}catch{}}
+function getForgeLv(wid){const all=lForge();return all[wid]||0;}
+function buyForgeUpgrade(wid){
+  const w=WEPS_BY_ID(wid);if(!w)return;
+  const all=lForge();
+  const cur=all[wid]||0;
+  if(cur>=FORGE_MAX_LV){addFeed(t('max_rank_lbl'),'#ff6b00');return;}
+  const cost=FORGE_COSTS[cur];
+  if((META.fragments||0)<cost){addFeed(t('insufficient_lbl')+' 💠','#ff2244');return;}
+  META.fragments-=cost;
+  all[wid]=cur+1;
+  sForge(all);
+  sMeta(META);
+  applyWepUpgrades(w);
+  addFeed('⚒️ '+w.name+' — '+t('forge_lv_lbl')+' '+(cur+1),'#66ddff');
+  renderForge();
+}
+function renderForge(){
+  const con=document.getElementById('forgeItems');
+  const goldEl=document.getElementById('forgeFrags');
+  if(goldEl)goldEl.textContent=META.fragments||0;
+  if(!con)return;
+  con.innerHTML='';
+  WEAPONS.forEach(w=>{
+    if(!w.owned)return;
+    const lv=getForgeLv(w.id);
+    const maxed=lv>=FORGE_MAX_LV;
+    const cost=maxed?0:FORGE_COSTS[lv];
+    const canBuy=!maxed&&(META.fragments||0)>=cost;
+    const div=document.createElement('div');
+    div.style.cssText='background:#0d1a20;border:1px solid '+(maxed?'#66ddff':'#1a2e3a')+';border-radius:6px;padding:10px 8px;text-align:center;cursor:'+(maxed?'default':'pointer')+';opacity:'+(maxed||canBuy?'1':'.55')+';';
+    div.innerHTML=`<div style="font-size:9px;font-weight:bold;color:${maxed?'#66ddff':'#cdd6f4'};letter-spacing:1px;">${w.name}</div>`+
+      `<div style="font-size:8px;color:#556;margin:3px 0;">${t('forge_bonus_lbl')}</div>`+
+      `<div style="font-size:8px;color:#66ddff;">${t('forge_lv_lbl')} ${lv}/${FORGE_MAX_LV}</div>`+
+      (maxed?`<div style="font-size:8px;color:#00cc66;margin-top:4px;">✓ ${t('maxed_lbl')}</div>`
+            :`<div style="font-size:9px;color:#66ddff;margin-top:4px;">💠 ${cost}</div>`);
+    if(!maxed)div.addEventListener('click',()=>buyForgeUpgrade(w.id));
+    con.appendChild(div);
+  });
+  if(!WEAPONS.some(w=>w.owned&&w.id!=='pistol')){
+    // doar pistolul deblocat — arătăm un indiciu
+  }
+}
 
 // ── ASCENSIUNI (dificultate progresivă) ──────────────────
 const ASCENSIONS=[
@@ -1404,7 +1462,7 @@ function renderAscPicker(){
   const cur=META.ascension||0;
   if(maxU===0){
     el.innerHTML='<div style="font-size:7px;color:#445;letter-spacing:1px;text-align:center;">'+
-      'Câștigă un run pentru a debloca Ascensiunile</div>';
+      t('asc_unlock_hint')+'</div>';
     return;
   }
   const a=ASCENSIONS[cur];
@@ -1573,7 +1631,7 @@ function renderContracts(){
       const pct=Math.round(entry.progress/tpl.target*100);
       div.innerHTML=`<div style="font-size:18px;">${tpl.icon}</div>`+
         `<div style="flex:1;">`+
-          `<div style="font-size:9px;color:#cdd6f4;">${tpl.desc}</div>`+
+          `<div style="font-size:9px;color:#cdd6f4;">${ctrDesc(tpl)}</div>`+
           `<div style="height:4px;background:rgba(255,255,255,.08);border-radius:2px;margin-top:3px;overflow:hidden;">`+
             `<div style="height:100%;width:${pct}%;background:${done?'#00cc66':'#00d4ff'};"></div></div>`+
           `<div style="font-size:7px;color:#667;margin-top:2px;">${entry.progress}/${tpl.target}</div>`+
@@ -1652,9 +1710,9 @@ function openCodex(){
   const total=Object.keys(BESTIARY).length;
   const bKnown=allKeys.filter(k=>BOSS_BESTIARY[k]).length;
   const bTotal=Object.keys(BOSS_BESTIARY).length;
-  let html=`<div style="font-size:13px;letter-spacing:5px;color:#00d4ff;margin-bottom:2px;">📖 CODEX</div>`+
+  let html=`<div style="font-size:13px;letter-spacing:5px;color:#00d4ff;margin-bottom:2px;">${t('codex_title')}</div>`+
     `<div style="font-size:8px;color:#667;letter-spacing:2px;margin-bottom:8px;">`+
-    `${known}/${total} INAMICI · ${bKnown}/${bTotal} BOȘI</div>`;
+    `${known}/${total} ${t('enemies_lbl')} · ${bKnown}/${bTotal} ${t('bosses_lbl')}</div>`;
   Object.entries(BESTIARY).forEach(([id,b])=>{
     const kills=c[id]||0, found=kills>0;
     html+=`<div ${found?`class="codexCard" data-id="${id}"`:''} `+
@@ -1667,26 +1725,27 @@ function openCodex(){
         `style="flex-shrink:0;width:64px;height:64px;border-radius:4px;background:#07090d;border:1px solid #1a2029;"></canvas>`+
         `<div style="flex:1;min-width:0;">`+
         `<div style="display:flex;justify-content:space-between;align-items:center;">`+
-        `<span style="font-size:13px;">${b.icon} <b style="font-size:10px;letter-spacing:2px;color:#fff;">${b.name}</b></span>`+
-        `<span style="font-size:8px;color:#ffcc00;">${kills} eliminări</span></div>`+
-        `<div style="font-size:8px;color:#889;margin-top:4px;line-height:1.5;">${b.desc}</div>`+
-        `<div style="font-size:8px;color:#00cc66;margin-top:3px;line-height:1.5;">▸ ${b.weak}</div>`+
+        `<span style="font-size:13px;">${b.icon} <b style="font-size:10px;letter-spacing:2px;color:#fff;">${besName(id)}</b></span>`+
+        `<span style="font-size:8px;color:#ffcc00;">${kills} ${t('eliminari_lbl')}</span></div>`+
+        `<div style="font-size:8px;color:#889;margin-top:4px;line-height:1.5;">${besDesc(id)}</div>`+
+        `<div style="font-size:8px;color:#00cc66;margin-top:3px;line-height:1.5;">▸ ${besWeak(id)}</div>`+
         `</div></div>`;
     } else {
       html+=`<div style="display:flex;gap:8px;align-items:center;">`+
         `<div style="width:64px;height:64px;flex-shrink:0;border-radius:4px;background:#07090d;`+
         `border:1px solid #16191f;display:flex;align-items:center;justify-content:center;font-size:22px;color:#2a2f38;">?</div>`+
         `<div><div style="font-size:10px;letter-spacing:2px;color:#333;">? ? ? ? ?</div>`+
-        `<div style="font-size:8px;color:#333;margin-top:4px;">Elimină acest inamic pentru a debloca.</div></div></div>`;
+        `<div style="font-size:8px;color:#333;margin-top:4px;">${t('kill_to_unlock_lbl')}</div></div></div>`;
     }
     html+=`</div>`;
   });
   // ── SECȚIUNEA BOȘI ──
   html+=`<div style="width:100%;max-width:340px;margin:14px 0 6px;display:flex;align-items:center;gap:8px;">`+
     `<div style="flex:1;height:1px;background:#232a35;"></div>`+
-    `<div style="font-size:9px;letter-spacing:4px;color:#ff4444;">BOȘI</div>`+
+    `<div style="font-size:9px;letter-spacing:4px;color:#ff4444;">${t('bosses_lbl')}</div>`+
     `<div style="flex:1;height:1px;background:#232a35;"></div></div>`;
   Object.entries(BOSS_BESTIARY).forEach(([id,b])=>{
+    const key=id.replace('boss:','');
     const kills=c[id]||0, found=kills>0;
     html+=`<div ${found?`class="codexCard" data-id="${id}"`:''} `+
       `style="width:100%;max-width:340px;border:1px solid ${found?'#3a2430':'#16191f'};`+
@@ -1698,23 +1757,23 @@ function openCodex(){
         `style="flex-shrink:0;width:64px;height:64px;border-radius:4px;background:#07090d;border:1px solid #2a1a22;"></canvas>`+
         `<div style="flex:1;min-width:0;">`+
         `<div style="display:flex;justify-content:space-between;align-items:center;">`+
-        `<span style="font-size:13px;">${b.icon} <b style="font-size:10px;letter-spacing:2px;color:#ff8888;">${b.name}</b></span>`+
+        `<span style="font-size:13px;">${b.icon} <b style="font-size:10px;letter-spacing:2px;color:#ff8888;">${bossName(key)}</b></span>`+
         `<span style="font-size:8px;color:#ffcc00;">${kills}×</span></div>`+
-        `<div style="font-size:7px;color:#775;letter-spacing:1px;">${b.sub}</div>`+
-        `<div style="font-size:8px;color:#889;margin-top:4px;line-height:1.5;">${b.desc}</div>`+
-        `<div style="font-size:8px;color:#00cc66;margin-top:3px;line-height:1.5;">▸ ${b.weak}</div>`+
+        `<div style="font-size:7px;color:#775;letter-spacing:1px;">${bossSub(key)}</div>`+
+        `<div style="font-size:8px;color:#889;margin-top:4px;line-height:1.5;">${bossDesc(key)}</div>`+
+        `<div style="font-size:8px;color:#00cc66;margin-top:3px;line-height:1.5;">▸ ${bossWeak(key)}</div>`+
         `</div></div>`;
     } else {
       html+=`<div style="display:flex;gap:8px;align-items:center;">`+
         `<div style="width:64px;height:64px;flex-shrink:0;border-radius:4px;background:#07090d;`+
         `border:1px solid #16191f;display:flex;align-items:center;justify-content:center;font-size:22px;color:#3a2028;">?</div>`+
         `<div><div style="font-size:10px;letter-spacing:2px;color:#3a2028;">? ? ? ? ?</div>`+
-        `<div style="font-size:8px;color:#332;margin-top:4px;">Învinge acest boss pentru a debloca.</div></div></div>`;
+        `<div style="font-size:8px;color:#332;margin-top:4px;">${t('kill_boss_to_unlock_lbl')}</div></div></div>`;
     }
     html+=`</div>`;
   });
 
-  html+=`<button class="mb sc" style="margin-top:10px;" onclick="document.getElementById('codexOv').remove()">ÎNCHIDE</button>`;
+  html+=`<button class="mb sc" style="margin-top:10px;" onclick="document.getElementById('codexOv').remove()">${t('btn_close')}</button>`;
   ov.innerHTML=html;
   document.body.appendChild(ov);
   // Desenăm portretul fiecărui inamic descoperit
@@ -1739,14 +1798,17 @@ function showCodexDetail(id){
   d.id='codexDetail';
   d.style.cssText='position:fixed;inset:0;z-index:75;background:rgba(4,6,10,.97);'+
     'display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px;';
+  const nm=isBoss?bossName(id.replace('boss:','')):besName(id);
+  const desc=isBoss?bossDesc(id.replace('boss:','')):besDesc(id);
+  const weak=isBoss?bossWeak(id.replace('boss:','')):besWeak(id);
   d.innerHTML=
     `<canvas id="codexBig" class="codexCv" width="180" height="180" `+
     `style="width:180px;height:180px;border-radius:8px;background:#07090d;border:1px solid #232a35;"></canvas>`+
-    `<div style="font-size:15px;letter-spacing:3px;color:#fff;">${b.icon} ${b.name}</div>`+
-    `<div style="font-size:9px;color:#ffcc00;letter-spacing:2px;">${kills} ELIMINĂRI</div>`+
-    `<div style="max-width:300px;text-align:center;font-size:9px;color:#889;line-height:1.7;margin-top:4px;">${b.desc}</div>`+
-    `<div style="max-width:300px;text-align:center;font-size:9px;color:#00cc66;line-height:1.7;">▸ ${b.weak}</div>`+
-    `<button class="mb sc" style="margin-top:12px;" onclick="document.getElementById('codexDetail').remove()">ÎNAPOI</button>`;
+    `<div style="font-size:15px;letter-spacing:3px;color:#fff;">${b.icon} ${nm}</div>`+
+    `<div style="font-size:9px;color:#ffcc00;letter-spacing:2px;">${kills} ${t('eliminari_lbl').toUpperCase()}</div>`+
+    `<div style="max-width:300px;text-align:center;font-size:9px;color:#889;line-height:1.7;margin-top:4px;">${desc}</div>`+
+    `<div style="max-width:300px;text-align:center;font-size:9px;color:#00cc66;line-height:1.7;">▸ ${weak}</div>`+
+    `<button class="mb sc" style="margin-top:12px;" onclick="document.getElementById('codexDetail').remove()">${t('btn_back')}</button>`;
   document.body.appendChild(d);
   // Desenăm portretul mare (scalat 180/64)
   const bc=document.getElementById('codexBig').getContext('2d');
@@ -1939,18 +2001,18 @@ function openStats(){
     const h=Math.max(2,(x.s/maxS)*66);
     chart+=`<div style="flex:1;height:${h}px;background:linear-gradient(180deg,#00d4ff,#0088aa);border-radius:1px 1px 0 0;" title="${x.s}"></div>`;
   });
-  if(last.length===0)chart+='<div style="font-size:8px;color:#445;">Niciun run încă</div>';
+  if(last.length===0)chart+='<div style="font-size:8px;color:#445;">'+t('no_runs_yet_lbl')+'</div>';
   chart+='</div>';
 
-  let html=`<div style="font-size:13px;letter-spacing:5px;color:#00d4ff;margin-bottom:6px;">📊 STATISTICI</div>`;
+  let html=`<div style="font-size:13px;letter-spacing:5px;color:#00d4ff;margin-bottom:6px;">${t('stats_title')}</div>`;
   html+=`<div style="width:100%;max-width:340px;display:grid;grid-template-columns:1fr 1fr;gap:6px;">`;
   const cells=[
-    ['RUNS TOTAL',META.runs||0,'#fff'],
-    ['CEL MAI BUN SCOR',META.bestScore||0,'#00cc66'],
-    ['KILLS TOTAL',META.kills||0,'#ff6666'],
-    ['CEA MAI BUNĂ CAMERĂ',META.best||0,'#00d4ff'],
-    ['COMBO RECORD',st.bestCombo||0,'#ffcc00'],
-    ['TIMP JUCAT',hours+'h '+mins+'m','#aa66ff'],
+    [t('total_runs_lbl'),META.runs||0,'#fff'],
+    [t('best_score_lbl2'),META.bestScore||0,'#00cc66'],
+    [t('total_kills_lbl'),META.kills||0,'#ff6666'],
+    [t('best_room_lbl'),META.best||0,'#00d4ff'],
+    [t('combo_record_lbl'),st.bestCombo||0,'#ffcc00'],
+    [t('time_played_lbl'),hours+'h '+mins+'m','#aa66ff'],
   ];
   cells.forEach(([l,v,col])=>{
     html+=`<div style="border:1px solid #232a35;border-radius:4px;padding:6px;text-align:center;background:rgba(255,255,255,.02);">`+
@@ -1959,12 +2021,12 @@ function openStats(){
   });
   html+=`</div>`;
   html+=`<div style="width:100%;max-width:340px;border:1px solid #232a35;border-radius:4px;padding:8px;margin-top:4px;background:rgba(255,255,255,.02);">`+
-    `<div style="font-size:7px;color:#667;letter-spacing:2px;margin-bottom:2px;">ARMĂ FAVORITĂ</div>`+
-    `<div style="font-size:11px;color:#ffcc00;letter-spacing:1px;">${favWep?favWep.name:'—'} ${favN>0?'· '+favN+' kills':''}</div></div>`;
+    `<div style="font-size:7px;color:#667;letter-spacing:2px;margin-bottom:2px;">${t('fav_weapon_lbl')}</div>`+
+    `<div style="font-size:11px;color:#ffcc00;letter-spacing:1px;">${favWep?favWep.name:'—'} ${favN>0?'· '+favN+' '+t('kills_lbl').toLowerCase():''}</div></div>`;
   html+=`<div style="width:100%;max-width:340px;margin-top:4px;">`+
-    `<div style="font-size:7px;color:#667;letter-spacing:2px;margin-bottom:4px;">EVOLUȚIE SCOR (ultimele ${last.length})</div>`+
+    `<div style="font-size:7px;color:#667;letter-spacing:2px;margin-bottom:4px;">${t('score_evolution_lbl')} (${t('last_n_lbl').replace('{n}',last.length)})</div>`+
     chart+`</div>`;
-  html+=`<button class="mb sc" style="margin-top:10px;" onclick="document.getElementById('statsOv').remove()">ÎNCHIDE</button>`;
+  html+=`<button class="mb sc" style="margin-top:10px;" onclick="document.getElementById('statsOv').remove()">${t('btn_close')}</button>`;
   ov.innerHTML=html;
   document.body.appendChild(ov);
 }
@@ -2014,7 +2076,7 @@ function updAmmoHUD(){
   }
   el.style.display='block';
   el.style.borderColor=a.color;el.style.color=a.color;
-  el.innerHTML=a.icon+' '+a.name+'<br><b style="font-size:12px;">'+G.specialRounds+'</b>';
+  el.innerHTML=a.icon+' '+ammoName(a)+'<br><b style="font-size:12px;">'+G.specialRounds+'</b>';
 }
 const ARMORS=[
   {id:'va',name:'VESTĂ UȘOARĂ',icon:'🛡️',price:200,owned:false,armor:30,absorb:.40,desc:'Absoarbe 40% damage.',stats:{arm:'30HP',abs:'40%'}},
@@ -2757,14 +2819,14 @@ function showSpecialEvent(evId){
   const ev=SPECIAL_EVENTS.find(e=>e.id===evId)||SPECIAL_EVENTS[Math.floor(Math.random()*SPECIAL_EVENTS.length)];
   running=false;hideMob();
   const ov=document.getElementById('eventOverlay');
-  document.getElementById('evTitle').textContent=ev.icon+' '+ev.title;
+  document.getElementById('evTitle').textContent=ev.icon+' '+eventTitle(ev);
   document.getElementById('evTitle').style.color=ev.color;
-  document.getElementById('evDesc').textContent=ev.desc;
+  document.getElementById('evDesc').textContent=eventDesc(ev);
   const con=document.getElementById('evChoices');con.innerHTML='';
-  ev.choices.forEach(ch=>{
+  ev.choices.forEach((ch,idx)=>{
     const c=document.createElement('div');
     c.style.cssText='width:130px;background:#0d1520;border:1px solid #1a2e4a;border-radius:8px;padding:12px 8px;text-align:center;cursor:pointer;touch-action:manipulation;';
-    c.innerHTML=`<div style="font-size:24px;">${ch.icon}</div><div style="font-size:10px;color:#fff;margin-top:5px;">${ch.label}</div>`;
+    c.innerHTML=`<div style="font-size:24px;">${ch.icon}</div><div style="font-size:10px;color:#fff;margin-top:5px;">${eventChoiceLabel(ev,idx)}</div>`;
     c.onclick=()=>{ov.style.display='none';ch.action();};
     con.appendChild(c);
   });
@@ -4161,9 +4223,39 @@ const LANG={
     next_room_lbl:'CAMERA URMĂTOARE',end_win:'✓ COMPLETAT!',end_lose:'☠️ GAME OVER',btn_newrun:'↺ NOU RUN',btn_menu:'MENIU',
     hud_room:'CAM',hud_run:'RUN',
     rating_lbl:'RATING',points_lbl:'PUNCTE',time_lbl:'TIMP',level_lbl:'LEVEL',rooms_lbl:'CAMERE',
-    kills_lbl:'KILLS',combo_lbl:'MAX COMBO',score_lbl:'SCOR',relics_lbl:'RELICVE',gold_earned_lbl:'GOLD CÂȘTIGAT',
+    kills_lbl:'KILLS',combo_lbl:'MAX COMBO',score_lbl:'SCOR',relics_lbl:'RELICVE',gold_earned_lbl:'GOLD CÂȘTIGAT',frags_earned_lbl:'FRAGMENTE',forge_title:'⚒️ FORJĂ',forge_subtitle:'folosește fragmente pentru upgrade-uri permanente de armă',frag_lbl:'Fragmente',forge_lv_lbl:'NIVEL FORJĂ',forge_bonus_lbl:'+4% damage / nivel',
     bosses_killed_lbl:'BOSS-URI OMORÂȚI',personal_best_lbl:'🏆 RECORD PERSONAL!',meta_gold_lbl:'META GOLD',
-    runs_lbl:'RUNS',rank_lbl:'NIVEL',mobs_left_lbl:'rămași',next_wave_lbl:'Val următor...'},
+    runs_lbl:'RUNS',rank_lbl:'NIVEL',mobs_left_lbl:'rămași',next_wave_lbl:'Val următor...',
+    ach_unlocked_lbl:'REALIZARE DEBLOCATĂ',locked_lbl:'Neblocat',ach_screen_title:'🏅 REALIZĂRI',
+    codex_title:'📖 CODEX',enemies_lbl:'INAMICI',bosses_lbl:'BOȘI',eliminari_lbl:'eliminări',
+    kill_to_unlock_lbl:'Elimină acest inamic pentru a debloca.',kill_boss_to_unlock_lbl:'Învinge acest boss pentru a debloca.',
+    tut_title:'CUM SE JOACĂ',tut_move_t:'🎮 MIȘCARE',tut_move_d:'Joystick-ul din stânga jos. Ținta se face automat spre cel mai apropiat inamic.',
+    tut_shoot_t:'🔫 TRAGERE',tut_shoot_d:'Butonul roșu din dreapta. Ține apăsat pentru foc continuu.',
+    tut_dash_t:'💨 DASH',tut_dash_d:'Te ferește rapid și te face invulnerabil pentru o clipă. Se reîncarcă singur.',
+    tut_doors_t:'🚪 UȘI',tut_doors_d:'După ce cureți camera apar uși. Mergi în ele ca să alegi camera următoare.',
+    tut_crates_t:'📦 LĂZI ȘI CUFERE',tut_crates_d:'Sparge lăzile cu gloanțe. Cuferele încuiate 🔒 cer o cheie 🔑.',
+    tut_boss_t:'💀 BOSS',tut_boss_d:'La fiecare 5 camere. După ce-l învingi, progresul se salvează automat.',
+    tut_camp_t:'⛺ TABĂRĂ',tut_camp_d:'Aurul META rămâne între run-uri. Cumpără upgrade-uri permanente din meniu.',
+    btn_gotit:'AM ÎNȚELES',pause_title:'PAUZĂ',life_lbl:'VIAȚĂ',gold_lbl:'AUR',
+    btn_continue:'CONTINUĂ',btn_abandon:'ABANDONEAZĂ RUN-UL',btn_close:'ÎNCHIDE',
+    runs_to_rank_lbl:'run-uri până la',max_rank_lbl:'Ai atins nivelul maxim!',
+    asc_unlock_hint:'Câștigă un run pentru a debloca Ascensiunile',btn_contracts:'📋 CONTRACTE',
+    abandon_title:'ABANDONEZI?',abandon_desc:'Pierzi progresul acestui run. Checkpoint-ul de la ultimul boss rămâne salvat.',
+    btn_yes_abandon:'DA, ABANDONEZ',btn_no_continue:'NU, CONTINUĂ',
+    no_runs_yet_lbl:'Niciun run încă',stats_title:'📊 STATISTICI',total_runs_lbl:'RUNS TOTAL',
+    best_score_lbl2:'CEL MAI BUN SCOR',total_kills_lbl:'KILLS TOTAL',best_room_lbl:'CEA MAI BUNĂ CAMERĂ',
+    combo_record_lbl:'COMBO RECORD',time_played_lbl:'TIMP JUCAT',fav_weapon_lbl:'ARMĂ FAVORITĂ',
+    score_evolution_lbl:'EVOLUȚIE SCOR',last_n_lbl:'ultimele {n}',
+    camp_title:'⛺ TABĂRA',camp_subtitle:'upgrade-uri permanente între run-uri',
+    own_upgrades_lbl:'upgrade-uri proprii',maxed_lbl:'MAXAT',
+    ctr_subtitle:'Zilnice se reînnoiesc în fiecare zi · Săptămânale, în fiecare săptămână',
+    ctr_daily_lbl:'ZILNICE',ctr_weekly_lbl:'SĂPTĂMÂNALE',
+    free_lbl:'GRATIS',equipped_lbl:'ECHIPAT',owned_lbl:'DEȚINUT',equip_lbl:'ECHIPEAZĂ',
+    insufficient_lbl:'INSUFICIENT',buy_lbl:'CUMPĂRĂ',loaded_now_lbl:'ÎNCĂRCAT ACUM',rounds_lbl:'cartușe',
+    switches_left_lbl:'Schimbări rămase în acest run:',cls_note_lbl:'Fiecare clasă are upgrade-uri și skin-uri proprii',
+    spd_lbl:'VITEZĂ',armor_lbl:'ARMURĂ',coming_soon_lbl:'(în lucru)',choose_class_lbl:'ALEGE CLASA',switch_class_lbl:'SCHIMBĂ CLASA',
+    blest_title:'Alege un Blestem Voluntar',blest_desc:'Acceptă un blestem pentru recompense sporite. Sau refuză și continuă normal.',
+    curse_lbl:'BLESTEM',refuse_lbl:'REFUZ',curse_refused_lbl:'Blestem refuzat.'},
   en:{menu_subtitle:'TACTICAL ROGUELITE',lbl_runs:'RUNS',lbl_best:'BEST SCORE',lbl_kills:'KILLS',
     lbl_trophies:'TROPHIES',btn_start:'▶ START RUN',btn_daily:'📅 DAILY CHALLENGE',btn_shop:'🛒 SHOP',
     btn_camp:'⛺ CAMP',btn_top:'🏆 LEADERBOARD',btn_codex:'📖 CODEX',btn_stats:'📊 STATS',
@@ -4177,9 +4269,39 @@ const LANG={
     next_room_lbl:'NEXT ROOM',end_win:'✓ CLEARED!',end_lose:'☠️ GAME OVER',btn_newrun:'↺ NEW RUN',btn_menu:'MENU',
     hud_room:'ROOM',hud_run:'RUN',
     rating_lbl:'RATING',points_lbl:'POINTS',time_lbl:'TIME',level_lbl:'LEVEL',rooms_lbl:'ROOMS',
-    kills_lbl:'KILLS',combo_lbl:'MAX COMBO',score_lbl:'SCORE',relics_lbl:'RELICS',gold_earned_lbl:'GOLD EARNED',
+    kills_lbl:'KILLS',combo_lbl:'MAX COMBO',score_lbl:'SCORE',relics_lbl:'RELICS',gold_earned_lbl:'GOLD EARNED',frags_earned_lbl:'FRAGMENTS',forge_title:'⚒️ FORGE',forge_subtitle:'use fragments for permanent weapon upgrades',frag_lbl:'Fragments',forge_lv_lbl:'FORGE LEVEL',forge_bonus_lbl:'+4% damage / level',
     bosses_killed_lbl:'BOSSES KILLED',personal_best_lbl:'🏆 PERSONAL BEST!',meta_gold_lbl:'META GOLD',
-    runs_lbl:'RUNS',rank_lbl:'RANK',mobs_left_lbl:'left',next_wave_lbl:'Next wave...'},
+    runs_lbl:'RUNS',rank_lbl:'RANK',mobs_left_lbl:'left',next_wave_lbl:'Next wave...',
+    ach_unlocked_lbl:'ACHIEVEMENT UNLOCKED',locked_lbl:'Locked',ach_screen_title:'🏅 ACHIEVEMENTS',
+    codex_title:'📖 CODEX',enemies_lbl:'ENEMIES',bosses_lbl:'BOSSES',eliminari_lbl:'kills',
+    kill_to_unlock_lbl:'Kill this enemy to unlock.',kill_boss_to_unlock_lbl:'Defeat this boss to unlock.',
+    tut_title:'HOW TO PLAY',tut_move_t:'🎮 MOVEMENT',tut_move_d:'The joystick in the bottom-left. Aim automatically targets the nearest enemy.',
+    tut_shoot_t:'🔫 SHOOTING',tut_shoot_d:'The red button on the right. Hold for continuous fire.',
+    tut_dash_t:'💨 DASH',tut_dash_d:'Dodges quickly and makes you invulnerable for a moment. Recharges on its own.',
+    tut_doors_t:'🚪 DOORS',tut_doors_d:'After clearing the room, doors appear. Walk into one to choose the next room.',
+    tut_crates_t:'📦 CRATES & CHESTS',tut_crates_d:'Break crates with bullets. Locked chests 🔒 need a key 🔑.',
+    tut_boss_t:'💀 BOSS',tut_boss_d:'Every 5 rooms. After defeating it, progress saves automatically.',
+    tut_camp_t:'⛺ CAMP',tut_camp_d:'META gold carries over between runs. Buy permanent upgrades from the menu.',
+    btn_gotit:'GOT IT',pause_title:'PAUSED',life_lbl:'HEALTH',gold_lbl:'GOLD',
+    btn_continue:'CONTINUE',btn_abandon:'ABANDON RUN',btn_close:'CLOSE',
+    runs_to_rank_lbl:'runs until',max_rank_lbl:"You've reached the max rank!",
+    asc_unlock_hint:'Win a run to unlock Ascensions',btn_contracts:'📋 CONTRACTS',
+    abandon_title:'ABANDON?',abandon_desc:"You'll lose this run's progress. The checkpoint from the last boss stays saved.",
+    btn_yes_abandon:'YES, ABANDON',btn_no_continue:'NO, CONTINUE',
+    no_runs_yet_lbl:'No runs yet',stats_title:'📊 STATS',total_runs_lbl:'TOTAL RUNS',
+    best_score_lbl2:'BEST SCORE',total_kills_lbl:'TOTAL KILLS',best_room_lbl:'BEST ROOM',
+    combo_record_lbl:'COMBO RECORD',time_played_lbl:'TIME PLAYED',fav_weapon_lbl:'FAVORITE WEAPON',
+    score_evolution_lbl:'SCORE EVOLUTION',last_n_lbl:'last {n}',
+    camp_title:'⛺ CAMP',camp_subtitle:'permanent upgrades between runs',
+    own_upgrades_lbl:'own upgrades',maxed_lbl:'MAXED',
+    ctr_subtitle:'Daily ones renew every day · Weekly ones, every week',
+    ctr_daily_lbl:'DAILY',ctr_weekly_lbl:'WEEKLY',
+    free_lbl:'FREE',equipped_lbl:'EQUIPPED',owned_lbl:'OWNED',equip_lbl:'EQUIP',
+    insufficient_lbl:'INSUFFICIENT',buy_lbl:'BUY',loaded_now_lbl:'CURRENTLY LOADED',rounds_lbl:'rounds',
+    switches_left_lbl:'Switches left this run:',cls_note_lbl:'Each class has its own upgrades and skins',
+    spd_lbl:'SPEED',armor_lbl:'ARMOR',coming_soon_lbl:'(coming soon)',choose_class_lbl:'CHOOSE CLASS',switch_class_lbl:'SWITCH CLASS',
+    blest_title:'Choose a Voluntary Curse',blest_desc:'Accept a curse for boosted rewards. Or refuse and continue normally.',
+    curse_lbl:'CURSE',refuse_lbl:'REFUSE',curse_refused_lbl:'Curse refused.'},
   es:{menu_subtitle:'ROGUELITE TÁCTICO',lbl_runs:'PARTIDAS',lbl_best:'MEJOR PUNTUACIÓN',lbl_kills:'BAJAS',
     lbl_trophies:'TROFEOS',btn_start:'▶ EMPEZAR',btn_daily:'📅 DESAFÍO DIARIO',btn_shop:'🛒 TIENDA',
     btn_camp:'⛺ CAMPAMENTO',btn_top:'🏆 CLASIFICACIÓN',btn_codex:'📖 CÓDICE',btn_stats:'📊 ESTADÍSTICAS',
@@ -4193,9 +4315,39 @@ const LANG={
     next_room_lbl:'SIGUIENTE SALA',end_win:'✓ ¡COMPLETADO!',end_lose:'☠️ FIN DE LA PARTIDA',btn_newrun:'↺ NUEVA PARTIDA',btn_menu:'MENÚ',
     hud_room:'SALA',hud_run:'PARTIDA',
     rating_lbl:'CLASIFICACIÓN',points_lbl:'PUNTOS',time_lbl:'TIEMPO',level_lbl:'NIVEL',rooms_lbl:'SALAS',
-    kills_lbl:'BAJAS',combo_lbl:'COMBO MÁX',score_lbl:'PUNTUACIÓN',relics_lbl:'RELIQUIAS',gold_earned_lbl:'ORO GANADO',
+    kills_lbl:'BAJAS',combo_lbl:'COMBO MÁX',score_lbl:'PUNTUACIÓN',relics_lbl:'RELIQUIAS',gold_earned_lbl:'ORO GANADO',frags_earned_lbl:'FRAGMENTOS',forge_title:'⚒️ FORJA',forge_subtitle:'usa fragmentos para mejoras de arma permanentes',frag_lbl:'Fragmentos',forge_lv_lbl:'NIVEL DE FORJA',forge_bonus_lbl:'+4% daño / nivel',
     bosses_killed_lbl:'JEFES DERROTADOS',personal_best_lbl:'🏆 ¡RÉCORD PERSONAL!',meta_gold_lbl:'ORO META',
-    runs_lbl:'PARTIDAS',rank_lbl:'RANGO',mobs_left_lbl:'restantes',next_wave_lbl:'Siguiente oleada...'},
+    runs_lbl:'PARTIDAS',rank_lbl:'RANGO',mobs_left_lbl:'restantes',next_wave_lbl:'Siguiente oleada...',
+    ach_unlocked_lbl:'LOGRO DESBLOQUEADO',locked_lbl:'Bloqueado',ach_screen_title:'🏅 LOGROS',
+    codex_title:'📖 CÓDICE',enemies_lbl:'ENEMIGOS',bosses_lbl:'JEFES',eliminari_lbl:'bajas',
+    kill_to_unlock_lbl:'Mata a este enemigo para desbloquear.',kill_boss_to_unlock_lbl:'Derrota a este jefe para desbloquear.',
+    tut_title:'CÓMO JUGAR',tut_move_t:'🎮 MOVIMIENTO',tut_move_d:'El joystick abajo a la izquierda. La puntería apunta automáticamente al enemigo más cercano.',
+    tut_shoot_t:'🔫 DISPARO',tut_shoot_d:'El botón rojo de la derecha. Mantén pulsado para fuego continuo.',
+    tut_dash_t:'💨 DASH',tut_dash_d:'Te aparta rápidamente y te hace invulnerable por un instante. Se recarga solo.',
+    tut_doors_t:'🚪 PUERTAS',tut_doors_d:'Tras limpiar la sala aparecen puertas. Entra en una para elegir la siguiente sala.',
+    tut_crates_t:'📦 CAJAS Y COFRES',tut_crates_d:'Rompe las cajas a balazos. Los cofres cerrados 🔒 necesitan una llave 🔑.',
+    tut_boss_t:'💀 JEFE',tut_boss_d:'Cada 5 salas. Tras derrotarlo, el progreso se guarda automáticamente.',
+    tut_camp_t:'⛺ CAMPAMENTO',tut_camp_d:'El oro META se mantiene entre partidas. Compra mejoras permanentes desde el menú.',
+    btn_gotit:'ENTENDIDO',pause_title:'PAUSA',life_lbl:'VIDA',gold_lbl:'ORO',
+    btn_continue:'CONTINUAR',btn_abandon:'ABANDONAR PARTIDA',btn_close:'CERRAR',
+    runs_to_rank_lbl:'partidas hasta',max_rank_lbl:'¡Has alcanzado el rango máximo!',
+    asc_unlock_hint:'Gana una partida para desbloquear las Ascensiones',btn_contracts:'📋 CONTRATOS',
+    abandon_title:'¿ABANDONAR?',abandon_desc:'Perderás el progreso de esta partida. El checkpoint del último jefe se mantiene guardado.',
+    btn_yes_abandon:'SÍ, ABANDONAR',btn_no_continue:'NO, CONTINUAR',
+    no_runs_yet_lbl:'Aún no hay partidas',stats_title:'📊 ESTADÍSTICAS',total_runs_lbl:'PARTIDAS TOTALES',
+    best_score_lbl2:'MEJOR PUNTUACIÓN',total_kills_lbl:'BAJAS TOTALES',best_room_lbl:'MEJOR SALA',
+    combo_record_lbl:'RÉCORD DE COMBO',time_played_lbl:'TIEMPO JUGADO',fav_weapon_lbl:'ARMA FAVORITA',
+    score_evolution_lbl:'EVOLUCIÓN DE PUNTUACIÓN',last_n_lbl:'últimas {n}',
+    camp_title:'⛺ CAMPAMENTO',camp_subtitle:'mejoras permanentes entre partidas',
+    own_upgrades_lbl:'mejoras propias',maxed_lbl:'MÁXIMO',
+    ctr_subtitle:'Los diarios se renuevan cada día · Los semanales, cada semana',
+    ctr_daily_lbl:'DIARIOS',ctr_weekly_lbl:'SEMANALES',
+    free_lbl:'GRATIS',equipped_lbl:'EQUIPADO',owned_lbl:'ADQUIRIDO',equip_lbl:'EQUIPAR',
+    insufficient_lbl:'INSUFICIENTE',buy_lbl:'COMPRAR',loaded_now_lbl:'CARGADA AHORA',rounds_lbl:'cartuchos',
+    switches_left_lbl:'Cambios restantes en esta partida:',cls_note_lbl:'Cada clase tiene sus propias mejoras y aspectos',
+    spd_lbl:'VELOCIDAD',armor_lbl:'ARMADURA',coming_soon_lbl:'(próximamente)',choose_class_lbl:'ELIGE CLASE',switch_class_lbl:'CAMBIAR CLASE',
+    blest_title:'Elige una Maldición Voluntaria',blest_desc:'Acepta una maldición por recompensas mayores. O rechaza y continúa normalmente.',
+    curse_lbl:'MALDICIÓN',refuse_lbl:'RECHAZAR',curse_refused_lbl:'Maldición rechazada.'},
   it:{menu_subtitle:'ROGUELITE TATTICO',lbl_runs:'PARTITE',lbl_best:'MIGLIOR PUNTEGGIO',lbl_kills:'UCCISIONI',
     lbl_trophies:'TROFEI',btn_start:'▶ INIZIA',btn_daily:'📅 SFIDA GIORNALIERA',btn_shop:'🛒 NEGOZIO',
     btn_camp:'⛺ CAMPO',btn_top:'🏆 CLASSIFICA',btn_codex:'📖 CODICE',btn_stats:'📊 STATISTICHE',
@@ -4209,9 +4361,39 @@ const LANG={
     next_room_lbl:'STANZA SUCCESSIVA',end_win:'✓ COMPLETATO!',end_lose:'☠️ GAME OVER',btn_newrun:'↺ NUOVA PARTITA',btn_menu:'MENU',
     hud_room:'STANZA',hud_run:'PARTITA',
     rating_lbl:'VALUTAZIONE',points_lbl:'PUNTI',time_lbl:'TEMPO',level_lbl:'LIVELLO',rooms_lbl:'STANZE',
-    kills_lbl:'UCCISIONI',combo_lbl:'COMBO MAX',score_lbl:'PUNTEGGIO',relics_lbl:'RELIQUIE',gold_earned_lbl:'ORO GUADAGNATO',
+    kills_lbl:'UCCISIONI',combo_lbl:'COMBO MAX',score_lbl:'PUNTEGGIO',relics_lbl:'RELIQUIE',gold_earned_lbl:'ORO GUADAGNATO',frags_earned_lbl:'FRAMMENTI',forge_title:'⚒️ FUCINA',forge_subtitle:"usa i frammenti per potenziamenti d'arma permanenti",frag_lbl:'Frammenti',forge_lv_lbl:'LIVELLO FUCINA',forge_bonus_lbl:'+4% danno / livello',
     bosses_killed_lbl:'BOSS SCONFITTI',personal_best_lbl:'🏆 RECORD PERSONALE!',meta_gold_lbl:'ORO META',
-    runs_lbl:'PARTITE',rank_lbl:'RANGO',mobs_left_lbl:'rimasti',next_wave_lbl:'Prossima ondata...'},
+    runs_lbl:'PARTITE',rank_lbl:'RANGO',mobs_left_lbl:'rimasti',next_wave_lbl:'Prossima ondata...',
+    ach_unlocked_lbl:'OBIETTIVO SBLOCCATO',locked_lbl:'Bloccato',ach_screen_title:'🏅 OBIETTIVI',
+    codex_title:'📖 CODICE',enemies_lbl:'NEMICI',bosses_lbl:'BOSS',eliminari_lbl:'uccisioni',
+    kill_to_unlock_lbl:'Uccidi questo nemico per sbloccare.',kill_boss_to_unlock_lbl:'Sconfiggi questo boss per sbloccare.',
+    tut_title:'COME GIOCARE',tut_move_t:'🎮 MOVIMENTO',tut_move_d:'Il joystick in basso a sinistra. La mira punta automaticamente al nemico più vicino.',
+    tut_shoot_t:'🔫 SPARO',tut_shoot_d:'Il pulsante rosso a destra. Tieni premuto per fuoco continuo.',
+    tut_dash_t:'💨 DASH',tut_dash_d:'Ti sposti rapidamente e diventi invulnerabile per un istante. Si ricarica da solo.',
+    tut_doors_t:'🚪 PORTE',tut_doors_d:'Dopo aver ripulito la stanza appaiono le porte. Entra in una per scegliere la stanza successiva.',
+    tut_crates_t:'📦 CASSE E FORZIERI',tut_crates_d:'Rompi le casse a colpi di pistola. I forzieri chiusi 🔒 richiedono una chiave 🔑.',
+    tut_boss_t:'💀 BOSS',tut_boss_d:'Ogni 5 stanze. Dopo averlo sconfitto, i progressi si salvano automaticamente.',
+    tut_camp_t:'⛺ CAMPO',tut_camp_d:"L'oro META resta tra una partita e l'altra. Compra potenziamenti permanenti dal menu.",
+    btn_gotit:'HO CAPITO',pause_title:'PAUSA',life_lbl:'VITA',gold_lbl:'ORO',
+    btn_continue:'CONTINUA',btn_abandon:'ABBANDONA PARTITA',btn_close:'CHIUDI',
+    runs_to_rank_lbl:'partite fino a',max_rank_lbl:'Hai raggiunto il rango massimo!',
+    asc_unlock_hint:'Vinci una partita per sbloccare le Ascensioni',btn_contracts:'📋 CONTRATTI',
+    abandon_title:'ABBANDONARE?',abandon_desc:'Perderai i progressi di questa partita. Il checkpoint dell\'ultimo boss resta salvato.',
+    btn_yes_abandon:'SÌ, ABBANDONA',btn_no_continue:'NO, CONTINUA',
+    no_runs_yet_lbl:'Ancora nessuna partita',stats_title:'📊 STATISTICHE',total_runs_lbl:'PARTITE TOTALI',
+    best_score_lbl2:'MIGLIOR PUNTEGGIO',total_kills_lbl:'UCCISIONI TOTALI',best_room_lbl:'MIGLIOR STANZA',
+    combo_record_lbl:'RECORD COMBO',time_played_lbl:'TEMPO GIOCATO',fav_weapon_lbl:'ARMA PREFERITA',
+    score_evolution_lbl:'EVOLUZIONE PUNTEGGIO',last_n_lbl:'ultime {n}',
+    camp_title:'⛺ CAMPO',camp_subtitle:'potenziamenti permanenti tra le partite',
+    own_upgrades_lbl:'potenziamenti propri',maxed_lbl:'MASSIMO',
+    ctr_subtitle:'I giornalieri si rinnovano ogni giorno · I settimanali, ogni settimana',
+    ctr_daily_lbl:'GIORNALIERI',ctr_weekly_lbl:'SETTIMANALI',
+    free_lbl:'GRATIS',equipped_lbl:'EQUIPAGGIATO',owned_lbl:'POSSEDUTO',equip_lbl:'EQUIPAGGIA',
+    insufficient_lbl:'INSUFFICIENTE',buy_lbl:'COMPRA',loaded_now_lbl:'CARICATA ORA',rounds_lbl:'colpi',
+    switches_left_lbl:'Cambi rimasti in questa partita:',cls_note_lbl:'Ogni classe ha i propri potenziamenti e skin',
+    spd_lbl:'VELOCITÀ',armor_lbl:'ARMATURA',coming_soon_lbl:'(in arrivo)',choose_class_lbl:'SCEGLI CLASSE',switch_class_lbl:'CAMBIA CLASSE',
+    blest_title:'Scegli una Maledizione Volontaria',blest_desc:'Accetta una maledizione per ricompense maggiori. Oppure rifiuta e continua normalmente.',
+    curse_lbl:'MALEDIZIONE',refuse_lbl:'RIFIUTA',curse_refused_lbl:'Maledizione rifiutata.'},
   hu:{menu_subtitle:'TAKTIKAI ROGUELITE',lbl_runs:'KÖRÖK',lbl_best:'LEGJOBB PONTSZÁM',lbl_kills:'ÖLÉSEK',
     lbl_trophies:'TRÓFEÁK',btn_start:'▶ INDÍTÁS',btn_daily:'📅 NAPI KIHÍVÁS',btn_shop:'🛒 BOLT',
     btn_camp:'⛺ TÁBOR',btn_top:'🏆 RANGLISTA',btn_codex:'📖 KÓDEX',btn_stats:'📊 STATISZTIKA',
@@ -4225,9 +4407,39 @@ const LANG={
     next_room_lbl:'KÖVETKEZŐ SZOBA',end_win:'✓ TELJESÍTVE!',end_lose:'☠️ JÁTÉK VÉGE',btn_newrun:'↺ ÚJ MENET',btn_menu:'MENÜ',
     hud_room:'SZOBA',hud_run:'MENET',
     rating_lbl:'ÉRTÉKELÉS',points_lbl:'PONT',time_lbl:'IDŐ',level_lbl:'SZINT',rooms_lbl:'SZOBÁK',
-    kills_lbl:'ÖLÉSEK',combo_lbl:'MAX KOMBÓ',score_lbl:'PONTSZÁM',relics_lbl:'RELIKVIÁK',gold_earned_lbl:'SZERZETT ARANY',
+    kills_lbl:'ÖLÉSEK',combo_lbl:'MAX KOMBÓ',score_lbl:'PONTSZÁM',relics_lbl:'RELIKVIÁK',gold_earned_lbl:'SZERZETT ARANY',frags_earned_lbl:'TÖREDÉKEK',forge_title:'⚒️ KOVÁCSMŰHELY',forge_subtitle:'használj töredékeket állandó fegyverfejlesztésekhez',frag_lbl:'Töredékek',forge_lv_lbl:'KOVÁCS SZINT',forge_bonus_lbl:'+4% sebzés / szint',
     bosses_killed_lbl:'LEGYŐZÖTT FŐNÖKÖK',personal_best_lbl:'🏆 SZEMÉLYES REKORD!',meta_gold_lbl:'META ARANY',
-    runs_lbl:'KÖRÖK',rank_lbl:'RANG',mobs_left_lbl:'hátra',next_wave_lbl:'Következő hullám...'},
+    runs_lbl:'KÖRÖK',rank_lbl:'RANG',mobs_left_lbl:'hátra',next_wave_lbl:'Következő hullám...',
+    ach_unlocked_lbl:'ÚJ EREDMÉNY',locked_lbl:'Zárolva',ach_screen_title:'🏅 EREDMÉNYEK',
+    codex_title:'📖 KÓDEX',enemies_lbl:'ELLENSÉGEK',bosses_lbl:'FŐNÖKÖK',eliminari_lbl:'ölés',
+    kill_to_unlock_lbl:'Öld meg ezt az ellenséget a feloldáshoz.',kill_boss_to_unlock_lbl:'Győzd le ezt a főnököt a feloldáshoz.',
+    tut_title:'HOGYAN JÁTSSZ',tut_move_t:'🎮 MOZGÁS',tut_move_d:'A joystick bal alul. A célzás automatikusan a legközelebbi ellenségre irányul.',
+    tut_shoot_t:'🔫 LÖVÉS',tut_shoot_d:'A piros gomb jobbra. Tartsd lenyomva a folyamatos tűzhöz.',
+    tut_dash_t:'💨 DASH',tut_dash_d:'Gyorsan kitérsz és rövid időre sebezhetetlenné válsz. Magától töltődik.',
+    tut_doors_t:'🚪 AJTÓK',tut_doors_d:'A szoba megtisztítása után ajtók jelennek meg. Menj be az egyikbe a következő szoba kiválasztásához.',
+    tut_crates_t:'📦 LÁDÁK',tut_crates_d:'Lődd szét a ládákat. A zárt kincsesládákhoz 🔒 kulcs kell 🔑.',
+    tut_boss_t:'💀 FŐNÖK',tut_boss_d:'Minden 5. szobában. Legyőzése után a haladás automatikusan mentődik.',
+    tut_camp_t:'⛺ TÁBOR',tut_camp_d:'A META arany megmarad a menetek között. Vásárolj állandó fejlesztéseket a menüből.',
+    btn_gotit:'ÉRTETTEM',pause_title:'SZÜNET',life_lbl:'ÉLET',gold_lbl:'ARANY',
+    btn_continue:'FOLYTATÁS',btn_abandon:'MENET FELADÁSA',btn_close:'BEZÁRÁS',
+    runs_to_rank_lbl:'menet eddig:',max_rank_lbl:'Elérted a legmagasabb rangot!',
+    asc_unlock_hint:'Nyerj egy menetet az Ascensionök feloldásához',btn_contracts:'📋 SZERZŐDÉSEK',
+    abandon_title:'FELADOD?',abandon_desc:'Elveszíted a menet haladását. Az utolsó főnöktől mentett checkpoint megmarad.',
+    btn_yes_abandon:'IGEN, FELADOM',btn_no_continue:'NEM, FOLYTATOM',
+    no_runs_yet_lbl:'Még nincs lejátszott menet',stats_title:'📊 STATISZTIKA',total_runs_lbl:'ÖSSZES MENET',
+    best_score_lbl2:'LEGJOBB PONTSZÁM',total_kills_lbl:'ÖSSZES ÖLÉS',best_room_lbl:'LEGJOBB SZOBA',
+    combo_record_lbl:'KOMBÓ REKORD',time_played_lbl:'JÁTÉKIDŐ',fav_weapon_lbl:'KEDVENC FEGYVER',
+    score_evolution_lbl:'PONTSZÁM ALAKULÁSA',last_n_lbl:'utolsó {n}',
+    camp_title:'⛺ TÁBOR',camp_subtitle:'állandó fejlesztések menetek között',
+    own_upgrades_lbl:'saját fejlesztések',maxed_lbl:'MAXOLVA',
+    ctr_subtitle:'A napi minden nap megújul · A heti minden héten',
+    ctr_daily_lbl:'NAPI',ctr_weekly_lbl:'HETI',
+    free_lbl:'INGYENES',equipped_lbl:'FELSZERELVE',owned_lbl:'MEGVAN',equip_lbl:'FELSZERELÉS',
+    insufficient_lbl:'NEM ELÉG',buy_lbl:'VÁSÁRLÁS',loaded_now_lbl:'JELENLEG BETÖLTVE',rounds_lbl:'lőszer',
+    switches_left_lbl:'Hátralévő váltások ebben a menetben:',cls_note_lbl:'Minden osztálynak saját fejlesztései és bőrei vannak',
+    spd_lbl:'SEBESSÉG',armor_lbl:'PÁNCÉL',coming_soon_lbl:'(hamarosan)',choose_class_lbl:'VÁLASSZ OSZTÁLYT',switch_class_lbl:'OSZTÁLYVÁLTÁS',
+    blest_title:'Válassz egy Önkéntes Átkot',blest_desc:'Fogadj el egy átkot nagyobb jutalmakért. Vagy utasítsd el és folytasd normálisan.',
+    curse_lbl:'ÁTOK',refuse_lbl:'ELUTASÍTÁS',curse_refused_lbl:'Átok elutasítva.'},
   bg:{menu_subtitle:'ТАКТИЧЕСКО ROGUELITE',lbl_runs:'ОПИТИ',lbl_best:'НАЙ-ДОБЪР РЕЗУЛТАТ',lbl_kills:'УБИЙСТВА',
     lbl_trophies:'ТРОФЕИ',btn_start:'▶ СТАРТ',btn_daily:'📅 ДНЕВНО ПРЕДИЗВИКАТЕЛСТВО',btn_shop:'🛒 МАГАЗИН',
     btn_camp:'⛺ ЛАГЕР',btn_top:'🏆 КЛАСАЦИЯ',btn_codex:'📖 КОДЕКС',btn_stats:'📊 СТАТИСТИКА',
@@ -4241,9 +4453,39 @@ const LANG={
     next_room_lbl:'СЛЕДВАЩА СТАЯ',end_win:'✓ ЗАВЪРШЕНО!',end_lose:'☠️ КРАЙ НА ИГРАТА',btn_newrun:'↺ НОВ ПРОБЕГ',btn_menu:'МЕНЮ',
     hud_room:'СТАЯ',hud_run:'ПРОБЕГ',
     rating_lbl:'РЕЙТИНГ',points_lbl:'ТОЧКИ',time_lbl:'ВРЕМЕ',level_lbl:'НИВО',rooms_lbl:'СТАИ',
-    kills_lbl:'УБИЙСТВА',combo_lbl:'МАКС КОМБО',score_lbl:'РЕЗУЛТАТ',relics_lbl:'РЕЛИКВИ',gold_earned_lbl:'СПЕЧЕЛЕНО ЗЛАТО',
+    kills_lbl:'УБИЙСТВА',combo_lbl:'МАКС КОМБО',score_lbl:'РЕЗУЛТАТ',relics_lbl:'РЕЛИКВИ',gold_earned_lbl:'СПЕЧЕЛЕНО ЗЛАТО',frags_earned_lbl:'ФРАГМЕНТИ',forge_title:'⚒️ КОВАЧНИЦА',forge_subtitle:'използвай фрагменти за постоянни ъпгрейди на оръжия',frag_lbl:'Фрагменти',forge_lv_lbl:'НИВО НА КОВАЧНИЦАТА',forge_bonus_lbl:'+4% щета / ниво',
     bosses_killed_lbl:'УБИТИ БОСОВЕ',personal_best_lbl:'🏆 ЛИЧЕН РЕКОРД!',meta_gold_lbl:'META ЗЛАТО',
-    runs_lbl:'ОПИТИ',rank_lbl:'РАНГ',mobs_left_lbl:'останали',next_wave_lbl:'Следваща вълна...'},
+    runs_lbl:'ОПИТИ',rank_lbl:'РАНГ',mobs_left_lbl:'останали',next_wave_lbl:'Следваща вълна...',
+    ach_unlocked_lbl:'ПОСТИЖЕНИЕ ОТКЛЮЧЕНО',locked_lbl:'Заключено',ach_screen_title:'🏅 ПОСТИЖЕНИЯ',
+    codex_title:'📖 КОДЕКС',enemies_lbl:'ВРАГОВЕ',bosses_lbl:'БОСОВЕ',eliminari_lbl:'убийства',
+    kill_to_unlock_lbl:'Убий този враг, за да отключиш.',kill_boss_to_unlock_lbl:'Победи този бос, за да отключиш.',
+    tut_title:'КАК СЕ ИГРАЕ',tut_move_t:'🎮 ДВИЖЕНИЕ',tut_move_d:'Джойстикът долу вляво. Прицелването автоматично сочи най-близкия враг.',
+    tut_shoot_t:'🔫 СТРЕЛБА',tut_shoot_d:'Червеният бутон вдясно. Задръж за непрекъснат огън.',
+    tut_dash_t:'💨 DASH',tut_dash_d:'Отдръпва те бързо и те прави неуязвим за миг. Презарежда се сам.',
+    tut_doors_t:'🚪 ВРАТИ',tut_doors_d:'След като изчистиш стаята, се появяват врати. Влез в една, за да избереш следващата стая.',
+    tut_crates_t:'📦 САНДЪЦИ',tut_crates_d:'Чупи сандъците с куршуми. Заключените съкровищници 🔒 изискват ключ 🔑.',
+    tut_boss_t:'💀 БОС',tut_boss_d:'На всеки 5 стаи. След като го победиш, прогресът се запазва автоматично.',
+    tut_camp_t:'⛺ ЛАГЕР',tut_camp_d:'META златото остава между пробезите. Купувай постоянни подобрения от менюто.',
+    btn_gotit:'РАЗБРАХ',pause_title:'ПАУЗА',life_lbl:'ЖИВОТ',gold_lbl:'ЗЛАТО',
+    btn_continue:'ПРОДЪЛЖИ',btn_abandon:'ИЗОСТАВИ ПРОБЕГА',btn_close:'ЗАТВОРИ',
+    runs_to_rank_lbl:'пробега до',max_rank_lbl:'Достигна максималния ранг!',
+    asc_unlock_hint:'Спечели пробег, за да отключиш Възходите',btn_contracts:'📋 ДОГОВОРИ',
+    abandon_title:'ИЗОСТАВЯШ?',abandon_desc:'Ще загубиш напредъка на този пробег. Чекпойнтът от последния бос остава запазен.',
+    btn_yes_abandon:'ДА, ИЗОСТАВЯМ',btn_no_continue:'НЕ, ПРОДЪЛЖАВАМ',
+    no_runs_yet_lbl:'Все още няма пробези',stats_title:'📊 СТАТИСТИКА',total_runs_lbl:'ОБЩО ОПИТИ',
+    best_score_lbl2:'НАЙ-ДОБЪР РЕЗУЛТАТ',total_kills_lbl:'ОБЩО УБИЙСТВА',best_room_lbl:'НАЙ-ДОБРА СТАЯ',
+    combo_record_lbl:'РЕКОРД КОМБО',time_played_lbl:'ИЗИГРАНО ВРЕМЕ',fav_weapon_lbl:'ЛЮБИМО ОРЪЖИЕ',
+    score_evolution_lbl:'РАЗВИТИЕ НА РЕЗУЛТАТА',last_n_lbl:'последни {n}',
+    camp_title:'⛺ ЛАГЕР',camp_subtitle:'постоянни подобрения между пробезите',
+    own_upgrades_lbl:'собствени подобрения',maxed_lbl:'МАКСИМУМ',
+    ctr_subtitle:'Дневните се подновяват всеки ден · Седмичните, всяка седмица',
+    ctr_daily_lbl:'ДНЕВНИ',ctr_weekly_lbl:'СЕДМИЧНИ',
+    free_lbl:'БЕЗПЛАТНО',equipped_lbl:'ЕКИПИРАНО',owned_lbl:'ПРИТЕЖАВАНО',equip_lbl:'ЕКИПИРАЙ',
+    insufficient_lbl:'НЕДОСТАТЪЧНО',buy_lbl:'КУПИ',loaded_now_lbl:'ЗАРЕДЕНИ СЕГА',rounds_lbl:'патрона',
+    switches_left_lbl:'Оставащи смени в този пробег:',cls_note_lbl:'Всеки клас има свои подобрения и облици',
+    spd_lbl:'СКОРОСТ',armor_lbl:'БРОНЯ',coming_soon_lbl:'(предстои)',choose_class_lbl:'ИЗБЕРИ КЛАС',switch_class_lbl:'СМЕНИ КЛАС',
+    blest_title:'Избери Доброволно Проклятие',blest_desc:'Приеми проклятие за по-големи награди. Или откажи и продължи нормално.',
+    curse_lbl:'ПРОКЛЯТИЕ',refuse_lbl:'ОТКАЗ',curse_refused_lbl:'Проклятието е отказано.'},
   zh:{menu_subtitle:'战术ROGUELITE',lbl_runs:'局数',lbl_best:'最高分',lbl_kills:'击杀数',lbl_trophies:'奖杯',
     btn_start:'▶ 开始游戏',btn_daily:'📅 每日挑战',btn_shop:'🛒 商店',btn_camp:'⛺ 营地',btn_top:'🏆 排行榜',
     btn_codex:'📖 图鉴',btn_stats:'📊 统计',btn_settings:'⚙️ 设置',shop_back:'← 返回',shop_title:'商店',
@@ -4256,9 +4498,39 @@ const LANG={
     next_room_lbl:'下一个房间',end_win:'✓ 完成！',end_lose:'☠️ 游戏结束',btn_newrun:'↺ 新的一局',btn_menu:'菜单',
     hud_room:'房间',hud_run:'局',
     rating_lbl:'评级',points_lbl:'分数',time_lbl:'时间',level_lbl:'等级',rooms_lbl:'房间数',
-    kills_lbl:'击杀数',combo_lbl:'最大连击',score_lbl:'得分',relics_lbl:'遗物',gold_earned_lbl:'获得金币',
+    kills_lbl:'击杀数',combo_lbl:'最大连击',score_lbl:'得分',relics_lbl:'遗物',gold_earned_lbl:'获得金币',frags_earned_lbl:'获得碎片',forge_title:'⚒️ 锻造',forge_subtitle:'使用碎片进行永久武器升级',frag_lbl:'碎片',forge_lv_lbl:'锻造等级',forge_bonus_lbl:'每级+4%伤害',
     bosses_killed_lbl:'击败首领数',personal_best_lbl:'🏆 个人最佳记录！',meta_gold_lbl:'META金币',
-    runs_lbl:'局数',rank_lbl:'段位',mobs_left_lbl:'剩余',next_wave_lbl:'下一波...'},
+    runs_lbl:'局数',rank_lbl:'段位',mobs_left_lbl:'剩余',next_wave_lbl:'下一波...',
+    ach_unlocked_lbl:'成就解锁',locked_lbl:'未解锁',ach_screen_title:'🏅 成就',
+    codex_title:'📖 图鉴',enemies_lbl:'敌人',bosses_lbl:'首领',eliminari_lbl:'次击杀',
+    kill_to_unlock_lbl:'击杀此敌人以解锁。',kill_boss_to_unlock_lbl:'击败此首领以解锁。',
+    tut_title:'玩法说明',tut_move_t:'🎮 移动',tut_move_d:'左下方的摇杆。瞄准会自动锁定最近的敌人。',
+    tut_shoot_t:'🔫 射击',tut_shoot_d:'右侧的红色按钮。按住可连续射击。',
+    tut_dash_t:'💨 冲刺',tut_dash_d:'快速闪避并短暂无敌。会自动恢复。',
+    tut_doors_t:'🚪 门',tut_doors_d:'清理完房间后会出现门。走进一扇门即可选择下一个房间。',
+    tut_crates_t:'📦 箱子与宝箱',tut_crates_d:'用子弹打破箱子。上锁的宝箱🔒需要钥匙🔑。',
+    tut_boss_t:'💀 首领',tut_boss_d:'每5个房间出现一次。击败后进度会自动保存。',
+    tut_camp_t:'⛺ 营地',tut_camp_d:'META金币会在多局之间保留。可在菜单中购买永久升级。',
+    btn_gotit:'明白了',pause_title:'暂停',life_lbl:'生命',gold_lbl:'金币',
+    btn_continue:'继续',btn_abandon:'放弃本局',btn_close:'关闭',
+    runs_to_rank_lbl:'局后升至',max_rank_lbl:'已达到最高段位！',
+    asc_unlock_hint:'赢得一局以解锁飞升',btn_contracts:'📋 合约',
+    abandon_title:'确定放弃？',abandon_desc:'你将失去本局的进度。上一个首领的检查点会保留。',
+    btn_yes_abandon:'是，放弃',btn_no_continue:'否，继续',
+    no_runs_yet_lbl:'还没有游戏记录',stats_title:'📊 统计',total_runs_lbl:'总局数',
+    best_score_lbl2:'最高分',total_kills_lbl:'总击杀数',best_room_lbl:'最佳房间',
+    combo_record_lbl:'连击记录',time_played_lbl:'游戏时长',fav_weapon_lbl:'最爱的武器',
+    score_evolution_lbl:'分数变化',last_n_lbl:'最近{n}局',
+    camp_title:'⛺ 营地',camp_subtitle:'局间永久升级',
+    own_upgrades_lbl:'专属升级',maxed_lbl:'已满级',
+    ctr_subtitle:'每日合约每天刷新 · 每周合约每周刷新',
+    ctr_daily_lbl:'每日',ctr_weekly_lbl:'每周',
+    free_lbl:'免费',equipped_lbl:'已装备',owned_lbl:'已拥有',equip_lbl:'装备',
+    insufficient_lbl:'金币不足',buy_lbl:'购买',loaded_now_lbl:'当前装填',rounds_lbl:'发',
+    switches_left_lbl:'本局剩余切换次数：',cls_note_lbl:'每个职业都有专属升级和皮肤',
+    spd_lbl:'速度',armor_lbl:'护甲',coming_soon_lbl:'（开发中）',choose_class_lbl:'选择职业',switch_class_lbl:'切换职业',
+    blest_title:'选择一个自愿诅咒',blest_desc:'接受诅咒以获得更丰厚的奖励。或拒绝并正常继续。',
+    curse_lbl:'诅咒',refuse_lbl:'拒绝',curse_refused_lbl:'已拒绝诅咒。'},
   ja:{menu_subtitle:'タクティカルローグライト',lbl_runs:'プレイ回数',lbl_best:'ベストスコア',lbl_kills:'キル数',
     lbl_trophies:'トロフィー',btn_start:'▶ スタート',btn_daily:'📅 デイリーチャレンジ',btn_shop:'🛒 ショップ',
     btn_camp:'⛺ キャンプ',btn_top:'🏆 ランキング',btn_codex:'📖 図鑑',btn_stats:'📊 統計',
@@ -4272,9 +4544,39 @@ const LANG={
     next_room_lbl:'次の部屋',end_win:'✓ クリア！',end_lose:'☠️ ゲームオーバー',btn_newrun:'↺ 新しいラン',btn_menu:'メニュー',
     hud_room:'部屋',hud_run:'ラン',
     rating_lbl:'評価',points_lbl:'ポイント',time_lbl:'時間',level_lbl:'レベル',rooms_lbl:'部屋数',
-    kills_lbl:'キル数',combo_lbl:'最大コンボ',score_lbl:'スコア',relics_lbl:'遺物',gold_earned_lbl:'獲得ゴールド',
+    kills_lbl:'キル数',combo_lbl:'最大コンボ',score_lbl:'スコア',relics_lbl:'遺物',gold_earned_lbl:'獲得ゴールド',frags_earned_lbl:'獲得フラグメント',forge_title:'⚒️ 鍛造',forge_subtitle:'フラグメントで武器を永久強化する',frag_lbl:'フラグメント',forge_lv_lbl:'鍛造レベル',forge_bonus_lbl:'+4%ダメージ／レベル',
     bosses_killed_lbl:'撃破したボス',personal_best_lbl:'🏆 自己ベスト！',meta_gold_lbl:'METAゴールド',
-    runs_lbl:'プレイ回数',rank_lbl:'ランク',mobs_left_lbl:'残り',next_wave_lbl:'次のウェーブ...'},
+    runs_lbl:'プレイ回数',rank_lbl:'ランク',mobs_left_lbl:'残り',next_wave_lbl:'次のウェーブ...',
+    ach_unlocked_lbl:'実績解除',locked_lbl:'未解除',ach_screen_title:'🏅 実績',
+    codex_title:'📖 図鑑',enemies_lbl:'敵',bosses_lbl:'ボス',eliminari_lbl:'キル',
+    kill_to_unlock_lbl:'この敵を倒すと解除されます。',kill_boss_to_unlock_lbl:'このボスを倒すと解除されます。',
+    tut_title:'遊び方',tut_move_t:'🎮 移動',tut_move_d:'左下のジョイスティック。照準は自動的に最も近い敵に向く。',
+    tut_shoot_t:'🔫 射撃',tut_shoot_d:'右側の赤いボタン。押し続けると連続射撃。',
+    tut_dash_t:'💨 ダッシュ',tut_dash_d:'素早く回避し、一瞬無敵になる。自動的に回復する。',
+    tut_doors_t:'🚪 ドア',tut_doors_d:'部屋をクリアするとドアが現れる。入ると次の部屋を選べる。',
+    tut_crates_t:'📦 木箱と宝箱',tut_crates_d:'弾丸で木箱を壊そう。鍵付きの宝箱🔒には鍵🔑が必要。',
+    tut_boss_t:'💀 ボス',tut_boss_d:'5部屋ごとに出現。倒すと進行状況が自動保存される。',
+    tut_camp_t:'⛺ キャンプ',tut_camp_d:'METAゴールドはランをまたいで保持される。メニューから永久アップグレードを購入できる。',
+    btn_gotit:'了解',pause_title:'一時停止',life_lbl:'体力',gold_lbl:'ゴールド',
+    btn_continue:'再開',btn_abandon:'ランを放棄',btn_close:'閉じる',
+    runs_to_rank_lbl:'回で到達:',max_rank_lbl:'最高ランクに到達しました！',
+    asc_unlock_hint:'ランに勝利してアセンションを解除しよう',btn_contracts:'📋 契約',
+    abandon_title:'放棄しますか？',abandon_desc:'このランの進行状況を失います。前回のボスのチェックポイントは保存されたままです。',
+    btn_yes_abandon:'はい、放棄する',btn_no_continue:'いいえ、続ける',
+    no_runs_yet_lbl:'まだプレイ記録がありません',stats_title:'📊 統計',total_runs_lbl:'総プレイ回数',
+    best_score_lbl2:'ベストスコア',total_kills_lbl:'総キル数',best_room_lbl:'最高到達部屋',
+    combo_record_lbl:'コンボ記録',time_played_lbl:'プレイ時間',fav_weapon_lbl:'お気に入りの武器',
+    score_evolution_lbl:'スコア推移',last_n_lbl:'直近{n}回',
+    camp_title:'⛺ キャンプ',camp_subtitle:'ラン間の永久アップグレード',
+    own_upgrades_lbl:'専用アップグレード',maxed_lbl:'最大',
+    ctr_subtitle:'デイリーは毎日更新 · ウィークリーは毎週更新',
+    ctr_daily_lbl:'デイリー',ctr_weekly_lbl:'ウィークリー',
+    free_lbl:'無料',equipped_lbl:'装備中',owned_lbl:'所持済み',equip_lbl:'装備する',
+    insufficient_lbl:'ゴールド不足',buy_lbl:'購入',loaded_now_lbl:'現在装填中',rounds_lbl:'発',
+    switches_left_lbl:'このランでの残りチェンジ回数：',cls_note_lbl:'各クラスには専用のアップグレードとスキンがある',
+    spd_lbl:'速度',armor_lbl:'防具',coming_soon_lbl:'（近日公開）',choose_class_lbl:'クラスを選択',switch_class_lbl:'クラス変更',
+    blest_title:'自発的な呪いを選択',blest_desc:'呪いを受け入れて報酬を増やす。または拒否して通常通り進む。',
+    curse_lbl:'呪い',refuse_lbl:'拒否',curse_refused_lbl:'呪いを拒否した。'},
 };
 function t(key){
   const l=LANG[SETTINGS.lang]||LANG.ro;
@@ -4465,6 +4767,506 @@ const LANG_RT={
 };
 function rtLabel(key){const L=LANG_RT[SETTINGS.lang];return(L&&L[key])?L[key].label:ROOM_TYPES[key].label;}
 function rtDesc(key){const L=LANG_RT[SETTINGS.lang];return(L&&L[key])?L[key].desc:ROOM_TYPES[key].desc;}
+// ── Traduceri realizări (achievements) — 20 de intrări ──
+const LANG_ACH={
+  en:{first_blood:{name:'First Blood',desc:'Kill your first enemy'},
+    room5:{name:'Explorer',desc:'Reach room 5'},room10:{name:'Veteran',desc:'Reach room 10'},
+    room15:{name:'Master',desc:'Reach room 15'},combo20:{name:'On Fire',desc:'Reach ×20 combo'},
+    kills100:{name:'Killer',desc:'100 total kills in META'},kills500:{name:'Slaughter',desc:'500 total kills in META'},
+    runs10:{name:'Persistent',desc:'Play 10 runs'},gold1000:{name:'Miser',desc:'Collect 1000 META Gold'},
+    won:{name:'Champion',desc:'Complete a full run'},combo50:{name:'UNSTOPPABLE',desc:'Reach ×50 combo'},
+    runs25:{name:'Dedicated',desc:'25 runs played'},kills1000:{name:'Extermination',desc:'1000 total kills in META'},
+    room20:{name:'Legend',desc:'Reach room 20'},gold5000:{name:'Gold King',desc:'Collect 5000 META Gold'},
+    relic3:{name:'Collector',desc:'Equip 3 relics in one run'},no_damage_boss:{name:'Untouchable',desc:'Kill a boss without taking damage'},
+    speed_run:{name:'Speed Runner',desc:'Win in under 10 minutes'},runs50:{name:'Devoted',desc:'50 runs played'},
+    kills50_room:{name:'Butcher',desc:'50 kills in a single run'}},
+  es:{first_blood:{name:'Primera Sangre',desc:'Mata al primer enemigo'},
+    room5:{name:'Explorador',desc:'Llega a la sala 5'},room10:{name:'Veterano',desc:'Llega a la sala 10'},
+    room15:{name:'Maestro',desc:'Llega a la sala 15'},combo20:{name:'En Llamas',desc:'Alcanza combo ×20'},
+    kills100:{name:'Asesino',desc:'100 bajas totales en META'},kills500:{name:'Masacre',desc:'500 bajas totales en META'},
+    runs10:{name:'Persistente',desc:'Juega 10 partidas'},gold1000:{name:'Avaro',desc:'Reúne 1000 Oro META'},
+    won:{name:'Campeón',desc:'Completa una partida entera'},combo50:{name:'IMPARABLE',desc:'Alcanza combo ×50'},
+    runs25:{name:'Entregado',desc:'25 partidas jugadas'},kills1000:{name:'Exterminio',desc:'1000 bajas totales en META'},
+    room20:{name:'Leyenda',desc:'Llega a la sala 20'},gold5000:{name:'Rey del Oro',desc:'Reúne 5000 Oro META'},
+    relic3:{name:'Coleccionista',desc:'Equipa 3 reliquias en una partida'},no_damage_boss:{name:'Intocable',desc:'Mata a un jefe sin recibir daño'},
+    speed_run:{name:'Speed Runner',desc:'Gana en menos de 10 minutos'},runs50:{name:'Devoto',desc:'50 partidas jugadas'},
+    kills50_room:{name:'Carnicero',desc:'50 bajas en una sola partida'}},
+  it:{first_blood:{name:'Primo Sangue',desc:'Uccidi il primo nemico'},
+    room5:{name:'Esploratore',desc:'Raggiungi la stanza 5'},room10:{name:'Veterano',desc:'Raggiungi la stanza 10'},
+    room15:{name:'Maestro',desc:'Raggiungi la stanza 15'},combo20:{name:'In Fiamme',desc:'Raggiungi combo ×20'},
+    kills100:{name:'Assassino',desc:'100 uccisioni totali in META'},kills500:{name:'Massacro',desc:'500 uccisioni totali in META'},
+    runs10:{name:'Persistente',desc:'Gioca 10 partite'},gold1000:{name:'Avaro',desc:'Raccogli 1000 Oro META'},
+    won:{name:'Campione',desc:'Completa una partita intera'},combo50:{name:'INARRESTABILE',desc:'Raggiungi combo ×50'},
+    runs25:{name:'Devoto',desc:'25 partite giocate'},kills1000:{name:'Sterminio',desc:'1000 uccisioni totali in META'},
+    room20:{name:'Leggenda',desc:'Raggiungi la stanza 20'},gold5000:{name:"Re dell'Oro",desc:'Raccogli 5000 Oro META'},
+    relic3:{name:'Collezionista',desc:'Equipaggia 3 reliquie in una partita'},no_damage_boss:{name:'Intoccabile',desc:'Uccidi un boss senza subire danni'},
+    speed_run:{name:'Speed Runner',desc:'Vinci in meno di 10 minuti'},runs50:{name:'Fedele',desc:'50 partite giocate'},
+    kills50_room:{name:'Macellaio',desc:'50 uccisioni in una sola partita'}},
+  hu:{first_blood:{name:'Első Vér',desc:'Öld meg az első ellenséget'},
+    room5:{name:'Felfedező',desc:'Érd el az 5. szobát'},room10:{name:'Veterán',desc:'Érd el a 10. szobát'},
+    room15:{name:'Mester',desc:'Érd el a 15. szobát'},combo20:{name:'Lángban',desc:'Érj el ×20 kombót'},
+    kills100:{name:'Gyilkos',desc:'100 összes ölés META-ban'},kills500:{name:'Mészárlás',desc:'500 összes ölés META-ban'},
+    runs10:{name:'Kitartó',desc:'Játssz 10 menetet'},gold1000:{name:'Fösvény',desc:'Gyűjts 1000 META Aranyat'},
+    won:{name:'Bajnok',desc:'Teljesíts egy teljes menetet'},combo50:{name:'MEGÁLLÍTHATATLAN',desc:'Érj el ×50 kombót'},
+    runs25:{name:'Elkötelezett',desc:'25 lejátszott menet'},kills1000:{name:'Kiirtás',desc:'1000 összes ölés META-ban'},
+    room20:{name:'Legenda',desc:'Érd el a 20. szobát'},gold5000:{name:'Aranykirály',desc:'Gyűjts 5000 META Aranyat'},
+    relic3:{name:'Gyűjtő',desc:'Szerelj fel 3 relikviát egy menetben'},no_damage_boss:{name:'Sérthetetlen',desc:'Ölj meg egy főnököt sebződés nélkül'},
+    speed_run:{name:'Speed Runner',desc:'Nyerj 10 percen belül'},runs50:{name:'Hűséges',desc:'50 lejátszott menet'},
+    kills50_room:{name:'Mészáros',desc:'50 ölés egyetlen menetben'}},
+  bg:{first_blood:{name:'Първа Кръв',desc:'Убий първия враг'},
+    room5:{name:'Изследовател',desc:'Достигни стая 5'},room10:{name:'Ветеран',desc:'Достигни стая 10'},
+    room15:{name:'Майстор',desc:'Достигни стая 15'},combo20:{name:'Разгорещен',desc:'Достигни ×20 комбо'},
+    kills100:{name:'Убиец',desc:'100 общо убийства в META'},kills500:{name:'Клане',desc:'500 общо убийства в META'},
+    runs10:{name:'Упорит',desc:'Изиграй 10 пробега'},gold1000:{name:'Стиснат',desc:'Събери 1000 META Злато'},
+    won:{name:'Шампион',desc:'Завърши цял пробег'},combo50:{name:'НЕСПИРАЕМ',desc:'Достигни ×50 комбо'},
+    runs25:{name:'Отдаден',desc:'25 изиграни пробега'},kills1000:{name:'Изтребление',desc:'1000 общо убийства в META'},
+    room20:{name:'Легенда',desc:'Достигни стая 20'},gold5000:{name:'Кралят на Златото',desc:'Събери 5000 META Злато'},
+    relic3:{name:'Колекционер',desc:'Екипирай 3 реликви в един пробег'},no_damage_boss:{name:'Недосегаем',desc:'Убий бос без да бъдеш ударен'},
+    speed_run:{name:'Speed Runner',desc:'Победи за под 10 минути'},runs50:{name:'Верен',desc:'50 изиграни пробега'},
+    kills50_room:{name:'Касапинът',desc:'50 убийства в един пробег'}},
+  zh:{first_blood:{name:'首杀',desc:'击杀第一个敌人'},
+    room5:{name:'探索者',desc:'到达第5个房间'},room10:{name:'老兵',desc:'到达第10个房间'},
+    room15:{name:'大师',desc:'到达第15个房间'},combo20:{name:'势不可挡',desc:'达到×20连击'},
+    kills100:{name:'杀手',desc:'META累计击杀100'},kills500:{name:'屠杀',desc:'META累计击杀500'},
+    runs10:{name:'坚持不懈',desc:'玩10局'},gold1000:{name:'守财奴',desc:'收集1000META金币'},
+    won:{name:'冠军',desc:'完成一整局'},combo50:{name:'不可阻挡',desc:'达到×50连击'},
+    runs25:{name:'尽心尽力',desc:'玩过25局'},kills1000:{name:'灭绝',desc:'META累计击杀1000'},
+    room20:{name:'传奇',desc:'到达第20个房间'},gold5000:{name:'黄金之王',desc:'收集5000META金币'},
+    relic3:{name:'收藏家',desc:'一局中装备3个遗物'},no_damage_boss:{name:'无法触及',desc:'击败首领且不受伤'},
+    speed_run:{name:'极速通关',desc:'10分钟内获胜'},runs50:{name:'忠诚',desc:'玩过50局'},
+    kills50_room:{name:'屠夫',desc:'单局击杀50个敌人'}},
+  ja:{first_blood:{name:'ファーストブラッド',desc:'最初の敵を倒す'},
+    room5:{name:'探検家',desc:'部屋5に到達'},room10:{name:'ベテラン',desc:'部屋10に到達'},
+    room15:{name:'マスター',desc:'部屋15に到達'},combo20:{name:'オンファイア',desc:'×20コンボ達成'},
+    kills100:{name:'キラー',desc:'META累計キル100'},kills500:{name:'大虐殺',desc:'META累計キル500'},
+    runs10:{name:'粘り強い',desc:'10回プレイ'},gold1000:{name:'守銭奴',desc:'METAゴールド1000獲得'},
+    won:{name:'チャンピオン',desc:'1ランを完全クリア'},combo50:{name:'アンストッパブル',desc:'×50コンボ達成'},
+    runs25:{name:'献身的',desc:'25回プレイ'},kills1000:{name:'殲滅',desc:'META累計キル1000'},
+    room20:{name:'レジェンド',desc:'部屋20に到達'},gold5000:{name:'ゴールドキング',desc:'METAゴールド5000獲得'},
+    relic3:{name:'コレクター',desc:'1ランで遺物3個装備'},no_damage_boss:{name:'アンタッチャブル',desc:'ダメージなしでボスを撃破'},
+    speed_run:{name:'スピードランナー',desc:'10分以内にクリア'},runs50:{name:'忠実',desc:'50回プレイ'},
+    kills50_room:{name:'屠殺者',desc:'1ランで50キル'}},
+};
+function achName(ac){const L=LANG_ACH[SETTINGS.lang];return(L&&L[ac.id])?L[ac.id].name:ac.name;}
+function achDesc(ac){const L=LANG_ACH[SETTINGS.lang];return(L&&L[ac.id])?L[ac.id].desc:ac.desc;}
+// ── Traduceri codex (bestiar): 6 inamici obișnuiți + 5 boși ──
+const LANG_BEST={
+  en:{reg:{grunt:{name:'Grunt',desc:'Basic enemy. Approaches directly and shoots up close.',weak:'No notable weaknesses — quantity, not quality.'},
+    fast:{name:'Runner',desc:'Fast and agile, tries to flank you.',weak:'Very low HP — a short burst is enough.'},
+    heavy:{name:'Heavy',desc:'Slow but tough, deals big damage on contact.',weak:'Low speed — easy to keep at range.'},
+    sniper:{name:'Sniper',desc:'Shoots from long range with high damage.',weak:'Fragile. Close in fast or use cover.'},
+    exploator:{name:'Exploder',desc:'Kamikaze — explodes on contact for 55 damage.',weak:'Kill it from range. It pulses when close.'},
+    scutar:{name:'Shieldbearer',desc:'Carries a frontal shield that blocks bullets.',weak:'Hit it from the side or behind. Piercing ammo ignores the shield.'},
+    comandant:{name:'Commander',desc:'Buffs nearby enemies: +40% speed, +50% damage.',weak:'Top priority — kill it first and the rest weaken instantly.'}},
+   boss:{ouroboros:{name:'OUROBOROS',sub:'Eternity Serpent',
+      desc:"Appears coiled, then unleashes. Its long body follows everywhere. Spits venom circles and aimed jets.",
+      weak:"Its tongue can't pass through walls — use cover. After it extends its tongue there's a brief pause: that's when to strike."},
+    luna:{name:'LUNA OBSCURA',sub:'Fallen Angel',
+      desc:'Floats on a crescent moon and throws star fans. Teleports when cornered.',
+      weak:"It pulls its hands from its face right before attacking — that's the signal to dodge."},
+    wraith:{name:'ABYSS WRAITH',sub:'Scepter Bearer',
+      desc:'Orbiting daggers and scepter projectiles. Below 50% HP the dagger count rises from 3 to 5.',
+      weak:'It pulls back the scepter before each thrust — anticipate the direction and dash sideways.'},
+    vortex:{name:'VORTEX PRIME',sub:'Devourer of Worlds',
+      desc:'Orbits and pulls you gravitationally. Double spirals, a 12-projectile ring below 60% HP, triple range below 30%.',
+      weak:"Gravity weakens with distance — stay beyond 260px and it won't pull you anymore."},
+    clown:{name:'GRINNER',sub:'No Eyes, Just a Smile',
+      desc:'The fastest boss. Throws spinning knives, charges, and the horn stuns you for 1.6 seconds.',
+      weak:"When it grabs its nose a danger ring appears — get out of range before it expires, or the knife follows."}}},
+  es:{reg:{grunt:{name:'Recluta',desc:'Enemigo básico. Se acerca directo y dispara de cerca.',weak:'Sin debilidades notables — cantidad, no calidad.'},
+    fast:{name:'Corredor',desc:'Rápido y ágil, intenta flanquearte.',weak:'HP muy bajo — una ráfaga corta basta.'},
+    heavy:{name:'Pesado',desc:'Lento pero resistente, hace mucho daño al contacto.',weak:'Velocidad baja — fácil de mantener a distancia.'},
+    sniper:{name:'Francotirador',desc:'Dispara a larga distancia con mucho daño.',weak:'Frágil. Acércate rápido o usa cobertura.'},
+    exploator:{name:'Explosivo',desc:'Kamikaze — explota al contacto por 55 de daño.',weak:'Mátalo a distancia. Pulsa cuando está cerca.'},
+    scutar:{name:'Escudero',desc:'Lleva un escudo frontal que bloquea las balas.',weak:'Golpéalo por el lateral o la espalda. La munición perforante ignora el escudo.'},
+    comandant:{name:'Comandante',desc:'Potencia a los enemigos cercanos: +40% velocidad, +50% daño.',weak:'Prioridad máxima — mátalo primero y el resto se debilita al instante.'}},
+   boss:{ouroboros:{name:'OUROBOROS',sub:'Serpiente de la Eternidad',
+      desc:'Aparece enroscada, luego se desata. Su cuerpo largo la sigue a todas partes. Escupe círculos de veneno y chorros dirigidos.',
+      weak:'Su lengua no atraviesa paredes — usa cobertura. Tras sacar la lengua tiene una breve pausa: ahí golpéala.'},
+    luna:{name:'LUNA OBSCURA',sub:'El Ángel Caído',
+      desc:'Flota en una media luna y lanza abanicos de estrellas. Se teletransporta si la acorralas.',
+      weak:'Se aparta las manos de la cara justo antes de atacar — esa es la señal para esquivar.'},
+    wraith:{name:'ABYSS WRAITH',sub:'Portador del Cetro',
+      desc:'Dagas orbitantes y proyectiles de cetro. Por debajo del 50% HP el número de dagas sube de 3 a 5.',
+      weak:'Retrae el cetro antes de cada estocada — anticipa la dirección y esquiva lateralmente.'},
+    vortex:{name:'VORTEX PRIME',sub:'Devorador de Mundos',
+      desc:'Orbita y te atrae por gravedad. Espirales dobles, anillo de 12 proyectiles por debajo del 60% HP, triple alcance por debajo del 30%.',
+      weak:'La gravedad se debilita con la distancia — quédate a más de 260px y ya no te atraerá.'},
+    clown:{name:'GRINNER',sub:'Sin Ojos, Solo Una Sonrisa',
+      desc:'El jefe más rápido. Lanza cuchillos giratorios, embiste, y la bocina te aturde 1.6 segundos.',
+      weak:'Cuando se agarra la nariz aparece el anillo de peligro — sal del alcance antes de que expire, o sigue el cuchillo.'}}},
+  it:{reg:{grunt:{name:'Recluta',desc:'Nemico base. Si avvicina direttamente e spara da vicino.',weak:'Nessuna debolezza notevole — quantità, non qualità.'},
+    fast:{name:'Corridore',desc:'Veloce e agile, cerca di fiancheggiarti.',weak:'HP molto basso — una breve raffica basta.'},
+    heavy:{name:'Pesante',desc:'Lento ma resistente, infligge molto danno a contatto.',weak:'Velocità bassa — facile da tenere a distanza.'},
+    sniper:{name:'Cecchino',desc:'Spara da lunga distanza con danno elevato.',weak:'Fragile. Avvicinati velocemente o usa coperture.'},
+    exploator:{name:'Esplosivo',desc:'Kamikaze — esplode al contatto per 55 danni.',weak:'Uccidilo a distanza. Pulsa quando è vicino.'},
+    scutar:{name:'Scudiero',desc:'Porta uno scudo frontale che blocca i proiettili.',weak:"Colpiscilo di lato o alle spalle. Le munizioni perforanti ignorano lo scudo."},
+    comandant:{name:'Comandante',desc:'Potenzia i nemici vicini: +40% velocità, +50% danno.',weak:"Priorità massima — uccidilo per primo e gli altri si indeboliscono all'istante."}},
+   boss:{ouroboros:{name:'OUROBOROS',sub:"Il Serpente dell'Eternità",
+      desc:'Appare attorcigliato, poi si scatena. Il suo lungo corpo lo segue ovunque. Sputa cerchi di veleno e getti mirati.',
+      weak:'La lingua non attraversa i muri — usa le coperture. Dopo aver estratto la lingua ha una breve pausa: colpiscilo allora.'},
+    luna:{name:'LUNA OBSCURA',sub:"L'Angelo Caduto",
+      desc:'Fluttua su una mezzaluna e lancia ventagli di stelle. Si teletrasporta quando viene messa alle strette.',
+      weak:'Si toglie le mani dal viso appena prima di attaccare — è il segnale per schivare.'},
+    wraith:{name:'ABYSS WRAITH',sub:'Portatore dello Scettro',
+      desc:'Pugnali orbitanti e proiettili di scettro. Sotto il 50% HP il numero di pugnali sale da 3 a 5.',
+      weak:'Ritrae lo scettro prima di ogni affondo — anticipa la direzione e scatta lateralmente.'},
+    vortex:{name:'VORTEX PRIME',sub:'Divoratore di Mondi',
+      desc:'Orbita e ti attira gravitazionalmente. Spirali doppie, anello di 12 proiettili sotto il 60% HP, raggio triplo sotto il 30%.',
+      weak:'La gravità si indebolisce con la distanza — resta oltre 260px e non ti attirerà più.'},
+    clown:{name:'GRINNER',sub:'Senza Occhi, Solo un Sorriso',
+      desc:'Il boss più veloce. Lancia coltelli rotanti, carica, e il clacson ti stordisce per 1.6 secondi.',
+      weak:"Quando si tocca il naso appare l'anello di pericolo — esci dal raggio prima che scada, altrimenti segue il coltello."}}},
+  hu:{reg:{grunt:{name:'Közlegény',desc:'Alap ellenfél. Közvetlenül közelít és közelről lő.',weak:'Nincs számottevő gyengéje — mennyiség, nem minőség.'},
+    fast:{name:'Futó',desc:'Gyors és fürge, megpróbál oldalba kapni.',weak:'Nagyon alacsony HP — egy rövid sorozat elég.'},
+    heavy:{name:'Nehéz',desc:'Lassú de kitartó, nagy sebzést okoz érintéskor.',weak:'Alacsony sebesség — könnyen távol tartható.'},
+    sniper:{name:'Mesterlövész',desc:'Nagy távolságból lő, magas sebzéssel.',weak:'Sérülékeny. Közelíts gyorsan vagy használj fedezéket.'},
+    exploator:{name:'Robbanó',desc:'Kamikaze — érintéskor felrobban 55 sebzésért.',weak:'Öld meg távolról. Lüktet, ha közel vagy.'},
+    scutar:{name:'Pajzsos',desc:'Elülső pajzsot visel, ami blokkolja a golyókat.',weak:'Támadd oldalról vagy hátulról. Az átütő lőszer figyelmen kívül hagyja a pajzsot.'},
+    comandant:{name:'Parancsnok',desc:'Megerősíti a közeli ellenfeleket: +40% sebesség, +50% sebzés.',weak:'Legfontosabb célpont — öld meg elsőnek, a többi azonnal gyengül.'}},
+   boss:{ouroboros:{name:'OUROBOROS',sub:'Az Örökkévalóság Kígyója',
+      desc:'Összetekeredve jelenik meg, majd kibontakozik. Hosszú teste mindenhová követi. Méregköröket és célzott sugarakat köp.',
+      weak:'A nyelve nem hatol át falakon — használj fedezéket. Miután kinyújtja a nyelvét, rövid szünet következik: akkor támadj.'},
+    luna:{name:'LUNA OBSCURA',sub:'A Bukott Angyal',
+      desc:'Félholdon lebeg és csillaglegyezőket dob. Teleportál, ha sarokba szorítod.',
+      weak:'Közvetlenül támadás előtt elveszi kezeit az arcáról — ez a jel a kitérésre.'},
+    wraith:{name:'ABYSS WRAITH',sub:'A Jogar Hordozója',
+      desc:'Keringő tőrök és jogarlövedékek. 50% HP alatt a tőrök száma 3-ról 5-re nő.',
+      weak:'Minden döfés előtt visszahúzza a jogart — számítsd ki az irányt és gurulj oldalra.'},
+    vortex:{name:'VORTEX PRIME',sub:'Világok Falója',
+      desc:'Kering és gravitációsan húz. Dupla spirálok, 12 lövedékes gyűrű 60% HP alatt, hármas hatótáv 30% alatt.',
+      weak:'A gravitáció gyengül a távolsággal — maradj 260px-en túl, és többé nem húz.'},
+    clown:{name:'GRINNER',sub:'Szem Nélkül, Csak Egy Mosoly',
+      desc:'A leggyorsabb főnök. Pörgő késeket dob, rád rohan, és a duda 1.6 másodpercre elkábít.',
+      weak:'Amikor megfogja az orrát, megjelenik a veszélygyűrű — lépj ki a hatótávból, mielőtt lejár, különben jön a kés.'}}},
+  bg:{reg:{grunt:{name:'Редник',desc:'Основен враг. Приближава директно и стреля отблизо.',weak:'Няма забележими слабости — количество, не качество.'},
+    fast:{name:'Бегач',desc:'Бърз и пъргав, опитва да те обходи.',weak:'Много ниско HP — един кратък откос е достатъчен.'},
+    heavy:{name:'Тежък',desc:'Бавен, но издръжлив, нанася голяма щета при контакт.',weak:'Ниска скорост — лесно се държи на разстояние.'},
+    sniper:{name:'Снайперист',desc:'Стреля от голямо разстояние с високи щети.',weak:'Крехък. Приближи бързо или използвай прикритие.'},
+    exploator:{name:'Взривяващ се',desc:'Камикадзе — избухва при контакт за 55 щети.',weak:'Убий го отдалеч. Пулсира, когато е близо.'},
+    scutar:{name:'Щитоносец',desc:'Носи преден щит, който блокира куршумите.',weak:'Удари го отстрани или отзад. Пробивните муниции игнорират щита.'},
+    comandant:{name:'Командир',desc:'Подсилва враговете наоколо: +40% скорост, +50% щета.',weak:'Най-висок приоритет — убий го пръв и останалите отслабват мигновено.'}},
+   boss:{ouroboros:{name:'OUROBOROS',sub:'Змията на Вечността',
+      desc:'Появява се навита, после се развихря. Дългото ѝ тяло я следва навсякъде. Плюе кръгове отрова и насочени струи.',
+      weak:'Езикът ѝ не преминава през стени — използвай прикритие. След като изплези езика си има кратка пауза: тогава удари.'},
+    luna:{name:'LUNA OBSCURA',sub:'Падналият Ангел',
+      desc:'Плава на полумесец и хвърля ветрила от звезди. Телепортира се, ако я притиснеш.',
+      weak:'Отдръпва ръцете от лицето си точно преди да атакува — това е сигналът да се отдръпнеш.'},
+    wraith:{name:'ABYSS WRAITH',sub:'Носителят на Скиптъра',
+      desc:'Орбитиращи кинжали и снаряди от скиптър. Под 50% HP броят на кинжалите нараства от 3 на 5.',
+      weak:'Отдръпва скиптъра преди всеки удар — предвиди посоката и се претърколи настрани.'},
+    vortex:{name:'VORTEX PRIME',sub:'Пожирателят на Светове',
+      desc:'Обикаля и те привлича гравитационно. Двойни спирали, пръстен от 12 снаряда под 60% HP, троен обхват под 30%.',
+      weak:'Гравитацията отслабва с разстоянието — стой над 260px и вече няма да те тегли.'},
+    clown:{name:'GRINNER',sub:'Без Очи, Само Усмивка',
+      desc:'Най-бързият бос. Хвърля въртящи се ножове, връхлита, а клаксонът те зашеметява за 1.6 секунди.',
+      weak:'Когато се хване за носа, се появява пръстен на опасност — излез от обхвата преди да изтече, иначе следва ножът.'}}},
+  zh:{reg:{grunt:{name:'新兵',desc:'基础敌人。直接靠近并近距离射击。',weak:'没有明显弱点——靠数量取胜。'},
+    fast:{name:'奔跑者',desc:'快速敏捷，试图包抄你。',weak:'生命值极低——一次短点射即可击杀。'},
+    heavy:{name:'重装兵',desc:'缓慢但坚韧，近身接触造成大量伤害。',weak:'速度低——很容易保持距离。'},
+    sniper:{name:'狙击手',desc:'远距离射击，伤害很高。',weak:'脆弱。快速接近或利用掩体。'},
+    exploator:{name:'自爆者',desc:'自杀式袭击者——接触时爆炸造成55点伤害。',weak:'远距离击杀。靠近时会脉动闪烁。'},
+    scutar:{name:'盾兵',desc:'携带正面盾牌可阻挡子弹。',weak:'从侧面或背后攻击。穿甲弹药可无视盾牌。'},
+    comandant:{name:'指挥官',desc:'为范围内敌人提供增益：速度+40%，伤害+50%。',weak:'优先击杀目标——先杀死它，其他敌人会立即变弱。'}},
+   boss:{ouroboros:{name:'OUROBOROS',sub:'永恒之蛇',
+      desc:'出现时盘绕成团，随后展开。长长的身躯无处不在地跟随。喷吐毒液圆圈和定向毒液束。',
+      weak:'它的舌头无法穿墙——利用掩体。吐出舌头后会有短暂停顿：此时是攻击的最佳时机。'},
+    luna:{name:'LUNA OBSCURA',sub:'堕落天使',
+      desc:'悬浮在新月上，投掷星星扇。被逼入绝境时会传送。',
+      weak:'攻击前会把手从脸上移开——这是躲避的信号。'},
+    wraith:{name:'ABYSS WRAITH',sub:'权杖持有者',
+      desc:'环绕的匕首与权杖弹幕。生命值低于50%时匕首数量从3把增至5把。',
+      weak:'每次突刺前会收回权杖——预判方向并侧向闪避。'},
+    vortex:{name:'VORTEX PRIME',sub:'世界吞噬者',
+      desc:'环绕并以重力吸引你。双重螺旋，生命值低于60%时出现12发弹幕环，低于30%时射程增至三倍。',
+      weak:'重力随距离减弱——保持在260像素以外它就无法再吸引你。'},
+    clown:{name:'GRINNER',sub:'无眼，唯有微笑',
+      desc:'速度最快的首领。投掷旋转飞刀，冲撞，喇叭声会使你眩晕1.6秒。',
+      weak:'当它捏住鼻子时会出现危险光环——在其消失前离开范围，否则飞刀会紧随而至。'}}},
+  ja:{reg:{grunt:{name:'新兵',desc:'基本的な敵。まっすぐ近づき、近距離で撃つ。',weak:'目立った弱点はない——数で勝負するタイプ。'},
+    fast:{name:'走者',desc:'素早く機敏で、側面から回り込もうとする。',weak:'HPが非常に低い——短い連射で十分。'},
+    heavy:{name:'重装兵',desc:'遅いが頑丈で、接触時に大ダメージを与える。',weak:'速度が低い——距離を保ちやすい。'},
+    sniper:{name:'狙撃兵',desc:'遠距離から高ダメージで撃つ。',weak:'もろい。素早く近づくか、遮蔽物を使おう。'},
+    exploator:{name:'自爆兵',desc:'自爆型——接触で55ダメージの爆発。',weak:'遠距離で倒そう。近づくと点滅する。'},
+    scutar:{name:'盾兵',desc:'弾丸を防ぐ前面の盾を持つ。',weak:'側面か背後から攻撃を。貫通弾は盾を無視する。'},
+    comandant:{name:'指揮官',desc:'周囲の敵を強化：速度+40%、ダメージ+50%。',weak:'最優先目標——先に倒せば残りは即座に弱体化する。'}},
+   boss:{ouroboros:{name:'OUROBOROS',sub:'永遠の蛇',
+      desc:'とぐろを巻いた状態で現れ、やがて解き放たれる。長い胴体がどこまでも追ってくる。毒の輪と狙い撃ちの毒液を吐く。',
+      weak:'その舌は壁を貫通しない——遮蔽物を使おう。舌を出した後は短い隙がある：そこが攻撃のチャンス。'},
+    luna:{name:'LUNA OBSCURA',sub:'堕天使',
+      desc:'三日月に浮かび、星の扇を投げる。追い詰められるとテレポートする。',
+      weak:'攻撃直前に顔から手を離す——それが回避の合図。'},
+    wraith:{name:'ABYSS WRAITH',sub:'笏の担い手',
+      desc:'周回する短剣と笏の弾丸。HPが50%を切ると短剣の数が3本から5本に増える。',
+      weak:'突く前に笏を引く——方向を予測して横にダッシュしよう。'},
+    vortex:{name:'VORTEX PRIME',sub:'世界の貪り手',
+      desc:'周回しながら重力で引き寄せる。二重螺旋、HP60%未満で12発の弾幕リング、30%未満で射程3倍。',
+      weak:'重力は距離で弱まる——260px以上離れれば、もう引き寄せられない。'},
+    clown:{name:'GRINNER',sub:'目のない、ただの笑み',
+      desc:'最速のボス。回転するナイフを投げ、突進し、ホーンで1.6秒間気絶させる。',
+      weak:'鼻をつかむと危険の輪が現れる——それが消える前に範囲外へ、さもなくばナイフが飛んでくる。'}}},
+};
+function besName(id){const b=BESTIARY[id];const L=LANG_BEST[SETTINGS.lang];return(L&&L.reg[id])?L.reg[id].name:b.name;}
+function besDesc(id){const b=BESTIARY[id];const L=LANG_BEST[SETTINGS.lang];return(L&&L.reg[id])?L.reg[id].desc:b.desc;}
+function besWeak(id){const b=BESTIARY[id];const L=LANG_BEST[SETTINGS.lang];return(L&&L.reg[id])?L.reg[id].weak:b.weak;}
+function bossName(key){const b=BOSS_BESTIARY['boss:'+key];const L=LANG_BEST[SETTINGS.lang];return(L&&L.boss[key])?L.boss[key].name:b.name;}
+function bossSub(key){const b=BOSS_BESTIARY['boss:'+key];const L=LANG_BEST[SETTINGS.lang];return(L&&L.boss[key])?L.boss[key].sub:b.sub;}
+function bossDesc(key){const b=BOSS_BESTIARY['boss:'+key];const L=LANG_BEST[SETTINGS.lang];return(L&&L.boss[key])?L.boss[key].desc:b.desc;}
+function bossWeak(key){const b=BOSS_BESTIARY['boss:'+key];const L=LANG_BEST[SETTINGS.lang];return(L&&L.boss[key])?L.boss[key].weak:b.weak;}
+// ── Traduceri arborele de upgrade-uri permanente (TABĂRĂ) ──
+const LANG_CAMP={
+  en:{hp:{name:'Thick Armor',desc:'+15 max HP at start'},dmg:{name:'Piercing Rounds',desc:'+8% damage at start'},
+    gold:{name:'Deep Pockets',desc:'+25 bonus gold at start'},dash:{name:"Courier's Boots",desc:'+1 permanent dash charge'},
+    relic_slot:{name:'Expanded Backpack',desc:'Extra relic slot (no longer lose one)'},xp:{name:'Seasoned Apprentice',desc:'XP +25% per run'},
+    armor:{name:'Extra Plating',desc:'+8 armor at start'},spd:{name:'Physical Training',desc:'+5% permanent speed'},
+    disc:{name:'Market Contacts',desc:'-5% shop price'},revive:{name:'Emergency Medkit',desc:'+1 automatic revive per run (50% HP)'}},
+  es:{hp:{name:'Armadura Gruesa',desc:'+15 HP máx al inicio'},dmg:{name:'Munición Perforante',desc:'+8% daño al inicio'},
+    gold:{name:'Bolsillos Profundos',desc:'+25 oro bonus al inicio'},dash:{name:'Botas de Mensajero',desc:'+1 carga de dash permanente'},
+    relic_slot:{name:'Mochila Ampliada',desc:'Slot extra de reliquia (ya no la pierdes)'},xp:{name:'Aprendiz Experimentado',desc:'XP +25% por partida'},
+    armor:{name:'Blindaje Adicional',desc:'+8 armadura al inicio'},spd:{name:'Entrenamiento Físico',desc:'+5% velocidad permanente'},
+    disc:{name:'Contactos en el Mercado',desc:'-5% precio en la tienda'},revive:{name:'Kit Médico de Emergencia',desc:'+1 reanimación automática por partida (50% HP)'}},
+  it:{hp:{name:'Armatura Spessa',desc:"+15 HP max all'inizio"},dmg:{name:'Munizioni Perforanti',desc:"+8% danno all'inizio"},
+    gold:{name:'Tasche Profonde',desc:"+25 oro bonus all'inizio"},dash:{name:'Stivali del Corriere',desc:'+1 carica dash permanente'},
+    relic_slot:{name:'Zaino Ampliato',desc:'Slot reliquia extra (non la perdi più)'},xp:{name:'Apprendista Esperto',desc:'XP +25% a partita'},
+    armor:{name:'Placcatura Extra',desc:"+8 armatura all'inizio"},spd:{name:'Allenamento Fisico',desc:'+5% velocità permanente'},
+    disc:{name:'Contatti di Mercato',desc:'-5% prezzo al negozio'},revive:{name:"Kit Medico d'Emergenza",desc:'+1 rianimazione automatica a partita (50% HP)'}},
+  hu:{hp:{name:'Vastag Páncél',desc:'+15 max HP induláskor'},dmg:{name:'Áthatoló Lőszer',desc:'+8% sebzés induláskor'},
+    gold:{name:'Mély Zsebek',desc:'+25 bónusz arany induláskor'},dash:{name:'Futárcipő',desc:'+1 állandó dash töltet'},
+    relic_slot:{name:'Bővített Hátizsák',desc:'Extra relikvia hely (már nem veszíted el)'},xp:{name:'Tapasztalt Tanonc',desc:'XP +25% menetenként'},
+    armor:{name:'Extra Páncélzat',desc:'+8 páncél induláskor'},spd:{name:'Fizikai Edzés',desc:'+5% állandó sebesség'},
+    disc:{name:'Piaci Kapcsolatok',desc:'-5% bolti ár'},revive:{name:'Sürgősségi Elsősegély Készlet',desc:'+1 automatikus újraélesztés menetenként (50% HP)'}},
+  bg:{hp:{name:'Дебела Броня',desc:'+15 макс. HP в началото'},dmg:{name:'Пробивни Патрони',desc:'+8% щета в началото'},
+    gold:{name:'Дълбоки Джобове',desc:'+25 бонус злато в началото'},dash:{name:'Куриерски Ботуши',desc:'+1 постоянен заряд на dash'},
+    relic_slot:{name:'Разширена Раница',desc:'Допълнителен слот за реликва (вече не я губиш)'},xp:{name:'Опитен Чирак',desc:'XP +25% на пробег'},
+    armor:{name:'Допълнителна Броня',desc:'+8 броня в началото'},spd:{name:'Физическа Тренировка',desc:'+5% постоянна скорост'},
+    disc:{name:'Пазарни Контакти',desc:'-5% цена в магазина'},revive:{name:'Спешен Медицински Комплект',desc:'+1 автоматично съживяване на пробег (50% HP)'}},
+  zh:{hp:{name:'厚重护甲',desc:'开局最大生命值+15'},dmg:{name:'穿甲弹',desc:'开局伤害+8%'},
+    gold:{name:'深口袋',desc:'开局额外金币+25'},dash:{name:'信使之靴',desc:'永久+1冲刺次数'},
+    relic_slot:{name:'扩容背包',desc:'额外遗物槽位（不再丢失遗物）'},xp:{name:'经验学徒',desc:'每局经验值+25%'},
+    armor:{name:'额外护板',desc:'开局护甲+8'},spd:{name:'体能训练',desc:'永久速度+5%'},
+    disc:{name:'市场人脉',desc:'商店价格-5%'},revive:{name:'紧急医疗包',desc:'每局+1次自动复活（50%生命值）'}},
+  ja:{hp:{name:'厚い装甲',desc:'開始時最大HP+15'},dmg:{name:'貫通弾',desc:'開始時ダメージ+8%'},
+    gold:{name:'深いポケット',desc:'開始時ゴールドボーナス+25'},dash:{name:'配達人のブーツ',desc:'永久ダッシュチャージ+1'},
+    relic_slot:{name:'拡張バックパック',desc:'遺物スロット追加（もう失わない）'},xp:{name:'経験を積んだ見習い',desc:'ラン毎にXP+25%'},
+    armor:{name:'追加装甲板',desc:'開始時防具+8'},spd:{name:'フィジカルトレーニング',desc:'永久速度+5%'},
+    disc:{name:'市場のコネ',desc:'ショップ価格-5%'},revive:{name:'緊急医療キット',desc:'ラン毎に自動蘇生+1回（HP50%）'}},
+};
+function campUpgName(u){const L=LANG_CAMP[SETTINGS.lang];return(L&&L[u.id])?L[u.id].name:u.name;}
+function campUpgDesc(u){const L=LANG_CAMP[SETTINGS.lang];return(L&&L[u.id])?L[u.id].desc:u.desc;}
+// ── Traduceri descrieri contracte ──
+const LANG_CTR={
+  en:{kill15:'Kill 15 enemies',kill30:'Kill 30 enemies',kill60:'Kill 60 enemies',boss1:'Defeat a boss',
+    run2:'Finish 2 runs',run4:'Finish 4 runs',gold250:'Collect 250 gold in one run',gold500:'Collect 500 gold in one run',
+    dash10:'Use dash 10 times',relic1:'Collect a relic',
+    wkill150:'Kill 150 enemies',wboss4:'Defeat 4 bosses',wrun8:'Finish 8 runs',wgold1500:'Collect 1500 gold in total'},
+  es:{kill15:'Elimina 15 enemigos',kill30:'Elimina 30 enemigos',kill60:'Elimina 60 enemigos',boss1:'Derrota a un jefe',
+    run2:'Termina 2 partidas',run4:'Termina 4 partidas',gold250:'Reúne 250 de oro en una partida',gold500:'Reúne 500 de oro en una partida',
+    dash10:'Usa el dash 10 veces',relic1:'Consigue una reliquia',
+    wkill150:'Elimina 150 enemigos',wboss4:'Derrota a 4 jefes',wrun8:'Termina 8 partidas',wgold1500:'Reúne 1500 de oro en total'},
+  it:{kill15:'Elimina 15 nemici',kill30:'Elimina 30 nemici',kill60:'Elimina 60 nemici',boss1:'Sconfiggi un boss',
+    run2:'Completa 2 partite',run4:'Completa 4 partite',gold250:'Raccogli 250 oro in una partita',gold500:'Raccogli 500 oro in una partita',
+    dash10:'Usa il dash 10 volte',relic1:'Raccogli una reliquia',
+    wkill150:'Elimina 150 nemici',wboss4:'Sconfiggi 4 boss',wrun8:'Completa 8 partite',wgold1500:'Raccogli 1500 oro in totale'},
+  hu:{kill15:'Ölj meg 15 ellenséget',kill30:'Ölj meg 30 ellenséget',kill60:'Ölj meg 60 ellenséget',boss1:'Győzz le egy főnököt',
+    run2:'Fejezz be 2 menetet',run4:'Fejezz be 4 menetet',gold250:'Gyűjts 250 aranyat egy menetben',gold500:'Gyűjts 500 aranyat egy menetben',
+    dash10:'Használj dash-t 10-szer',relic1:'Szerezz egy relikviát',
+    wkill150:'Ölj meg 150 ellenséget',wboss4:'Győzz le 4 főnököt',wrun8:'Fejezz be 8 menetet',wgold1500:'Gyűjts össze 1500 aranyat'},
+  bg:{kill15:'Убий 15 врагове',kill30:'Убий 30 врагове',kill60:'Убий 60 врагове',boss1:'Победи бос',
+    run2:'Завърши 2 пробега',run4:'Завърши 4 пробега',gold250:'Събери 250 злато в един пробег',gold500:'Събери 500 злато в един пробег',
+    dash10:'Използвай dash 10 пъти',relic1:'Вземи реликва',
+    wkill150:'Убий 150 врагове',wboss4:'Победи 4 боса',wrun8:'Завърши 8 пробега',wgold1500:'Събери общо 1500 злато'},
+  zh:{kill15:'击杀15个敌人',kill30:'击杀30个敌人',kill60:'击杀60个敌人',boss1:'击败一个首领',
+    run2:'完成2局',run4:'完成4局',gold250:'单局收集250金币',gold500:'单局收集500金币',
+    dash10:'使用冲刺10次',relic1:'收集一个遗物',
+    wkill150:'击杀150个敌人',wboss4:'击败4个首领',wrun8:'完成8局',wgold1500:'总共收集1500金币'},
+  ja:{kill15:'敵を15体倒す',kill30:'敵を30体倒す',kill60:'敵を60体倒す',boss1:'ボスを倒す',
+    run2:'2ラン完了する',run4:'4ラン完了する',gold250:'1ランで250ゴールド集める',gold500:'1ランで500ゴールド集める',
+    dash10:'ダッシュを10回使う',relic1:'遺物を1つ集める',
+    wkill150:'敵を150体倒す',wboss4:'ボスを4体倒す',wrun8:'8ラン完了する',wgold1500:'合計1500ゴールド集める'},
+};
+function ctrDesc(tpl){const L=LANG_CTR[SETTINGS.lang];return(L&&L[tpl.id])?L[tpl.id]:tpl.desc;}
+// ── Traduceri descrieri arme ──
+const LANG_WEP={
+  en:{pistol:'Starting weapon. Infinite ammo.',smg:'High fire rate, medium range.',shotgun:'7 pellets per shot.',
+    ak:'High damage, long range.',sniper:'One-shot on any enemy.',minigun:'Insane fire rate.',
+    laser:'Instant beam along the whole line. Passes through enemies.'},
+  es:{pistol:'Arma inicial. Munición infinita.',smg:'Cadencia alta, alcance medio.',shotgun:'7 perdigones por disparo.',
+    ak:'Mucho daño, alcance largo.',sniper:'Mata de un disparo a cualquier enemigo.',minigun:'Cadencia brutal.',
+    laser:'Rayo instantáneo en línea recta. Atraviesa a los enemigos.'},
+  it:{pistol:'Arma iniziale. Munizioni infinite.',smg:'Cadenza alta, raggio medio.',shotgun:'7 pallini a colpo.',
+    ak:'Danno alto, raggio lungo.',sniper:'Uccide con un colpo qualsiasi nemico.',minigun:'Cadenza pazzesca.',
+    laser:'Raggio istantaneo lungo tutta la linea. Attraversa i nemici.'},
+  hu:{pistol:'Kezdő fegyver. Végtelen lőszer.',smg:'Magas tűzgyorsaság, közepes hatótáv.',shotgun:'7 sörét lövésenként.',
+    ak:'Nagy sebzés, nagy hatótáv.',sniper:'Egy lövéssel megöl bármilyen ellenséget.',minigun:'Elképesztő tűzgyorsaság.',
+    laser:'Azonnali sugár az egész vonalon. Áthatol az ellenségeken.'},
+  bg:{pistol:'Начално оръжие. Безкрайни патрони.',smg:'Висока скорострелност, среден обхват.',shotgun:'7 сачми на изстрел.',
+    ak:'Голяма щета, голям обхват.',sniper:'Убива с един изстрел всеки враг.',minigun:'Невероятна скорострелност.',
+    laser:'Мигновен лъч по цялата линия. Преминава през враговете.'},
+  zh:{pistol:'初始武器。无限弹药。',smg:'射速高，射程中等。',shotgun:'每次射击7发弹丸。',
+    ak:'高伤害，射程远。',sniper:'一击秒杀任何敌人。',minigun:'惊人的射速。',
+    laser:'沿整条直线瞬间发射光束，可穿透敌人。'},
+  ja:{pistol:'初期武器。弾薬無限。',smg:'発射速度が速く、射程は中程度。',shotgun:'一発で7発の散弾。',
+    ak:'高ダメージ、長射程。',sniper:'どんな敵も一撃で倒す。',minigun:'驚異的な発射速度。',
+    laser:'直線上を瞬時に貫くビーム。敵を貫通する。'},
+};
+function wepDesc(w){const L=LANG_WEP[SETTINGS.lang];return(L&&L[w.id])?L[w.id]:w.desc;}
+// ── Traduceri muniție specială, armură, utilități ──
+const LANG_AMMO={
+  en:{normal:{name:'Standard',desc:'Regular ammo.'},incendiar:{name:'Incendiary',desc:'Ignites the enemy: 5 dmg/s for 3s.'},
+    perforant:{name:'Piercing',desc:'Ignores shields and passes through 2 enemies.'},
+    exploziva:{name:'Explosive',desc:'Small explosion on impact (25 zone dmg).'},
+    ricosanta:{name:'Ricochet',desc:'Bounces to 2 nearby enemies.'}},
+  es:{normal:{name:'Estándar',desc:'Munición normal.'},incendiar:{name:'Incendiaria',desc:'Incendia al enemigo: 5 dmg/s durante 3s.'},
+    perforant:{name:'Perforante',desc:'Ignora escudos y atraviesa 2 enemigos.'},
+    exploziva:{name:'Explosiva',desc:'Pequeña explosión al impactar (25 dmg de área).'},
+    ricosanta:{name:'Rebote',desc:'Salta a 2 enemigos cercanos.'}},
+  it:{normal:{name:'Standard',desc:'Munizioni normali.'},incendiar:{name:'Incendiaria',desc:'Incendia il nemico: 5 dmg/s per 3s.'},
+    perforant:{name:'Perforante',desc:'Ignora gli scudi e attraversa 2 nemici.'},
+    exploziva:{name:'Esplosiva',desc:"Piccola esplosione all'impatto (25 dmg area)."},
+    ricosanta:{name:'Rimbalzante',desc:'Salta a 2 nemici vicini.'}},
+  hu:{normal:{name:'Alap',desc:'Hagyományos lőszer.'},incendiar:{name:'Gyújtó',desc:'Meggyújtja az ellenséget: 5 sebzés/mp 3 mp-ig.'},
+    perforant:{name:'Áthatoló',desc:'Figyelmen kívül hagyja a pajzsokat és áthatol 2 ellenségen.'},
+    exploziva:{name:'Robbanó',desc:'Kis robbanás becsapódáskor (25 sebzés a területen).'},
+    ricosanta:{name:'Lepattanó',desc:'2 közeli ellenségre ugrik.'}},
+  bg:{normal:{name:'Стандартни',desc:'Обикновени патрони.'},incendiar:{name:'Запалителни',desc:'Запалва врага: 5 щета/сек за 3сек.'},
+    perforant:{name:'Пробивни',desc:'Игнорира щитове и преминава през 2 врагове.'},
+    exploziva:{name:'Експлозивни',desc:'Малък взрив при удар (25 щета в зона).'},
+    ricosanta:{name:'Рикоширащи',desc:'Прескача до 2 близки врага.'}},
+  zh:{normal:{name:'标准',desc:'普通弹药。'},incendiar:{name:'燃烧',desc:'点燃敌人：3秒内每秒5点伤害。'},
+    perforant:{name:'穿甲',desc:'无视护盾并穿透2个敌人。'},
+    exploziva:{name:'爆炸',desc:'命中时小范围爆炸（25点范围伤害）。'},
+    ricosanta:{name:'弹跳',desc:'跳向附近2个敌人。'}},
+  ja:{normal:{name:'標準',desc:'通常弾。'},incendiar:{name:'焼夷',desc:'敵を燃やす：3秒間毎秒5ダメージ。'},
+    perforant:{name:'貫通',desc:'盾を無視し、敵2体を貫通する。'},
+    exploziva:{name:'爆発',desc:'命中時に小規模爆発（範囲25ダメージ）。'},
+    ricosanta:{name:'跳弾',desc:'近くの敵2体に跳ね返る。'}},
+};
+function ammoName(a){const L=LANG_AMMO[SETTINGS.lang];return(L&&L[a.id])?L[a.id].name:a.name;}
+function ammoDesc(a){const L=LANG_AMMO[SETTINGS.lang];return(L&&L[a.id])?L[a.id].desc:a.desc;}
+const LANG_ARMOR={
+  en:{va:{name:'LIGHT VEST',desc:'Absorbs 40% damage.'},vm:{name:'TACTICAL VEST',desc:'Absorbs 55% damage.'},vg:{name:'HEAVY ARMOR',desc:'Absorbs 70% damage.'}},
+  es:{va:{name:'CHALECO LIGERO',desc:'Absorbe el 40% del daño.'},vm:{name:'CHALECO TÁCTICO',desc:'Absorbe el 55% del daño.'},vg:{name:'ARMADURA PESADA',desc:'Absorbe el 70% del daño.'}},
+  it:{va:{name:'GIUBBOTTO LEGGERO',desc:'Assorbe il 40% del danno.'},vm:{name:'GIUBBOTTO TATTICO',desc:'Assorbe il 55% del danno.'},vg:{name:'ARMATURA PESANTE',desc:'Assorbe il 70% del danno.'}},
+  hu:{va:{name:'KÖNNYŰ MELLÉNY',desc:'40% sebzést elnyel.'},vm:{name:'TAKTIKAI MELLÉNY',desc:'55% sebzést elnyel.'},vg:{name:'NEHÉZ PÁNCÉL',desc:'70% sebzést elnyel.'}},
+  bg:{va:{name:'ЛЕКА ЖИЛЕТКА',desc:'Абсорбира 40% щета.'},vm:{name:'ТАКТИЧЕСКА ЖИЛЕТКА',desc:'Абсорбира 55% щета.'},vg:{name:'ТЕЖКА БРОНЯ',desc:'Абсорбира 70% щета.'}},
+  zh:{va:{name:'轻型护甲',desc:'吸收40%伤害。'},vm:{name:'战术护甲',desc:'吸收55%伤害。'},vg:{name:'重型护甲',desc:'吸收70%伤害。'}},
+  ja:{va:{name:'軽量ベスト',desc:'ダメージ40%軽減。'},vm:{name:'タクティカルベスト',desc:'ダメージ55%軽減。'},vg:{name:'重装甲',desc:'ダメージ70%軽減。'}},
+};
+function armorName(a){const L=LANG_ARMOR[SETTINGS.lang];return(L&&L[a.id])?L[a.id].name:a.name;}
+function armorDesc(a){const L=LANG_ARMOR[SETTINGS.lang];return(L&&L[a.id])?L[a.id].desc:a.desc;}
+const LANG_UTIL={
+  en:{heal:{name:'HEAL',desc:'+40 HP instantly.'},speed:{name:'SPEED',desc:'Speed ×1.8 / 8s.'},shield:{name:'SHIELD',desc:'Invulnerable 10s.'},ammo:{name:'AMMO',desc:'Full reload.'},grenade:{name:'GRENADE',desc:'AOE explosion 80dmg.'}},
+  es:{heal:{name:'CURACIÓN',desc:'+40 HP al instante.'},speed:{name:'VELOCIDAD',desc:'Velocidad ×1.8 / 8s.'},shield:{name:'ESCUDO',desc:'Invulnerable 10s.'},ammo:{name:'MUNICIÓN',desc:'Recarga completa.'},grenade:{name:'GRANADA',desc:'Explosión en área 80 daño.'}},
+  it:{heal:{name:'CURA',desc:'+40 HP istantanei.'},speed:{name:'VELOCITÀ',desc:'Velocità ×1.8 / 8s.'},shield:{name:'SCUDO',desc:'Invulnerabile 10s.'},ammo:{name:'MUNIZIONI',desc:'Ricarica completa.'},grenade:{name:'GRANATA',desc:'Esplosione ad area 80 danni.'}},
+  hu:{heal:{name:'GYÓGYÍTÁS',desc:'+40 HP azonnal.'},speed:{name:'SEBESSÉG',desc:'Sebesség ×1.8 / 8mp.'},shield:{name:'PAJZS',desc:'Sebezhetetlen 10mp.'},ammo:{name:'LŐSZER',desc:'Teljes újratöltés.'},grenade:{name:'GRÁNÁT',desc:'Területi robbanás 80 sebzés.'}},
+  bg:{heal:{name:'ЛЕЧЕНИЕ',desc:'+40 HP мигновено.'},speed:{name:'СКОРОСТ',desc:'Скорост ×1.8 / 8сек.'},shield:{name:'ЩИТ',desc:'Неуязвим 10сек.'},ammo:{name:'МУНИЦИИ',desc:'Пълно презареждане.'},grenade:{name:'ГРАНАТА',desc:'Взрив в зона 80 щета.'}},
+  zh:{heal:{name:'治疗',desc:'瞬间+40生命值。'},speed:{name:'加速',desc:'速度×1.8，持续8秒。'},shield:{name:'护盾',desc:'10秒无敌。'},ammo:{name:'弹药',desc:'完全装填。'},grenade:{name:'手雷',desc:'范围爆炸80伤害。'}},
+  ja:{heal:{name:'回復',desc:'即座に+40HP。'},speed:{name:'スピード',desc:'速度×1.8／8秒。'},shield:{name:'シールド',desc:'10秒間無敵。'},ammo:{name:'弾薬',desc:'完全リロード。'},grenade:{name:'手榴弾',desc:'範囲爆発80ダメージ。'}},
+};
+function utilName(u){const L=LANG_UTIL[SETTINGS.lang];return(L&&L[u.id])?L[u.id].name:u.name;}
+function utilDesc(u){const L=LANG_UTIL[SETTINGS.lang];return(L&&L[u.id])?L[u.id].desc:u.desc;}
+// ── Traduceri clase de personaj ──
+const LANG_CLS={
+  en:{umbra:{name:'SHADOW',desc:'Fast and evasive. Maximum mobility, but fragile.',tip:'Strike and retreat. Dash is your best armor.',specialName:'Shuriken'},
+    operator:{name:'OPERATOR',desc:'Balanced. Good at everything, exceptional at nothing.',tip:'The safe choice. Adapts to any room.',specialName:'Grenade'},
+    blindat:{name:'ARMORED',desc:'Tough and powerful, but slow.',tip:"Stay in front. Armor absorbs what speed can't dodge.",specialName:'Barrage'}},
+  es:{umbra:{name:'SOMBRA',desc:'Rápida y evasiva. Movilidad máxima, pero frágil.',tip:'Golpea y retírate. El dash es tu mejor armadura.',specialName:'Shuriken'},
+    operator:{name:'OPERADOR',desc:'Equilibrado. Bueno en todo, excepcional en nada.',tip:'La opción segura. Se adapta a cualquier sala.',specialName:'Granada'},
+    blindat:{name:'BLINDADO',desc:'Resistente y poderoso, pero lento.',tip:'Mantente al frente. La armadura absorbe lo que la velocidad no puede esquivar.',specialName:'Cortina de Fuego'}},
+  it:{umbra:{name:'OMBRA',desc:'Veloce ed elusiva. Mobilità massima, ma fragile.',tip:'Colpisci e ritirati. Il dash è la tua migliore armatura.',specialName:'Shuriken'},
+    operator:{name:'OPERATORE',desc:'Equilibrato. Bravo in tutto, eccezionale in niente.',tip:'La scelta sicura. Si adatta a qualsiasi stanza.',specialName:'Granata'},
+    blindat:{name:'CORAZZATO',desc:'Resistente e potente, ma lento.',tip:"Resta in prima linea. L'armatura assorbe ciò che la velocità non può schivare.",specialName:'Sbarramento'}},
+  hu:{umbra:{name:'ÁRNYÉK',desc:'Gyors és kitérő. Maximális mozgékonyság, de sérülékeny.',tip:'Csapj le, majd vonulj vissza. A dash a legjobb páncélod.',specialName:'Shuriken'},
+    operator:{name:'OPERATOR',desc:'Kiegyensúlyozott. Mindenben jó, semmiben sem kiemelkedő.',tip:'A biztos választás. Bármilyen szobához alkalmazkodik.',specialName:'Gránát'},
+    blindat:{name:'PÁNCÉLOS',desc:'Kitartó és erős, de lassú.',tip:'Maradj elöl. A páncél elnyeli, amit a sebesség nem tud kikerülni.',specialName:'Sorompó'}},
+  bg:{umbra:{name:'СЯНКА',desc:'Бърза и неуловима. Максимална подвижност, но крехка.',tip:'Удари и се оттегли. Dash е най-добрата ти броня.',specialName:'Shuriken'},
+    operator:{name:'ОПЕРАТОР',desc:'Балансиран. Добър във всичко, изключителен в нищо.',tip:'Сигурният избор. Адаптира се към всяка стая.',specialName:'Граната'},
+    blindat:{name:'БРОНИРАН',desc:'Издръжлив и мощен, но бавен.',tip:'Стой отпред. Бронята поглъща това, което скоростта не може да избегне.',specialName:'Бараж'}},
+  zh:{umbra:{name:'暗影',desc:'快速灵活，闪避力强，但脆弱。',tip:'打了就跑。冲刺是你最好的护甲。',specialName:'手里剑'},
+    operator:{name:'特工',desc:'全面均衡，样样在行，但无一精通。',tip:'稳妥的选择，能适应任何房间。',specialName:'手雷'},
+    blindat:{name:'装甲兵',desc:'坚韧强大，但速度慢。',tip:'站在前排。护甲能吸收速度无法躲避的伤害。',specialName:'弹幕'}},
+  ja:{umbra:{name:'シャドウ',desc:'素早く回避に優れる。機動力は最大だが脆い。',tip:'攻撃してすぐ離脱。ダッシュが最良の防具だ。',specialName:'手裏剣'},
+    operator:{name:'オペレーター',desc:'バランス型。何でもそこそこできるが突出した点はない。',tip:'無難な選択。どんな部屋にも対応できる。',specialName:'手榴弾'},
+    blindat:{name:'アーマード',desc:'頑丈で強力だが遅い。',tip:'前線に立て。速度で避けられない攻撃は装甲が吸収する。',specialName:'弾幕'}},
+};
+function clsName(cl){const L=LANG_CLS[SETTINGS.lang];return(L&&L[cl.id])?L[cl.id].name:cl.name;}
+function clsDesc(cl){const L=LANG_CLS[SETTINGS.lang];return(L&&L[cl.id])?L[cl.id].desc:cl.desc;}
+function clsTip(cl){const L=LANG_CLS[SETTINGS.lang];return(L&&L[cl.id])?L[cl.id].tip:cl.tip;}
+function clsSpecialName(cl){const L=LANG_CLS[SETTINGS.lang];return(L&&L[cl.id])?L[cl.id].specialName:cl.special.name;}
+// ── Traduceri blesteme voluntare ──
+const LANG_CURSE={
+  en:{dmg_hp:{title:'Blood Pact',desc:'Enemies have 2× HP, but you gain 3× gold from kills.'},
+    speed:{title:'Total Chaos',desc:'Enemies are 50% faster. Score bonus +50%.'},
+    dark:{title:'Blindness',desc:'Field of view shrinks (fog of war), but dash recharges instantly.'},
+    regen_stop:{title:'Curse of Stagnation',desc:'Regen stopped for 60s. Instead, each kill heals 8 HP.'}},
+  es:{dmg_hp:{title:'Pacto de Sangre',desc:'Los enemigos tienen 2× HP, pero ganas 3× oro por baja.'},
+    speed:{title:'Caos Total',desc:'Los enemigos son un 50% más rápidos. Bonus de puntuación +50%.'},
+    dark:{title:'Ceguera',desc:'El campo de visión se reduce (niebla de guerra), pero el dash se recarga al instante.'},
+    regen_stop:{title:'Maldición del Estancamiento',desc:'Regeneración detenida 60s. A cambio, cada baja cura 8 HP.'}},
+  it:{dmg_hp:{title:'Patto di Sangue',desc:'I nemici hanno 2× HP, ma guadagni 3× oro dalle uccisioni.'},
+    speed:{title:'Caos Totale',desc:'I nemici sono più veloci del 50%. Bonus punteggio +50%.'},
+    dark:{title:'Cecità',desc:'Il campo visivo si riduce (nebbia di guerra), ma il dash si ricarica istantaneamente.'},
+    regen_stop:{title:'Maledizione della Stagnazione',desc:'Rigenerazione fermata per 60s. In cambio, ogni uccisione cura 8 HP.'}},
+  hu:{dmg_hp:{title:'Vérszerződés',desc:'Az ellenségeknek 2× HP-juk van, de 3× aranyat kapsz az ölésekért.'},
+    speed:{title:'Teljes Káosz',desc:'Az ellenségek 50%-kal gyorsabbak. Pontszám bónusz +50%.'},
+    dark:{title:'Vakság',desc:'A látótér csökken (háborús köd), de a dash azonnal feltöltődik.'},
+    regen_stop:{title:'A Stagnálás Átka',desc:'A regeneráció 60mp-re leáll. Cserébe minden ölés 8 HP-t gyógyít.'}},
+  bg:{dmg_hp:{title:'Кръвен Пакт',desc:'Враговете имат 2× HP, но печелиш 3× злато от убийства.'},
+    speed:{title:'Пълен Хаос',desc:'Враговете са с 50% по-бързи. Бонус резултат +50%.'},
+    dark:{title:'Слепота',desc:'Полето на видимост се стеснява (мъгла на войната), но dash се презарежда мигновено.'},
+    regen_stop:{title:'Проклятието на Застоя',desc:'Регенерацията спира за 60сек. В замяна всяко убийство лекува 8 HP.'}},
+  zh:{dmg_hp:{title:'血契',desc:'敌人生命值×2，但击杀获得金币×3。'},
+    speed:{title:'彻底混乱',desc:'敌人速度+50%。分数加成+50%。'},
+    dark:{title:'致盲',desc:'视野缩小（战争迷雾），但冲刺瞬间恢复。'},
+    regen_stop:{title:'停滞诅咒',desc:'60秒内生命恢复停止。作为交换，每次击杀恢复8点生命值。'}},
+  ja:{dmg_hp:{title:'血の契約',desc:'敵のHPが2倍になるが、キル時のゴールドが3倍になる。'},
+    speed:{title:'完全な混沌',desc:'敵の速度が50%上昇。スコアボーナス+50%。'},
+    dark:{title:'暗闇',desc:'視界が狭まる（戦場の霧）が、ダッシュが即座に回復する。'},
+    regen_stop:{title:'停滞の呪い',desc:'60秒間再生停止。代わりにキルごとにHP8回復。'}},
+};
+function curseTitle(b){const L=LANG_CURSE[SETTINGS.lang];return(L&&L[b.id])?L[b.id].title:b.title;}
+function curseDesc(b){const L=LANG_CURSE[SETTINGS.lang];return(L&&L[b.id])?L[b.id].desc:b.desc;}
+// ── Traduceri evenimente speciale (uși de mister) ──
+const LANG_EVENT={
+  en:{altar:{title:'DARK ALTAR',desc:'Sacrifice 25 HP for 3 rare powerups.',ch:['Sacrifice (-25 HP)','Refuse']},
+    ambush:{title:'AMBUSH',desc:'Double waves of enemies — but triple reward!',ch:['Accept the challenge','Avoid']},
+    oracle:{title:'THE ORACLE',desc:'Choose from 5 powerups instead of 3.',ch:['Consult the oracle','Later']},
+    relic_shop:{title:'MYSTERIOUS MERCHANT',desc:'You find an abandoned rare relic.',ch:['Take the relic',"Don't touch it"]},
+    nightmare:{title:'NIGHTMARE ROOM',desc:'Endless enemies for 35 seconds. Survive and get $600 + rare relic. Die and lose everything.',ch:['ENTER THE NIGHTMARE',"I'm not ready"]}},
+  es:{altar:{title:'ALTAR OSCURO',desc:'Sacrifica 25 HP por 3 mejoras raras.',ch:['Sacrificar (-25 HP)','Rechazar']},
+    ambush:{title:'EMBOSCADA',desc:'Oleadas dobles de enemigos — ¡pero recompensa triple!',ch:['Aceptar el desafío','Evitar']},
+    oracle:{title:'EL ORÁCULO',desc:'Elige entre 5 mejoras en vez de 3.',ch:['Consultar el oráculo','Más tarde']},
+    relic_shop:{title:'MERCADER MISTERIOSO',desc:'Encuentras una reliquia rara abandonada.',ch:['Tomar la reliquia','No tocar']},
+    nightmare:{title:'SALA DE PESADILLA',desc:'Enemigos infinitos durante 35 segundos. Sobrevive y recibe $600 + reliquia rara. Muere y lo pierdes todo.',ch:['ENTRAR A LA PESADILLA','No estoy listo']}},
+  it:{altar:{title:'ALTARE OSCURO',desc:'Sacrifica 25 HP per 3 potenziamenti rari.',ch:['Sacrifica (-25 HP)','Rifiuta']},
+    ambush:{title:'IMBOSCATA',desc:'Ondate doppie di nemici — ma ricompensa tripla!',ch:['Accetta la sfida','Evita']},
+    oracle:{title:"L'ORACOLO",desc:'Scegli tra 5 potenziamenti invece di 3.',ch:["Consulta l'oracolo",'Più tardi']},
+    relic_shop:{title:'MERCANTE MISTERIOSO',desc:'Trovi una reliquia rara abbandonata.',ch:['Prendi la reliquia','Non toccare']},
+    nightmare:{title:"STANZA DELL'INCUBO",desc:'Nemici infiniti per 35 secondi. Sopravvivi e ricevi $600 + reliquia rara. Muori e perdi tutto.',ch:["ENTRA NELL'INCUBO",'Non sono pronto']}},
+  hu:{altar:{title:'SÖTÉT OLTÁR',desc:'Áldozz fel 25 HP-t 3 ritka powerupért.',ch:['Feláldozás (-25 HP)','Elutasítás']},
+    ambush:{title:'RAJTAÜTÉS',desc:'Dupla ellenséghullám — de háromszoros jutalom!',ch:['Fogadd el a kihívást','Kerüld el']},
+    oracle:{title:'AZ ORÁKULUM',desc:'Válassz 5 powerup közül 3 helyett.',ch:['Kérdezd az orákulumot','Majd később']},
+    relic_shop:{title:'REJTÉLYES KERESKEDŐ',desc:'Egy elhagyott ritka relikviát találsz.',ch:['Vedd el a relikviát','Ne nyúlj hozzá']},
+    nightmare:{title:'RÉMÁLOM SZOBA',desc:'Végtelen ellenség 35 másodpercig. Élj túl, és kapj $600-at + ritka relikviát. Halj meg, és veszíts el mindent.',ch:['BELÉPÉS A RÉMÁLOMBA','Még nem állok készen']}},
+  bg:{altar:{title:'ТЪМЕН ОЛТАР',desc:'Жертвай 25 HP за 3 редки подобрения.',ch:['Жертвай (-25 HP)','Откажи']},
+    ambush:{title:'ЗАСАДА',desc:'Двойни вълни врагове — но тройна награда!',ch:['Приеми предизвикателството','Избегни']},
+    oracle:{title:'ОРАКУЛЪТ',desc:'Избери от 5 подобрения вместо 3.',ch:['Допитай се до оракула','По-късно']},
+    relic_shop:{title:'ЗАГАДЪЧЕН ТЪРГОВЕЦ',desc:'Намираш изоставена рядка реликва.',ch:['Вземи реликвата','Не пипай']},
+    nightmare:{title:'СТАЯ НА КОШМАРА',desc:'Безкрайни врагове за 35 секунди. Оцелей и получи $600 + рядка реликва. Умри и загуби всичко.',ch:['ВЛЕЗ В КОШМАРА','Не съм готов']}},
+  zh:{altar:{title:'黑暗祭坛',desc:'牺牲25生命值换取3个稀有增益。',ch:['献祭（-25生命值）','拒绝']},
+    ambush:{title:'伏击',desc:'双倍敌人波次——但三倍奖励！',ch:['接受挑战','避开']},
+    oracle:{title:'神谕者',desc:'从5个增益中选择，而不是3个。',ch:['请教神谕者','稍后再说']},
+    relic_shop:{title:'神秘商人',desc:'你发现了一件被遗弃的稀有遗物。',ch:['拿走遗物','不要碰']},
+    nightmare:{title:'噩梦房间',desc:'35秒内敌人无限刷新。生存下来可获得$600+稀有遗物。死亡则失去一切。',ch:['进入噩梦','我还没准备好']}},
+  ja:{altar:{title:'闇の祭壇',desc:'HP25を犠牲にレアなパワーアップを3つ得る。',ch:['犠牲にする（-25HP）','拒否する']},
+    ambush:{title:'待ち伏せ',desc:'敵の波が2倍——だが報酬は3倍！',ch:['挑戦を受ける','避ける']},
+    oracle:{title:'神託',desc:'3つではなく5つのパワーアップから選べる。',ch:['神託を尋ねる','後で']},
+    relic_shop:{title:'謎の商人',desc:'放置されたレアな遺物を見つけた。',ch:['遺物を受け取る','触れない']},
+    nightmare:{title:'悪夢の部屋',desc:'35秒間敵が無限に出現。生き残れば$600＋レア遺物を獲得。死ねばすべて失う。',ch:['悪夢に入る','まだ準備ができていない']}},
+};
+function eventTitle(ev){const L=LANG_EVENT[SETTINGS.lang];return(L&&L[ev.id])?L[ev.id].title:ev.title;}
+function eventDesc(ev){const L=LANG_EVENT[SETTINGS.lang];return(L&&L[ev.id])?L[ev.id].desc:ev.desc;}
+function eventChoiceLabel(ev,idx){const L=LANG_EVENT[SETTINGS.lang];return(L&&L[ev.id])?L[ev.id].ch[idx]:ev.choices[idx].label;}
 
 let paused=false;
 function togglePause(){ paused?resumeGame():pauseGame(); }
@@ -4481,28 +5283,28 @@ function pauseGame(){
     'display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px;';
   const cls=getClass(G.cls);
   ov.innerHTML=
-    `<div style="font-size:16px;letter-spacing:7px;color:#00d4ff;">PAUZĂ</div>`+
+    `<div style="font-size:16px;letter-spacing:7px;color:#00d4ff;">${t('pause_title')}</div>`+
     `<div style="font-size:8px;color:#667;letter-spacing:2px;margin-bottom:8px;">`+
-      `CAMERA ${RUN.roomNum} · ${cls.icon} ${cls.name}</div>`+
+      `${t('room_lbl')} ${RUN.roomNum} · ${cls.icon} ${cls.name}</div>`+
     `<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;max-width:280px;margin-bottom:6px;">`+
       `<div style="border:1px solid #232a35;border-radius:4px;padding:6px;text-align:center;">`+
         `<div style="font-size:15px;color:#ff5566;">${Math.ceil(G.hp)}/${G.maxHp}</div>`+
-        `<div style="font-size:6.5px;color:#667;letter-spacing:1px;">VIAȚĂ</div></div>`+
+        `<div style="font-size:6.5px;color:#667;letter-spacing:1px;">${t('life_lbl')}</div></div>`+
       `<div style="border:1px solid #232a35;border-radius:4px;padding:6px;text-align:center;">`+
         `<div style="font-size:15px;color:#ffcc00;">$${G.money}</div>`+
-        `<div style="font-size:6.5px;color:#667;letter-spacing:1px;">AUR</div></div>`+
+        `<div style="font-size:6.5px;color:#667;letter-spacing:1px;">${t('gold_lbl')}</div></div>`+
       `<div style="border:1px solid #232a35;border-radius:4px;padding:6px;text-align:center;">`+
         `<div style="font-size:15px;color:#00d4ff;">${G.score}</div>`+
-        `<div style="font-size:6.5px;color:#667;letter-spacing:1px;">SCOR</div></div>`+
+        `<div style="font-size:6.5px;color:#667;letter-spacing:1px;">${t('score_lbl')}</div></div>`+
       `<div style="border:1px solid #232a35;border-radius:4px;padding:6px;text-align:center;">`+
         `<div style="font-size:15px;color:#aa66ff;">${(G.relics||[]).length}</div>`+
-        `<div style="font-size:6.5px;color:#667;letter-spacing:1px;">RELICVE</div></div>`+
+        `<div style="font-size:6.5px;color:#667;letter-spacing:1px;">${t('relics_lbl')}</div></div>`+
     `</div>`+
-    `<button class="mb pr" style="min-width:210px;" onclick="resumeGame()">▶ CONTINUĂ</button>`+
-    `<button class="mb sc" style="min-width:210px;" onclick="openSettings()">⚙️ SETĂRI</button>`+
-    `<button class="mb sc" style="min-width:210px;" onclick="openCodex()">📖 CODEX</button>`+
+    `<button class="mb pr" style="min-width:210px;" onclick="resumeGame()">▶ ${t('btn_continue')}</button>`+
+    `<button class="mb sc" style="min-width:210px;" onclick="openSettings()">${t('btn_settings')}</button>`+
+    `<button class="mb sc" style="min-width:210px;" onclick="openCodex()">${t('btn_codex')}</button>`+
     `<button class="mb sc" style="min-width:210px;border-color:#ff4444;color:#ff6666;"`+
-      ` onclick="confirmAbandon()">✕ ABANDONEAZĂ RUN-UL</button>`;
+      ` onclick="confirmAbandon()">✕ ${t('btn_abandon')}</button>`;
   document.body.appendChild(ov);
 }
 function resumeGame(){
@@ -4521,12 +5323,12 @@ function confirmAbandon(){
   c2.style.cssText='position:fixed;inset:0;z-index:88;background:rgba(4,6,10,.95);'+
     'display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px;';
   c2.innerHTML=
-    `<div style="font-size:13px;letter-spacing:3px;color:#ff4444;">ABANDONEZI?</div>`+
+    `<div style="font-size:13px;letter-spacing:3px;color:#ff4444;">${t('abandon_title')}</div>`+
     `<div style="font-size:9px;color:#889;text-align:center;max-width:260px;line-height:1.6;">`+
-      `Pierzi progresul acestui run. Checkpoint-ul de la ultimul boss rămâne salvat.</div>`+
+      `${t('abandon_desc')}</div>`+
     `<button class="mb sc" style="min-width:200px;border-color:#ff4444;color:#ff6666;"`+
-      ` onclick="doAbandon()">DA, ABANDONEZ</button>`+
-    `<button class="mb pr" style="min-width:200px;" onclick="resumeGame()">NU, CONTINUĂ</button>`;
+      ` onclick="doAbandon()">${t('btn_yes_abandon')}</button>`+
+    `<button class="mb pr" style="min-width:200px;" onclick="resumeGame()">${t('btn_no_continue')}</button>`;
   document.body.appendChild(c2);
 }
 function doAbandon(){
@@ -4659,17 +5461,17 @@ function showTutorial(fromSettings){
     `<div><div style="font-size:9px;color:#00d4ff;letter-spacing:2px;">${title}</div>`+
     `<div style="font-size:8px;color:#889;line-height:1.6;margin-top:2px;">${txt}</div></div></div>`;
   ov.innerHTML=
-    `<div style="font-size:14px;letter-spacing:5px;color:#00d4ff;">CUM SE JOACĂ</div>`+
+    `<div style="font-size:14px;letter-spacing:5px;color:#00d4ff;">${t('tut_title')}</div>`+
     `<div style="font-size:7px;color:#556;letter-spacing:2px;margin-bottom:6px;">STRIKER ROGUELITE</div>`+
-    item('🎮','MIȘCARE','Joystick-ul din stânga jos. Ținta se face automat spre cel mai apropiat inamic.')+
-    item('🔫','TRAGERE','Butonul roșu din dreapta. Ține apăsat pentru foc continuu.')+
-    item('💨','DASH','Te ferește rapid și te face invulnerabil pentru o clipă. Se reîncarcă singur.')+
-    item('🚪','UȘI','După ce cureți camera apar uși. Mergi în ele ca să alegi camera următoare.')+
-    item('📦','LĂZI ȘI CUFERE','Sparge lăzile cu gloanțe. Cuferele încuiate 🔒 cer o cheie 🔑.')+
-    item('💀','BOSS','La fiecare 5 camere. După ce-l învingi, progresul se salvează automat.')+
-    item('⛺','TABĂRĂ','Aurul META rămâne între run-uri. Cumpără upgrade-uri permanente din meniu.')+
+    item('🎮',t('tut_move_t').replace('🎮 ',''),t('tut_move_d'))+
+    item('🔫',t('tut_shoot_t').replace('🔫 ',''),t('tut_shoot_d'))+
+    item('💨',t('tut_dash_t').replace('💨 ',''),t('tut_dash_d'))+
+    item('🚪',t('tut_doors_t').replace('🚪 ',''),t('tut_doors_d'))+
+    item('📦',t('tut_crates_t').replace('📦 ',''),t('tut_crates_d'))+
+    item('💀',t('tut_boss_t').replace('💀 ',''),t('tut_boss_d'))+
+    item('⛺',t('tut_camp_t').replace('⛺ ',''),t('tut_camp_d'))+
     `<button class="mb pr" style="min-width:210px;margin-top:10px;"`+
-      ` onclick="closeTutorial(${fromSettings?'true':'false'})">AM ÎNȚELES</button>`;
+      ` onclick="closeTutorial(${fromSettings?'true':'false'})">${t('btn_gotit')}</button>`;
   document.body.appendChild(ov);
 }
 function closeTutorial(fromSettings){
@@ -4748,6 +5550,45 @@ const MENU_TIPS=[
   '💡 Scutarul poate fi ocolit sau lovit din spate.',
   '💡 Slow Time oprește și gloanțele inamicilor.',
 ];
+// ── Traduceri sfaturi meniu (aceeași ordine, pe index) ──
+const LANG_TIPS={
+  en:['💡 Powerup synergies give massive bonuses!','💡 Voluntary curses can be worth the risk.',
+    '💡 Rare relics are found in bonus rooms.','💡 Combo boosts damage by 10% at ×10.',
+    '💡 Surprise minibosses appear in rooms 3 and 8.','💡 Shop negotiation only works once per run.',
+    '💡 The META camp offers permanent upgrades.','💡 The laser passes through every enemy in a line.',
+    '💡 The shieldbearer can be flanked or hit from behind.','💡 Slow Time also stops enemy bullets.'],
+  es:['💡 ¡Las sinergias de mejoras dan bonos enormes!','💡 Las maldiciones voluntarias pueden valer la pena.',
+    '💡 Las reliquias raras se encuentran en salas de bonificación.','💡 El combo aumenta el daño un 10% al ×10.',
+    '💡 Los minijefes sorpresa aparecen en las salas 3 y 8.','💡 La negociación en la tienda solo funciona una vez por partida.',
+    '💡 El campamento META ofrece mejoras permanentes.','💡 El láser atraviesa a todos los enemigos en línea.',
+    '💡 El escudero puede ser flanqueado o golpeado por la espalda.','💡 El Tiempo Lento también detiene las balas enemigas.'],
+  it:['💡 Le sinergie tra potenziamenti danno bonus enormi!','💡 Le maledizioni volontarie possono valerne la pena.',
+    '💡 Le reliquie rare si trovano nelle stanze bonus.','💡 La combo aumenta il danno del 10% a ×10.',
+    '💡 I miniboss a sorpresa appaiono nelle stanze 3 e 8.','💡 La negoziazione al negozio funziona solo una volta a partita.',
+    '💡 Il campo META offre potenziamenti permanenti.','💡 Il laser attraversa tutti i nemici in linea.',
+    '💡 Lo scudiero può essere aggirato o colpito alle spalle.','💡 Il Tempo Rallentato ferma anche i proiettili nemici.'],
+  hu:['💡 A powerup szinergiák hatalmas bónuszt adnak!','💡 Az önkéntes átkok megérhetik a kockázatot.',
+    '💡 A ritka relikviák bónusz szobákban találhatók.','💡 A kombó ×10-nél 10%-kal növeli a sebzést.',
+    '💡 Meglepetés miniFőnökök jelennek meg a 3. és 8. szobában.','💡 A boltban való alkudozás menetenként csak egyszer működik.',
+    '💡 A META tábor állandó fejlesztéseket kínál.','💡 A lézer egy vonalban minden ellenségen áthatol.',
+    '💡 A pajzsos kikerülhető vagy hátulról eltalálható.','💡 A Lassított Idő az ellenséges lövedékeket is megállítja.'],
+  bg:['💡 Синергиите между powerup-и дават огромни бонуси!','💡 Доброволните проклятия може да си заслужават риска.',
+    '💡 Редките реликви се намират в бонус стаи.','💡 Комбото увеличава щетата с 10% при ×10.',
+    '💡 Изненадващи минибосове се появяват в стаи 3 и 8.','💡 Договарянето в магазина работи само веднъж на пробег.',
+    '💡 META лагерът предлага постоянни подобрения.','💡 Лазерът преминава през всички врагове по линия.',
+    '💡 Щитоносецът може да бъде обходен или ударен отзад.','💡 Забавеното Време спира и вражеските куршуми.'],
+  zh:['💡 增益效果的协同能带来巨大加成！','💡 自愿诅咒可能值得冒险。',
+    '💡 稀有遗物可在奖励房间中找到。','💡 连击在×10时伤害提升10%。',
+    '💡 惊喜迷你首领会出现在第3和第8个房间。','💡 商店议价每局只能使用一次。',
+    '💡 META营地提供永久升级。','💡 激光会贯穿一条直线上的所有敌人。',
+    '💡 盾兵可以被包抄或从背后攻击。','💡 时间减速也会让敌方子弹停止。'],
+  ja:['💡 パワーアップのシナジーは大きなボーナスをもたらす！','💡 自発的な呪いはリスクに見合うことがある。',
+    '💡 レアな遺物はボーナス部屋で見つかる。','💡 コンボは×10でダメージが10%上昇する。',
+    '💡 サプライズミニボスは部屋3と8に出現する。','💡 ショップでの交渉は1ランにつき1回だけ有効。',
+    '💡 METAキャンプは永久アップグレードを提供する。','💡 レーザーは一直線上のすべての敵を貫通する。',
+    '💡 盾兵は側面から回り込むか背後から攻撃できる。','💡 スローモーションは敵の弾も止める。'],
+};
+function menuTip(idx){const L=LANG_TIPS[SETTINGS.lang];return(L&&L[idx])?L[idx]:MENU_TIPS[idx];}
 function updMetaHUD(){
   META=lMeta();
   document.getElementById('mruns').textContent=META.runs||0;
@@ -4764,14 +5605,14 @@ function updMetaHUD(){
   if(nextHintEl){
     const runs=META.runs||0;
     const nextLvl=META_LEVELS.find(l=>l.min>runs);
-    if(nextLvl){nextHintEl.textContent=`${nextLvl.min-runs} run-uri până la ${nextLvl.name}`;}
-    else{nextHintEl.textContent='Ai atins nivelul maxim!';}
+    if(nextLvl){nextHintEl.textContent=`${nextLvl.min-runs} ${t('runs_to_rank_lbl')} ${nextLvl.name}`;}
+    else{nextHintEl.textContent=t('max_rank_lbl');}
   }
   // Sfat zilnic random
   const tipEl=document.getElementById('menuTip');
   if(tipEl){
     const dayIdx=Math.floor(Date.now()/86400000)%MENU_TIPS.length;
-    tipEl.textContent=MENU_TIPS[dayIdx];
+    tipEl.textContent=menuTip(dayIdx);
   }
 }
 applyAllWepUpgrades();updMetaHUD();checkAchievements(null);
@@ -6701,6 +7542,16 @@ function killEnemy(e){
   contractProgress('kills',1);
   if(e.isBoss)contractProgress('boss',1);
 
+  // Fragmente (monedă Forjă, persistă între run-uri)
+  let fragGain=0;
+  if(e.isBoss)fragGain=3;
+  else if(e.isElite)fragGain=1;
+  else if(Math.random()<0.03)fragGain=1;
+  if(fragGain>0){
+    G.fragmentsEarned=(G.fragmentsEarned||0)+fragGain;
+    showFloatText(e.x,e.y-14,'+'+fragGain+' 💠','#66ddff');
+  }
+
   // Blood splat pe podea
   spawnBlood(e.x,e.y,e.isBoss,e.lastHitAng);
   playSfx(e.isBoss?'bossDie':'enemyDie',e.type);
@@ -7021,15 +7872,19 @@ function renderShop(tab){
     if(tab==='weapons'){const cv=document.createElement('canvas');cv.width=200;cv.height=96;cv.className='uiCv';cv.style.cssText='display:block;position:static;width:100%;margin:0 auto 4px;border-radius:3px;background:#07090d;';div.appendChild(cv);con.appendChild(div);renderWeaponCanvas(cv,item.id);}
     else if(tab==='skins'){const cv=document.createElement('canvas');cv.width=70;cv.height=70;cv.className='uiCv';cv.style.cssText='display:block;position:static;margin:0 auto 4px;border-radius:3px;background:#07090d;';div.appendChild(cv);con.appendChild(div);const pc=cv.getContext('2d');pc.fillStyle='#07090d';pc.fillRect(0,0,70,70);drawChar(pc,35,52,-Math.PI/2,item.id,0.82,1,false);}
     else{const ie=document.createElement('div');ie.style.cssText='font-size:22px;text-align:center;';ie.textContent=item.icon;div.appendChild(ie);con.appendChild(div);}
-    const nm=document.createElement('div');nm.className='in';nm.textContent=item.name||item.label;div.appendChild(nm);
-    if(item.desc){const de=document.createElement('div');de.className='id';de.textContent=item.desc;div.appendChild(de);}
+    const nm=document.createElement('div');nm.className='in';
+    nm.textContent=tab==='armor'?armorName(item):tab==='utility'?utilName(item):(item.name||item.label);
+    div.appendChild(nm);
+    if(item.desc){const de=document.createElement('div');de.className='id';
+      de.textContent=tab==='weapons'?wepDesc(item):tab==='armor'?armorDesc(item):tab==='utility'?utilDesc(item):item.desc;
+      div.appendChild(de);}
     // Buton negociere (30% sansa per item, o data per run, doar daca nu e detinut)
     const negData=renderShop._negotiated;
     const alreadyNeg=negData&&negData.type===tab&&negData.id===item.id;
     const showNegBtn=!isOwn&&!isEq&&item.price>0&&!shopNegotiatedThisRun&&Math.abs((item.id.charCodeAt(0)+(item.price||0))%10)<3;
     const dispPrice=alreadyNeg?negData.price:item.price;
     const pr=document.createElement('div');pr.className='ip'+(item.price===0?' fr':'');
-    pr.textContent=item.price===0?'GRATIS':'$'+dispPrice+(alreadyNeg?' ✓':'');
+    pr.textContent=item.price===0?t('free_lbl'):'$'+dispPrice+(alreadyNeg?' ✓':'');
     if(alreadyNeg)pr.style.color='#00cc66';
     div.appendChild(pr);
     if(showNegBtn){
@@ -7039,9 +7894,9 @@ function renderShop(tab){
       nb.addEventListener('click',ev=>{ev.stopPropagation();tryNegotiate(tab,item.id,item.price);});
       div.appendChild(nb);
     }
-    if(isEq){const b=document.createElement('span');b.className='ib bEq';b.textContent='ECHIPAT';div.appendChild(b);}
+    if(isEq){const b=document.createElement('span');b.className='ib bEq';b.textContent=t('equipped_lbl');div.appendChild(b);}
     else if(tab==='utility'&&item.owned>0){const b=document.createElement('span');b.className='ib bOw';b.textContent='×'+item.owned;div.appendChild(b);}
-    else if(isOwn){const b=document.createElement('span');b.className='ib bOw';b.textContent='DEȚINUT';div.appendChild(b);}
+    else if(isOwn){const b=document.createElement('span');b.className='ib bOw';b.textContent=t('owned_lbl');div.appendChild(b);}
 
     // ── UPGRADE-URI ARMĂ (doar pentru arme deținute) ──
     if(tab==='weapons'&&isOwn){
@@ -7099,7 +7954,7 @@ function openClassSelect(fromDoors){
   ov.style.cssText='position:fixed;inset:0;z-index:80;background:radial-gradient(circle at 50% 35%,#0e141d,#04060a 70%);'+
     'display:flex;flex-direction:column;align-items:center;overflow-y:auto;padding:14px 12px 20px;';
   ov.innerHTML=
-    `<div style="font-size:12px;letter-spacing:6px;color:#00d4ff;margin-bottom:2px;">ALEGE CLASA</div>`+
+    `<div style="font-size:12px;letter-spacing:6px;color:#00d4ff;margin-bottom:2px;">${t('choose_class_lbl')}</div>`+
     `<div id="clsSwitchNote" style="font-size:7px;letter-spacing:1px;color:#667;margin-bottom:6px;"></div>`+
     `<canvas id="clsStage" class="uiCv" width="330" height="230" `+
       `style="width:100%;max-width:330px;position:static;border-radius:8px;`+
@@ -7198,8 +8053,8 @@ function renderClassSelect(){
   const note=document.getElementById('clsSwitchNote');
   if(note){
     note.textContent=inRun
-      ? 'Schimbări rămase în acest run: '+(G.clsSwitchesLeft||0)
-      : 'Fiecare clasă are upgrade-uri și skin-uri proprii';
+      ? t('switches_left_lbl')+' '+(G.clsSwitchesLeft||0)
+      : t('cls_note_lbl');
   }
 
   // Tab-uri clase
@@ -7209,7 +8064,7 @@ function renderClassSelect(){
       `<button onclick="pickClass(${i})" style="background:${i===_clsSelIdx?'rgba(255,255,255,.07)':'none'};`+
       `border:1px solid ${i===_clsSelIdx?c.color:'#232a35'};color:${i===_clsSelIdx?c.color:'#667'};`+
       `border-radius:4px;padding:5px 9px;font-family:inherit;font-size:8px;letter-spacing:1px;cursor:pointer;">`+
-      `${c.icon} ${c.name}</button>`).join('');
+      `${c.icon} ${clsName(c)}</button>`).join('');
   }
 
   // Statistici
@@ -7225,22 +8080,22 @@ function renderClassSelect(){
   if(info){
     info.innerHTML=
       `<div style="border:1px solid ${cl.color}33;border-radius:5px;padding:8px 10px;background:rgba(255,255,255,.02);">`+
-      `<div style="font-size:8px;color:#889;line-height:1.6;margin-bottom:6px;">${cl.desc}</div>`+
-      bar('VIAȚĂ',cl.hp,maxHp,'#ff4455',cl.hp)+
-      bar('DAMAGE',cl.dmgM,maxDmg,'#ffcc00','×'+cl.dmgM.toFixed(2))+
-      bar('VITEZĂ',cl.spdM,maxSpd,'#00d4ff','×'+cl.spdM.toFixed(2))+
-      bar('ARMURĂ',cl.armor,maxArm,'#88aacc',cl.armor||'—')+
+      `<div style="font-size:8px;color:#889;line-height:1.6;margin-bottom:6px;">${clsDesc(cl)}</div>`+
+      bar(t('life_lbl'),cl.hp,maxHp,'#ff4455',cl.hp)+
+      bar('DMG',cl.dmgM,maxDmg,'#ffcc00','×'+cl.dmgM.toFixed(2))+
+      bar(t('spd_lbl'),cl.spdM,maxSpd,'#00d4ff','×'+cl.spdM.toFixed(2))+
+      bar(t('armor_lbl'),cl.armor,maxArm,'#88aacc',cl.armor||'—')+
       bar('DASH',cl.dash,3,'#aa66ff',cl.dash)+
       `<div style="margin-top:6px;padding-top:6px;border-top:1px solid #1a2029;font-size:8px;color:${cl.color};">`+
-      `${cl.special.icon} ${cl.special.name} <span style="color:#556;">${cl.special.desc}</span></div>`+
-      `<div style="font-size:7px;color:#556;margin-top:4px;line-height:1.5;">▸ ${cl.tip}</div>`+
+      `${cl.special.icon} ${clsSpecialName(cl)} <span style="color:#556;">${t('coming_soon_lbl')}</span></div>`+
+      `<div style="font-size:7px;color:#556;margin-top:4px;line-height:1.5;">▸ ${clsTip(cl)}</div>`+
       `</div>`;
   }
 
   // Skin-uri
   const sk=document.getElementById('clsSkins');
   if(sk){
-    let h=`<div style="font-size:7px;color:#667;letter-spacing:2px;margin-bottom:4px;">SKIN-URI</div>`+
+    let h=`<div style="font-size:7px;color:#667;letter-spacing:2px;margin-bottom:4px;">${t('tab_skins')}</div>`+
       `<div style="display:flex;gap:6px;">`;
     cl.skins.forEach(sid=>{
       const skin=SKINS.find(x=>x.id===sid);if(!skin)return;
@@ -7267,7 +8122,7 @@ function renderClassSelect(){
   // Buton principal
   const go=document.getElementById('clsGo');
   if(go){
-    go.textContent=inRun?'SCHIMBĂ CLASA':'▶ START RUN';
+    go.textContent=inRun?t('switch_class_lbl'):t('btn_start');
     go.onclick=()=>{
       META.cls=cl.id;sMeta(META);
       if(inRun)switchClassMidRun(cl);
@@ -7330,7 +8185,7 @@ function showSkinPreview(item){
   ov.innerHTML=
     `<div style="font-size:15px;letter-spacing:4px;color:#fff;">${item.label}</div>`+
     `<div style="font-size:9px;letter-spacing:2px;color:${isEq?'#00d4ff':isOwn?'#00cc66':'#ffcc00'};">`+
-      `${isEq?'ECHIPAT':isOwn?'DEȚINUT':'$'+item.price}</div>`+
+      `${isEq?t('equipped_lbl'):isOwn?t('owned_lbl'):'$'+item.price}</div>`+
     `<canvas id="skinPrevCv" class="uiCv" width="240" height="240" `+
       `style="width:240px;height:240px;max-width:78vw;max-height:78vw;position:static;`+
       `border-radius:8px;background:#07090d;border:1px solid #232a35;margin:4px 0;"></canvas>`+
@@ -7344,12 +8199,12 @@ function showSkinPreview(item){
     `</div>`+
     `<div style="display:flex;gap:8px;margin-top:8px;">`+
       (isEq
-        ? `<button class="mb sc" style="min-width:120px;opacity:.5;">ECHIPAT</button>`
+        ? `<button class="mb sc" style="min-width:120px;opacity:.5;">${t('equipped_lbl')}</button>`
         : isOwn
-          ? `<button class="mb pr" id="spBuy" style="min-width:120px;">ECHIPEAZĂ</button>`
+          ? `<button class="mb pr" id="spBuy" style="min-width:120px;">${t('equip_lbl')}</button>`
           : `<button class="mb pr" id="spBuy" style="min-width:120px;${cant?'opacity:.45;':''}">`+
-            `${cant?'INSUFICIENT':'CUMPĂRĂ $'+item.price}</button>`)+
-      `<button class="mb sc" id="spClose" style="min-width:90px;">ÎNAPOI</button>`+
+            `${cant?t('insufficient_lbl'):t('buy_lbl')+' $'+item.price}</button>`)+
+      `<button class="mb sc" id="spClose" style="min-width:90px;">${t('btn_back')}</button>`+
     `</div>`;
   document.body.appendChild(ov);
 
@@ -7411,9 +8266,9 @@ function renderAmmoShop(con,cur){
   const hdr=document.createElement('div');
   hdr.style.cssText='grid-column:1/-1;text-align:center;padding:6px;margin-bottom:4px;'+
     'border:1px solid '+cura.color+';border-radius:4px;background:rgba(255,255,255,.03);';
-  hdr.innerHTML=`<div style="font-size:7px;color:#667;letter-spacing:2px;">ÎNCĂRCAT ACUM</div>`+
+  hdr.innerHTML=`<div style="font-size:7px;color:#667;letter-spacing:2px;">${t('loaded_now_lbl')}</div>`+
     `<div style="font-size:12px;color:${cura.color};letter-spacing:2px;margin-top:2px;">`+
-    `${cura.icon} ${cura.name}${G.specialRounds>0?' — '+G.specialRounds+' cartușe':''}</div>`;
+    `${cura.icon} ${ammoName(cura)}${G.specialRounds>0?' — '+G.specialRounds+' '+t('rounds_lbl'):''}</div>`;
   con.appendChild(hdr);
 
   AMMO_TYPES.forEach(a=>{
@@ -7426,11 +8281,11 @@ function renderAmmoShop(con,cur){
     ie.style.cssText='font-size:24px;text-align:center;';ie.textContent=a.icon;
     div.appendChild(ie);
     const nm=document.createElement('div');nm.className='in';
-    nm.textContent=a.name;nm.style.color=a.color;div.appendChild(nm);
-    const de=document.createElement('div');de.className='id';de.textContent=a.desc;div.appendChild(de);
+    nm.textContent=ammoName(a);nm.style.color=a.color;div.appendChild(nm);
+    const de=document.createElement('div');de.className='id';de.textContent=ammoDesc(a);div.appendChild(de);
     const rd=document.createElement('div');
     rd.style.cssText='font-size:7px;color:#667;letter-spacing:1px;margin-top:2px;';
-    rd.textContent='×'+a.rounds+' cartușe';div.appendChild(rd);
+    rd.textContent='×'+a.rounds+' '+t('rounds_lbl');div.appendChild(rd);
     const pr=document.createElement('div');pr.className='ip';
     pr.textContent='$'+a.price;div.appendChild(pr);
     if(isActive){
@@ -7569,7 +8424,7 @@ function updHUD(){
   updDashUI();
 }
 function updXPBar(){const pct=G.xpNext>0?Math.min(100,G.xp/G.xpNext*100):0;const xpf=document.getElementById('xpfill');if(xpf)xpf.style.width=pct+'%';}
-function updUtilBar(){const bar=document.getElementById('utilbar');if(!bar)return;bar.innerHTML='';UTILITIES.filter(u=>u.owned>0).forEach(u=>{const row=document.createElement('div');row.className='ub';const btn=document.createElement('div');btn.className='ubt';btn.innerHTML=u.icon+'<div class="ubn">×'+u.owned+'</div>';btn.addEventListener('touchstart',e=>{e.preventDefault();e.stopPropagation();useSpecUtil(u.id);},{passive:false});btn.addEventListener('click',()=>useSpecUtil(u.id));const lb=document.createElement('div');lb.className='ubl';lb.textContent=u.name;row.appendChild(btn);row.appendChild(lb);bar.appendChild(row);});}
+function updUtilBar(){const bar=document.getElementById('utilbar');if(!bar)return;bar.innerHTML='';UTILITIES.filter(u=>u.owned>0).forEach(u=>{const row=document.createElement('div');row.className='ub';const btn=document.createElement('div');btn.className='ubt';btn.innerHTML=u.icon+'<div class="ubn">×'+u.owned+'</div>';btn.addEventListener('touchstart',e=>{e.preventDefault();e.stopPropagation();useSpecUtil(u.id);},{passive:false});btn.addEventListener('click',()=>useSpecUtil(u.id));const lb=document.createElement('div');lb.className='ubl';lb.textContent=utilName(u);row.appendChild(btn);row.appendChild(lb);bar.appendChild(row);});}
 function updPUBar(){
   const bar=document.getElementById('pubar');if(!bar)return;
   bar.innerHTML='';
@@ -7658,7 +8513,9 @@ function runEnd(won){
   document.getElementById('bossbar').style.display='none';
   META.runs=(META.runs||0)+1;META.kills=(META.kills||0)+G.kills;
   if(RUN.roomNum>META.best)META.best=RUN.roomNum;
-  const eg=Math.floor(G.score*.1*(getAsc().mult||1));META.gold=(META.gold||150)+eg;sMeta(META);
+  const eg=Math.floor(G.score*.1*(getAsc().mult||1));META.gold=(META.gold||150)+eg;
+  if(G.fragmentsEarned>0){META.fragments=(META.fragments||0)+G.fragmentsEarned;}
+  sMeta(META);
   contractProgress('runs',1);
   contractSetIfHigher('goldrun',G.money);
   contractProgress('goldtotal',G.money);
@@ -7714,6 +8571,7 @@ function runEnd(won){
     <div class="ebar"><div class="ebl"><span>💎 ${t('score_lbl')}</span><span style="color:#00cc66">${G.score}</span></div><div class="ebtrack"><div class="ebfill score" style="width:0%" data-w="${scorePct}"></div></div></div>
     <div class="esr" style="border-top:1px solid var(--bor);padding-top:6px;margin-top:4px;"><span class="el">🔮 ${t('relics_lbl')}</span><span class="ev">${(G.relics||[]).map(r=>r.icon).join(' ')||'—'}</span></div>
     <div class="esr"><span class="el">💰 ${t('gold_earned_lbl')}</span><span class="ev" style="color:#ffcc00">+$${eg}</span></div>
+    ${G.fragmentsEarned>0?`<div class="esr"><span class="el">💠 ${t('frags_earned_lbl')}</span><span class="ev" style="color:#66ddff">+${G.fragmentsEarned}</span></div>`:''}
     ${runStats.bossesKilled>0?`<div class="esr"><span class="el">💀 ${t('bosses_killed_lbl')}</span><span class="ev" style="color:#ff4444">${runStats.bossesKilled}</span></div>`:''}
   `;
   document.getElementById('endmeta').textContent=t('meta_gold_lbl')+': $'+META.gold+' | '+t('runs_lbl')+': '+META.runs+' | '+t('rank_lbl')+': '+getMetaLevel(META.runs);
